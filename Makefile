@@ -146,6 +146,8 @@ else
 	@echo "-> finish build out path: ${ENV_ROOT_BUILD_BIN_PATH}"
 endif
 
+devDebug: export CI_SYSTEM_NAME=woodpecker
+devDebug: export CI=woodpecker
 devDebug: export PLUGIN_DEBUG=true
 devDebug: cleanBuild buildMain
 ifeq ($(OS),Windows_NT)
@@ -155,6 +157,7 @@ else
 endif
 
 dev: export PLUGIN_DEBUG=false
+dev: export CI=woodpecker
 dev: cleanBuild buildMain
 ifeq ($(OS),Windows_NT)
 	$(subst /,\,${ENV_ROOT_BUILD_BIN_PATH}).exe ${ENV_RUN_INFO_ARGS}
@@ -163,6 +166,7 @@ else
 endif
 
 runHelp: export CLI_VERBOSE=false
+runHelp: export CI=woodpecker
 runHelp:
 	go run -v ${ENV_ROOT_BUILD_ENTRANCE} ${ENV_RUN_INFO_HELP_ARGS}
 

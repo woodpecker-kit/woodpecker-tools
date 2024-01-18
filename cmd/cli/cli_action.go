@@ -9,6 +9,7 @@ import (
 	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2"
 	"log"
 	"os"
+	"strings"
 )
 
 var wdPlugin *Plugin
@@ -61,7 +62,9 @@ func GlobalAction(c *cli.Context) error {
 
 	if wdPlugin.Debug { // print now all env
 		for _, e := range os.Environ() {
-			log.Println(e)
+			if strings.Index(e, "CI") == 0 {
+				log.Println(e)
+			}
 		}
 	}
 
