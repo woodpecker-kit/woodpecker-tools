@@ -77,21 +77,21 @@ func currentCommitFlag() []cli.Flag {
 			Hidden:  true,
 		},
 
-		&cli.BoolFlag{
+		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCommitCiCommitAuthor,
 			Usage:   "Provides the current commit author",
 			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitAuthor},
 			Hidden:  true,
 		},
 
-		&cli.BoolFlag{
+		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCommitCiCommitAuthorEmail,
 			Usage:   "Provides the current commit author email",
 			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitAuthorEmail},
 			Hidden:  true,
 		},
 
-		&cli.BoolFlag{
+		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCommitCiCommitAuthorAvatar,
 			Usage:   "Provides the current commit author avatar",
 			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitAuthorAvatar},
