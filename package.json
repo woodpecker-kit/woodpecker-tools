@@ -1,0 +1,27 @@
+{
+  "name": "woodpecker-tools",
+  "version": "0.1.0",
+  "description": "woodpecker info lib and can mock data",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodpecker-kit/woodpecker-tools.git"
+  },
+  "keywords": [
+    "go",
+    "docker",
+    "woodpecker"
+  ],
+  "author": {
+    "name": "sinlov",
+    "email": "sinlovgmppt@gmail.com",
+    "url": "https://github.com/woodpecker-kit/woodpecker-tools"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/woodpecker-kit/woodpecker-tools/issues"
+  },
+  "homepage": "https://github.com/woodpecker-kit/woodpecker-tools#readme"
+}
