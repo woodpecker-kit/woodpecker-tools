@@ -41,8 +41,6 @@ func MockEnvByStruct(st interface{}) {
 			if okEnvKey {
 				//fmt.Printf("tag [ mock_env_key : %s ]\n", envTagVal)
 
-				envTagDefault, okMockEnvDefault := fType.Tag.Lookup("mock_env_default")
-
 				switch fType.Type.Kind() {
 				default:
 					//fmt.Printf("Field [ %s ] : %v\n", fType.Name, fType.Type)
@@ -50,8 +48,11 @@ func MockEnvByStruct(st interface{}) {
 					SetEnvBool(envTagVal, fVal.Bool())
 				case reflect.String:
 					vStr := fVal.String()
-					if vStr == "" && okMockEnvDefault {
-						vStr = envTagDefault
+					if vStr == "" {
+						envTagDefault, okMockEnvDefault := fType.Tag.Lookup("mock_env_default")
+						if okMockEnvDefault {
+							vStr = envTagDefault
+						}
 					}
 					SetEnvStr(envTagVal, vStr)
 				case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
