@@ -1,0 +1,96 @@
+{
+  "BasicInfo": {
+    "CI": "woodpecker",
+    "CIWorkspace": ""
+  },
+  "CiSystemInfo": {
+    "CiSystemName": "woodpecker",
+    "CiSystemUrl": "https://woodpecker.domain.com",
+    "CiSystemHost": "woodpecker.domain.com",
+    "CiSystemVersion": "2.1.1"
+  },
+  "CiForgeInfo": {
+    "CiForgeType": "gitea",
+    "CiForgeUrl": "https://gitea.domain.com"
+  },
+  "RepositoryInfo": {
+    "CIRepo": "woodpecker-kit/guidance-woodpecker-agent",
+    "CIRepoOwner": "woodpecker-kit",
+    "CIRepoName": "guidance-woodpecker-agent",
+    "CIRepoRemoteID": "151",
+    "CIRepoScm": "git",
+    "CIRepoURL": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent",
+    "CIRepoCloneURL": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent.git",
+    "CIRepoCloneSshUrl": "git@gitea.domain.com:woodpecker-kit/guidance-woodpecker-agent.git",
+    "CIRepoDefaultBranch": "main",
+    "CIRepoPrivate": true,
+    "CIRepoTrusted": false
+  },
+  "CurrentInfo": {
+    "CurrentCommitInfo": {
+      "CiCommitSha": "9c764dd487bce596c5c0402478fabde5f0344983",
+      "CiCommitRef": "refs/heads/main",
+      "CiCommitRefSpec": "",
+      "CiCommitBranch": "main",
+      "CiCommitSourceBranch": "",
+      "CiCommitTargetBranch": "",
+      "CiCommitTag": "",
+      "CiCommitPullRequest": "",
+      "CiCommitPullRequestLabels": "",
+      "CiCommitMessage": "test: use source to load envvarrs at before step",
+      "CiCommitAuthor": "sinlov",
+      "CiCommitAuthorEmail": "sinlov@noreply.localhost",
+      "CiCommitAuthorAvatar": ""
+    },
+    "CurrentPipelineInfo": {
+      "CiPipelineNumber": "10",
+      "CiPipelineParent": "0",
+      "CiPipelineEvent": "push",
+      "CiPipelineUrl": "https://woodpecker.domain.com/repos/2/pipeline/10",
+      "CiPipelineForgeUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+      "CiPipelineDeployTarget": "",
+      "CiPipelineStatus": "failure",
+      "CiPipelineCreated": 1705658141,
+      "CiPipelineStarted": 1705658156,
+      "CiPipelineFinished": 1705658166
+    },
+    "CurrentWorkflowInfo": {
+      "CiWorkflowName": "build"
+    },
+    "CurrentStepInfo": {
+      "CiStepName": "checkout",
+      "CiStepNumber": "0",
+      "CiStepStatus": "success",
+      "CiStepStarted": 1705658156,
+      "CiStepFinished": 1705658166,
+      "CiStepUrl": "https://woodpecker.domain.com/repos/2/pipeline/10"
+    }
+  },
+  "PreviousInfo": {
+    "PreviousCommitInfo": {
+      "CiPreviousCommitSha": "b2542f37e23645b2032fcf9f180e6940ef6915ac",
+      "CiPreviousCommitRef": "refs/heads/main",
+      "CiPreviousCommitRefSpec": "",
+      "CiPreviousCommitBranch": "main",
+      "CiPreviousCommitSourceBranch": "",
+      "CiPreviousCommitTargetBranch": "",
+      "CiPreviousCommitUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
+      "CiPreviousCommitMessage": "test: try send env between steps",
+      "CiPreviousCommitAuthor": "sinlov",
+      "CiPreviousCommitAuthorEmail": "sinlov@noreply.localhost",
+      "CiPreviousCommitAuthorAvatar": ""
+    },
+    "PreviousPipelineInfo": {
+      "CiPreviousPipelineNumber": "9",
+      "CiPreviousPipelineParent": "",
+      "CiPreviousPipelineEvent": "push",
+      "CiPreviousPipelineUrl": "https://woodpecker.domain.com/repos/2/pipeline/9",
+      "CiPreviousPipelineForgeUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
+      "CiPreviousPipelineDeployTarget": "",
+      "CiPreviousPipelineStatus": "success",
+      "CiPreviousPipelineCreated": 1705657931,
+      "CiPreviousPipelineStarted": 1705657942,
+      "CiPreviousPipelineFinished": 1705657957
+    }
+  }
+}

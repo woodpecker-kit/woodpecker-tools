@@ -1,4 +1,4 @@
-package example_test
+package wd_mock_test
 
 import (
 	"fmt"
