@@ -3,8 +3,11 @@ package wd_mock_test
 import (
 	"github.com/sebdah/goldie/v2"
 	"github.com/stretchr/testify/assert"
+	"github.com/woodpecker-kit/woodpecker-tools/env_mock"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_mock"
+	"os"
+	"strings"
 	"testing"
 )
 
@@ -18,7 +21,6 @@ func TestNewWoodpeckerInfo(t *testing.T) {
 
 	tests := []struct {
 		name    string
-		c       wd_info.WoodpeckerInfo
 		args    mockArgs
 		wantErr bool
 	}{
@@ -55,6 +57,52 @@ func TestNewWoodpeckerInfo(t *testing.T) {
 			// verify NewWoodpeckerInfo
 			assert.Equal(t, tc.args.status, gotResult.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus)
 			g.AssertJson(t, t.Name(), gotResult)
+		})
+	}
+}
+
+func TestWoodPeckerEnvMock(t *testing.T) {
+	// mock WoodPeckerEnvMock
+
+	type mockArgs struct {
+		workspace string
+		status    string
+	}
+
+	tests := []struct {
+		name    string
+		args    mockArgs
+		wantRes string
+		wantErr bool
+	}{
+		{
+			name:    "sample",
+			wantRes: "sample",
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+
+			// do WoodPeckerEnvMock
+			gotResult := wd_mock.NewWoodpeckerInfo(
+				wd_mock.WithCiWorkspace(tc.args.workspace),
+				wd_mock.WithCurrentPipelineStatus(tc.args.status),
+			)
+
+			env_mock.MockEnvByStruct(*gotResult)
+
+			// verify WoodPeckerEnvMock
+			assert.False(t, tc.wantErr)
+			if tc.wantErr {
+				return
+			}
+
+			for _, e := range os.Environ() {
+				if strings.Index(e, "CI_") == 0 {
+					t.Logf("env: %s\n", e)
+				}
+			}
+
 		})
 	}
 }

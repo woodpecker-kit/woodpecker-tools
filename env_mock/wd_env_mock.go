@@ -1,6 +1,7 @@
 package env_mock
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"reflect"
@@ -24,10 +25,18 @@ import (
 //					TimeOut     uint `mock_env_key:"PLUGIN_TIMEOUT"`
 //					MockConfig MockConfig
 //				}
-func MockEnvByStruct(st interface{}) {
-	value := reflect.ValueOf(st)
+func MockEnvByStruct(input interface{}) {
+	value := reflect.ValueOf(input)
 
 	typeInfo := value.Type()
+
+	if typeInfo.Kind() == reflect.Ptr {
+		typeInfo = typeInfo.Elem()
+		if typeInfo.Kind() == reflect.Ptr {
+			panic(fmt.Errorf("can not support double ptr, please check your input"))
+		}
+		value = value.Elem()
+	}
 
 	for i := 0; i < typeInfo.NumField(); i++ {
 		// 取每个字段
