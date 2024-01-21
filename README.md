@@ -29,19 +29,6 @@ Please read [Contributor Guide](.github/CONTRIBUTING_DOC/CONTRIBUTING.md) for mo
 in go mod project
 
 ```bash
-# warning use private git host must set
-# global set for once
-# add private git host like github.com to evn GOPRIVATE
-$ go env -w GOPRIVATE='github.com'
-# use ssh proxy
-# set ssh-key to use ssh as http
-$ git config --global url."git@github.com:".insteadOf "https://github.com/"
-# or use PRIVATE-TOKEN
-# set PRIVATE-TOKEN as gitlab or gitea
-$ git config --global http.extraheader "PRIVATE-TOKEN: {PRIVATE-TOKEN}"
-# set this rep to download ssh as https use PRIVATE-TOKEN
-$ git config --global url."ssh://github.com/".insteadOf "https://github.com/"
-
 # before above global settings
 # test version info
 $ git ls-remote -q https://github.com/woodpecker-kit/woodpecker-tools.git
@@ -55,8 +42,13 @@ $ echo "go mod vendor"
 
 ## Features
 
-- [ ] more perfect test case coverage
-- [ ] more perfect benchmark case
+- [x] `wd_info.WoodpeckerInfo` is plugin most use env args from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
+- [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli as [github.com/urfave/cli/v2](https://github.com/urfave/cli/)
+- [x] `wd_info.WoodpeckerInfoSupportVersion` support version begin `2.0.0`
+- [x] `env_mock.MockEnvByStruct` support struct tag `mock_env_key` or `mock_env_default` for unit test of plugin
+- [x] code check
+  - [x] full check by golang version
+  - [x] full check for docker build
 
 ## env
 
@@ -74,10 +66,13 @@ $ echo "go mod vendor"
 
 ## usage
 
-- use this template, replace list below
-    - `github.com/woodpecker-kit/woodpecker-tools` to your package name
-    - `woodpecker-kit` to your owner name
-    - `woodpecker-tools` to your project name
+### `wd_info.WoodpeckerInfo`
+
+- see example of [app.go](https://github.com/woodpecker-kit/woodpecker-tools/blob/main/cmd/cli/app.go)
+
+### `env_mock.MockEnvByStruct`
+
+- see test case of [wd_env_mock.go](https://github.com/woodpecker-kit/woodpecker-tools/blob/main/wd_mock_test/wd_info_mock_test.go)
 
 # dev
 

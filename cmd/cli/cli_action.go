@@ -21,7 +21,7 @@ type (
 		Version string
 		Debug   bool
 
-		WoodpeckerInfo wd_info.WoodpeckerInfo
+		WoodpeckerInfo *wd_info.WoodpeckerInfo
 	}
 )
 
@@ -45,7 +45,7 @@ func GlobalBeforeAction(c *cli.Context) error {
 		Version: cliVersion,
 		Debug:   isDebug,
 
-		WoodpeckerInfo: woodpeckerInfo,
+		WoodpeckerInfo: &woodpeckerInfo,
 	}
 
 	wdPlugin = &plugin
