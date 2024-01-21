@@ -11,7 +11,7 @@ func setDefaultCiSystemInfo() *wd_info.CiSystemInfo {
 		CiSystemName:    "woodpecker",
 		CiSystemUrl:     "https://woodpecker.domain.com",
 		CiSystemHost:    "woodpecker.domain.com",
-		CiSystemVersion: "2.1.1",
+		CiSystemVersion: wd_info.WoodpeckerInfoSupportVersion,
 	}
 }
 
