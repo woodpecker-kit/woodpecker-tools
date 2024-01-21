@@ -52,10 +52,7 @@ jobs:
         with:
           path: ${{ github.workspace }}/dist
           merge-multiple: true
-          pattern: |
-            **/*.zip
-            **/*.tar.gz
-            **/*.sha256
+          pattern: ${{ inputs.download_artifact_name }}-*
 
       - name: Display structure of downloaded files
         if: ${{ inputs.download_artifact_name != null }}
