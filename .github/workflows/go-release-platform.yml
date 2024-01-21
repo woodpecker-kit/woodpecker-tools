@@ -111,7 +111,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: ${{ inputs.upload_artifact_name != null }}
         with:
-          name: ${{ inputs.upload_artifact_name }}
+          name: ${{ inputs.upload_artifact_name }}-${{ matrix.go_os }}-${{ matrix.go_arch }}
           retention-days: 5
           if-no-files-found: error
           path: |
