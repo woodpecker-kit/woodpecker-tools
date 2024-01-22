@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.0.2](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.0.1...v1.0.2) (2024-01-22)
+
+### 👷‍ Build System
+
+* check relesae by actions/upload-artifact/tree/v4 ([0f7d883b](https://github.com/woodpecker-kit/woodpecker-tools/commit/0f7d883b05ce14db58717455344445f3e0b16ebe))
+
+* change deploy-tag.yml to support dry_run flag ([89e2f0b5](https://github.com/woodpecker-kit/woodpecker-tools/commit/89e2f0b5c802b4d02c45e8e9c485382f73ed3a57))
+
+* support actions/upload-artifact/tree/v4 overwrite upload ([b36b8f39](https://github.com/woodpecker-kit/woodpecker-tools/commit/b36b8f3948f3ec84570af38e3171f16c8d1df898))
+
 ## [1.0.1](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.0.0...v1.0.1) (2024-01-22)
 
 ## 1.0.0 (2024-01-21)
