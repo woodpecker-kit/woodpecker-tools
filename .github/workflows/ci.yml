@@ -54,7 +54,7 @@ jobs:
     secrets: inherit
     with:
       # version_name: latest
-      tag_name: "1.0.2"
+      version_name: "1.0.2"
       upload_artifact_name: go-release
 
   deploy-tag-dry-run:
