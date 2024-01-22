@@ -8,11 +8,13 @@ on:
       - 'main'
       - 'release-*'
       - 'FE-*'
+      - '*-feature-*'
       - 'BF-*'
+      - '*-bug-*'
       - 'PU-*'
       - 'DOC-*'
-      - 'hotfix-*'
-      - '*-feature-*'
+      - '*-documentation-*'
+      - '*-hotfix-*'
     tags:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
   pull_request:
@@ -49,27 +51,12 @@ jobs:
     needs:
      - version
      - golang-ci
-    # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
+    if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
     uses: ./.github/workflows/go-release-platform.yml
     secrets: inherit
     with:
-      # version_name: latest
-      version_name: "1.0.2"
+      version_name: latest
       upload_artifact_name: go-release
-
-  deploy-tag-dry-run:
-    needs:
-      - version
-      - go-build-check-main
-    name: deploy-tag-dry-run
-    uses: ./.github/workflows/deploy-tag.yml
-    secrets: inherit
-    with:
-      dry_run: true
-      prerelease: true
-      tag_name: "1.0.2"
-      tag_changes: ${{ needs.version.outputs.cc_changes }}
-      download_artifact_name: go-release
 
   docker-image-latest:
     name: docker-image-latest
