@@ -53,7 +53,8 @@ jobs:
     uses: ./.github/workflows/go-release-platform.yml
     secrets: inherit
     with:
-      version_name: latest
+      # version_name: latest
+      tag_name: "1.0.2"
       upload_artifact_name: go-release
 
   deploy-tag-dry-run:
@@ -66,7 +67,7 @@ jobs:
     with:
       dry_run: true
       prerelease: true
-      tag_name: "1.0.1"
+      tag_name: "1.0.2"
       tag_changes: ${{ needs.version.outputs.cc_changes }}
       download_artifact_name: go-release
 
