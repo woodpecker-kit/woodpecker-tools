@@ -6,8 +6,6 @@ import (
 	"github.com/woodpecker-kit/woodpecker-tools/env_mock"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_mock"
-	"os"
-	"strings"
 	"testing"
 )
 
@@ -97,11 +95,7 @@ func TestWoodPeckerEnvMock(t *testing.T) {
 				return
 			}
 
-			for _, e := range os.Environ() {
-				if strings.Index(e, "CI_") == 0 {
-					t.Logf("env: %s\n", e)
-				}
-			}
+			printEnvPrefix(t, "CI_")
 
 		})
 	}
