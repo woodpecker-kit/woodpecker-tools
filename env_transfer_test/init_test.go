@@ -1,47 +1,42 @@
-package wd_mock_test
+package env_transfer_test
 
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/fs"
-	"math/rand"
 	"os"
 	"path/filepath"
 	"runtime"
-	"strconv"
-	"strings"
 	"testing"
-	"time"
 )
 
 const (
-	defTimeoutSecond = 10
-	keyEnvDebug      = "CI_DEBUG"
-	keyEnvCiNum      = "CI"
-	keyEnvCiKey      = "CI_KEY"
-	keyEnvCiKeys     = "CI_KEYS"
+	transferSampleDirName = "transfer_sample"
+
+	keyEnvDebug  = "CI_DEBUG"
+	keyEnvCiNum  = "CI_NUMBER"
+	keyEnvCiKey  = "CI_KEY"
+	keyEnvCiKeys = "CI_KEYS"
 )
 
 var (
-	envDebug = false
+	// testBaseFolderPath
+	//  test base dir will auto get by package init()
+	testBaseFolderPath = ""
 
+	envDebug  = false
 	envCiNum  = 0
 	envCiKey  = ""
 	envCiKeys []string
-
-	strData []string
 )
 
 func init() {
+	testBaseFolderPath, _ = getCurrentFolderPath()
 	envDebug = fetchOsEnvBool(keyEnvDebug, false)
 	envCiNum = fetchOsEnvInt(keyEnvCiNum, 1)
 	envCiKey = fetchOsEnvStr(keyEnvCiKey, "")
 	envCiKeys = fetchOsEnvArray(keyEnvCiKeys)
-	for i := 0; i < 200; i++ {
-		strData = append(strData, randomStr(300))
-	}
 }
 
 // test case file tools start
@@ -180,7 +175,7 @@ func getOrCreateTestDataFolderFullPath() (string, error) {
 func getCurrentFolderPath() (string, error) {
 	_, file, _, ok := runtime.Caller(1)
 	if !ok {
-		return "", errors.New("can not get current file info")
+		return "", fmt.Errorf("can not get current file info")
 	}
 	return filepath.Dir(file), nil
 }
@@ -350,153 +345,6 @@ func writeFileAsJson(path string, v interface{}, fileMod fs.FileMode, coverage, 
 //	write json file as 0766 and beauty
 func writeFileAsJsonBeauty(path string, v interface{}, coverage bool) error {
 	return writeFileAsJson(path, v, os.FileMode(0766), coverage, true)
-}
-
-// fetchOsEnvBool
-//
-//	fetch os env by key.
-//	if not found will return devValue.
-//	return env not same as true (will be lowercase, so TRUE is same)
-func fetchOsEnvBool(key string, devValue bool) bool {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	return strings.ToLower(os.Getenv(key)) == "true"
-}
-
-// fetchOsEnvInt
-//
-//	fetch os env by key.
-//	return not found will return devValue.
-//	if not parse to int, return devValue
-func fetchOsEnvInt(key string, devValue int) int {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	outNum, err := strconv.Atoi(os.Getenv(key))
-	if err != nil {
-		return devValue
-	}
-
-	return outNum
-}
-
-// fetchOsEnvStr
-//
-//	fetch os env by key.
-//	return not found will return devValue.
-func fetchOsEnvStr(key, devValue string) string {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	return os.Getenv(key)
-}
-
-// fetchOsEnvInt
-//
-//	fetch os env split by `,` and trim space
-//	return not found will return []string(nil).
-func fetchOsEnvArray(key string) []string {
-	var devValueStr []string
-	if os.Getenv(key) == "" {
-		return devValueStr
-	}
-	envValue := os.Getenv(key)
-	splitVal := strings.Split(envValue, ",")
-	if len(splitVal) == 0 {
-		return devValueStr
-	}
-	for _, item := range splitVal {
-		devValueStr = append(devValueStr, strings.TrimSpace(item))
-	}
-
-	return devValueStr
-}
-
-// setEnvStr
-//
-//	set env by key and val
-func setEnvStr(t *testing.T, key string, val string) {
-	err := os.Setenv(key, val)
-	if err != nil {
-		t.Fatalf("set env key [%v] string err: %v", key, err)
-	}
-}
-
-// setEnvBool
-//
-//	set env by key and val
-//
-//nolint:golint,unused
-func setEnvBool(t *testing.T, key string, val bool) {
-	var err error
-	if val {
-		err = os.Setenv(key, "true")
-	} else {
-		err = os.Setenv(key, "false")
-	}
-	if err != nil {
-		t.Fatalf("set env key [%v] bool err: %v", key, err)
-	}
-}
-
-// setEnvU64
-//
-//	set env by key and val
-//
-//nolint:golint,unused
-func setEnvU64(t *testing.T, key string, val uint64) {
-	err := os.Setenv(key, strconv.FormatUint(val, 10))
-	if err != nil {
-		t.Fatalf("set env key [%v] uint64 err: %v", key, err)
-	}
-}
-
-// setEnvInt64
-//
-//	set env by key and val
-//
-//nolint:golint,unused
-func setEnvInt64(t *testing.T, key string, val int64) {
-	err := os.Setenv(key, strconv.FormatInt(val, 10))
-	if err != nil {
-		t.Fatalf("set env key [%v] int64 err: %v", key, err)
-	}
-}
-
-// printEnvPrefix
-//
-//	print env by prefix
-//
-//nolint:golint,unused
-func printEnvPrefix(t *testing.T, prefix string) {
-	for _, e := range os.Environ() {
-		if strings.Index(e, prefix) == 0 {
-			t.Logf("printEnvPrefix [ %s ]: %s\n", prefix, e)
-		}
-	}
-}
-
-// randomStr
-//
-//	new random string by cnt
-func randomStr(cnt uint) string {
-	var letters = []byte("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
-	result := make([]byte, cnt)
-	keyL := len(letters)
-	rand.Seed(time.Now().Unix())
-	for i := range result {
-		result[i] = letters[rand.Intn(keyL)]
-	}
-	return string(result)
-}
-
-// randomInt
-//
-//	new random int by max
-func randomInt(max int) int {
-	rand.Seed(time.Now().Unix())
-	return rand.Intn(max)
 }
 
 // test case file tools end
