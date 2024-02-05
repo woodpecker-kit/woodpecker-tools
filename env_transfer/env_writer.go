@@ -57,6 +57,9 @@ func RemoveEnvByKey(key string) error {
 	}
 	key = PrefixTransfer + key
 	key = strings.ToUpper(key)
+	if _, exist := cachedEnvMap[key]; !exist {
+		return fmt.Errorf("not exist key: %v", key)
+	}
 	errUnSetErr := os.Unsetenv(key)
 	if errUnSetErr != nil {
 		return fmt.Errorf("os.Unsetenv err: %v", errUnSetErr)
@@ -67,9 +70,15 @@ func RemoveEnvByKey(key string) error {
 
 // SaveEnv2File
 //
-// load env to fil, return file path
-func SaveEnv2File(root, fileName string) (string, error) {
-	return WriteEnv2File(root, fileName, cachedEnvMap)
+// load env to file
+//
+//	return env map, and out file path
+func SaveEnv2File(root, fileName string) (string, map[string]string, error) {
+	file, err := WriteEnv2File(root, fileName, cachedEnvMap)
+	if err != nil {
+		return file, nil, err
+	}
+	return file, cachedEnvMap, err
 }
 
 // WriteEnv2File
