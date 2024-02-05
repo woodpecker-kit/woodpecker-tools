@@ -9,10 +9,73 @@ import (
 	"strings"
 )
 
+var cachedEnvMap = make(map[string]string)
+
+// AddOrCoverEnvByKey
+// add env by key and auto append PrefixTransfer to upper case
+// must use env_transfer.SaveEnv2File to save
+func AddOrCoverEnvByKey(key, value string) error {
+	return AddEnvByKey(key, value, true)
+}
+
+// AddEnvByKey
+//
+// add env by key and auto append PrefixTransfer to upper case
+// cover true will cover old
+// must use env_transfer.SaveEnv2File to save
+func AddEnvByKey(key, value string, cover bool) error {
+	if key == "" {
+		return fmt.Errorf("key is empty")
+	}
+
+	// check key or value not contain double quotation
+	if strings.Contains(key, `"`) {
+		return fmt.Errorf("key contain double quotation: %v", key)
+	}
+	if strings.Contains(value, `"`) {
+		return fmt.Errorf("value contain double quotation: %v", value)
+	}
+
+	key = PrefixTransfer + key
+	key = strings.ToUpper(key)
+	if _, exist := cachedEnvMap[key]; exist && !cover {
+		return fmt.Errorf("exist and not cover key: %v", key)
+	}
+	errSetErr := os.Setenv(key, value)
+	if errSetErr != nil {
+		return fmt.Errorf("os.Setenv err: %v", errSetErr)
+	}
+	cachedEnvMap[key] = value
+	return nil
+}
+
+// RemoveEnvByKey
+// remove env by key and auto append PrefixTransfer to upper case
+func RemoveEnvByKey(key string) error {
+	if key == "" {
+		return fmt.Errorf("key is empty")
+	}
+	key = PrefixTransfer + key
+	key = strings.ToUpper(key)
+	errUnSetErr := os.Unsetenv(key)
+	if errUnSetErr != nil {
+		return fmt.Errorf("os.Unsetenv err: %v", errUnSetErr)
+	}
+	delete(cachedEnvMap, key)
+	return nil
+}
+
+// SaveEnv2File
+//
+// load env to fil, return file path
+func SaveEnv2File(root, fileName string) (string, error) {
+	return WriteEnv2File(root, fileName, cachedEnvMap)
+}
+
 // WriteEnv2File
 //
-//	write env to file
-//	envData map[string]string will sort by key
+// write env to file
+// envData map[string]string will sort by key
 func WriteEnv2File(root, fileName string, envData map[string]string) (string, error) {
 	if len(envData) == 0 {
 		return "", fmt.Errorf("envData is empty")
@@ -87,7 +150,7 @@ func writeFileByByte(path string, data []byte, fileMod fs.FileMode, coverage boo
 
 // pathExists
 //
-//	path exists
+// path exists
 func pathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -101,7 +164,7 @@ func pathExists(path string) (bool, error) {
 
 // pathExistsFast
 //
-//	path exists fast
+// path exists fast
 func pathExistsFast(path string) bool {
 	exists, _ := pathExists(path)
 	return exists
