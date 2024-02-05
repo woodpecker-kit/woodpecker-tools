@@ -120,10 +120,12 @@ func TestEnvByKeys(t *testing.T) {
 			wantRemoveErr: false,
 		},
 		{
-			name:          "add_empty", // testdata/TestEnvByKeys/sample.golden
-			root:          filepath.Join(testBaseFolderPath, transferEnvByKeysDirName, "add_empty"),
-			fileName:      env_transfer.DefaultWriterFileName,
-			addEnv:        map[string]string{},
+			name:     "add_empty", // testdata/TestEnvByKeys/sample.golden
+			root:     filepath.Join(testBaseFolderPath, transferEnvByKeysDirName, "add_empty"),
+			fileName: env_transfer.DefaultWriterFileName,
+			addEnv: map[string]string{
+				"": "bar",
+			},
 			wantAddErr:    true,
 			removeEnv:     []string{"bar"},
 			wantRemoveErr: true,
@@ -149,7 +151,7 @@ func TestEnvByKeys(t *testing.T) {
 				"bar": "baz",
 			},
 			wantAddErr:    false,
-			removeEnv:     []string{},
+			removeEnv:     []string{""},
 			wantRemoveErr: true,
 		},
 	}
