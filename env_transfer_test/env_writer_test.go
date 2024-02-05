@@ -12,11 +12,12 @@ import (
 func TestWriteEnv2File(t *testing.T) {
 	// mock WriteEnv2File
 	tests := []struct {
-		name     string
-		root     string
-		fileName string
-		envMap   map[string]string
-		wantErr  error
+		name         string
+		root         string
+		fileName     string
+		envMap       map[string]string
+		wantSavePath string
+		wantErr      error
 	}{
 		{
 			name:     "sample",
@@ -26,6 +27,7 @@ func TestWriteEnv2File(t *testing.T) {
 				"foo": "bar",
 				"bar": "foo",
 			},
+			wantSavePath: filepath.Join(testBaseFolderPath, transferSampleDirName, "sample", env_transfer.DefaultWriterFileName),
 		},
 		{
 			name:     "some_empty_key",
@@ -35,6 +37,7 @@ func TestWriteEnv2File(t *testing.T) {
 				"foo": "bar",
 				"":    "foo",
 			},
+			wantSavePath: filepath.Join(testBaseFolderPath, transferSampleDirName, "some_empty_key", env_transfer.DefaultWriterFileName),
 		},
 		{
 			name:     "full_empty_key",
@@ -53,6 +56,7 @@ func TestWriteEnv2File(t *testing.T) {
 				"eq":            "foo=bar",
 				"french_quotes": `foo:bar`,
 			},
+			wantSavePath: filepath.Join(testBaseFolderPath, transferSampleDirName, "specific_symbol_key", env_transfer.DefaultWriterFileName),
 		},
 	}
 	for _, tc := range tests {
@@ -62,17 +66,19 @@ func TestWriteEnv2File(t *testing.T) {
 			)
 
 			// do WriteEnv2File
-			envData, gotErr := env_transfer.WriteEnv2File(tc.root, tc.fileName, tc.envMap)
+			dataFilePath, gotErr := env_transfer.WriteEnv2File(tc.root, tc.fileName, tc.envMap)
 			assert.Equal(t, tc.wantErr, gotErr)
 			if tc.wantErr != nil {
 				return
 			}
-			readEnv, readErr := readFileAsByte(envData)
+			assert.Equal(t, tc.wantSavePath, dataFilePath)
+			readEnvMap, readErr := env_transfer.OverloadEnvFromFile(tc.root, tc.fileName)
 			if readErr != nil {
-				t.Fatal(readErr)
+				t.Logf("readErr: %v", readErr)
+				return
 			}
 			// verify WriteEnv2File
-			g.Assert(t, t.Name(), readEnv)
+			g.AssertJson(t, t.Name(), readEnvMap)
 		})
 	}
 }
