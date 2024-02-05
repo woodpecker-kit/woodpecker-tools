@@ -29,10 +29,10 @@ func AddEnvByKey(key, value string, cover bool) error {
 	}
 
 	// check key or value not contain double quotation
-	if strings.Contains(key, `"`) {
+	if strings.Contains(key, "\"") {
 		return fmt.Errorf("key contain double quotation: %v", key)
 	}
-	if strings.Contains(value, `"`) {
+	if strings.Contains(value, "\"") {
 		return fmt.Errorf("value contain double quotation: %v", value)
 	}
 
