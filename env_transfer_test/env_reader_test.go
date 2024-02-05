@@ -35,22 +35,64 @@ func TestOverloadEnvFromFile(t *testing.T) {
 			},
 		},
 		{
-			name:     "specific_symbol_key",
-			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key"),
+			name:     "specific_symbol_key_dot",
+			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key_dot"),
 			fileName: env_transfer.DefaultWriterFileName,
 			writeEnvMap: map[string]string{
-				"dot":           "foo.bar",
-				"quotation":     `foo"bar`,
-				"eq":            "foo=bar",
-				"French_quotes": `foo:bar`,
+				"dot": "foo.bar",
 			},
 			checkEnvMap: map[string]string{
-				"dot":           "foo.bar",
-				"quotation":     `foo"bar`,
-				"eq":            "foo=bar",
-				"French_quotes": `foo:bar`,
+				"dot": "foo.bar",
+			},
+			wantReadErr: false,
+		},
+		{
+			name:     "specific_symbol_key_single_quotation",
+			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key_single_quotation"),
+			fileName: env_transfer.DefaultWriterFileName,
+			writeEnvMap: map[string]string{
+				"quotation": `foo'bar`,
+			},
+			checkEnvMap: map[string]string{
+				"quotation": `foo'bar`,
+			},
+			wantReadErr: false,
+		},
+		{
+			name:     "specific_symbol_key_double_quotation",
+			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key_double_quotation"),
+			fileName: env_transfer.DefaultWriterFileName,
+			writeEnvMap: map[string]string{
+				"quotation": `foo"bar`,
+			},
+			checkEnvMap: map[string]string{
+				"quotation": `foo"bar`,
 			},
 			wantReadErr: true,
+		},
+		{
+			name:     "specific_symbol_key_eq",
+			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key_eq"),
+			fileName: env_transfer.DefaultWriterFileName,
+			writeEnvMap: map[string]string{
+				"eq": "foo=bar",
+			},
+			checkEnvMap: map[string]string{
+				"eq": "foo=bar",
+			},
+			wantReadErr: false,
+		},
+		{
+			name:     "specific_symbol_key_french_quotes",
+			root:     filepath.Join(testBaseFolderPath, transferReaderSampleDirName, "specific_symbol_key_french_quotes"),
+			fileName: env_transfer.DefaultWriterFileName,
+			writeEnvMap: map[string]string{
+				"french_quotes": `foo:bar`,
+			},
+			checkEnvMap: map[string]string{
+				"french_quotes": `foo:bar`,
+			},
+			wantReadErr: false,
 		},
 	}
 	for _, tc := range tests {
