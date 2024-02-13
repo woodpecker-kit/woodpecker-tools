@@ -8,7 +8,8 @@ type CurrentWorkflowInfoOption func(*wd_info.CurrentWorkflowInfo)
 
 func setDefaultCurrentWorkflowInfo() *wd_info.CurrentWorkflowInfo {
 	return &wd_info.CurrentWorkflowInfo{
-		CiWorkflowName: "build",
+		CiWorkflowName:   "build",
+		CiWorkflowNumber: "1",
 	}
 }
 
@@ -24,6 +25,12 @@ func NewCurrentWorkflowInfo(opts ...CurrentWorkflowInfoOption) (opt *wd_info.Cur
 func WithCiWorkflowName(name string) CurrentWorkflowInfoOption {
 	return func(o *wd_info.CurrentWorkflowInfo) {
 		o.CiWorkflowName = name
+	}
+}
+
+func WithCiWorkflowNumber(number string) CurrentWorkflowInfoOption {
+	return func(o *wd_info.CurrentWorkflowInfo) {
+		o.CiWorkflowNumber = number
 	}
 }
 

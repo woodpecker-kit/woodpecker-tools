@@ -55,7 +55,8 @@
       "CiPipelineFinished": 1705658166
     },
     "CurrentWorkflowInfo": {
-      "CiWorkflowName": "build"
+      "CiWorkflowName": "build",
+      "CiWorkflowNumber": "1"
     },
     "CurrentStepInfo": {
       "CiStepName": "checkout",

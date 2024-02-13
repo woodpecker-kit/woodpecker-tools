@@ -46,6 +46,72 @@ func TestShowLogLineNo(t *testing.T) {
 	}
 }
 
+func TestSetLogLineDeep(t *testing.T) {
+	// mock SetLogLineDeep
+	tests := []struct {
+		name string
+		deep uint
+		msg  string
+	}{
+		{
+			name: "sample",
+			deep: 3,
+			msg:  "sample",
+		},
+		{
+			name: "zero",
+			deep: 0,
+			msg:  "zero",
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+
+			// do SetLogLineDeep
+			ShowLogLineNo(true)
+			SetLogLineDeep(tc.deep)
+			Info(tc.msg)
+		})
+	}
+}
+
+func TestDebug(t *testing.T) {
+	// mock Debug
+	type args struct {
+		msg string
+	}
+	tests := []struct {
+		name        string
+		args        args
+		isOpenDebug bool
+	}{
+		{
+			name: "sample",
+			args: args{
+				msg: "sample",
+			},
+			isOpenDebug: true,
+		},
+		{
+			name: "close debug",
+			args: args{
+				msg: "sample",
+			},
+			isOpenDebug: false,
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+
+			// do Debug
+			if tc.isOpenDebug {
+				OpenDebug()
+			}
+			Debug(tc.args.msg)
+		})
+	}
+}
+
 func TestDebugf(t *testing.T) {
 	type args struct {
 		format string
@@ -95,6 +161,7 @@ func TestDebugJson(t *testing.T) {
 	OpenDebug()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			OpenDebug()
 			DebugJson(tt.args.d)
 		})
 	}
@@ -218,6 +285,31 @@ func TestVerboseJsonf(t *testing.T) {
 	}
 }
 
+func TestInfo(t *testing.T) {
+	// mock Debug
+	type args struct {
+		msg string
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		{
+			name: "sample",
+			args: args{
+				msg: "sample",
+			},
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+
+			// do Debug
+			Info(tc.args.msg)
+		})
+	}
+}
+
 func TestInfof(t *testing.T) {
 	type args struct {
 		format string
@@ -261,6 +353,7 @@ func TestWarnf(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			ShowLogLineNo(false)
 			Warnf(tt.args.format, tt.args.v...)
 		})
 	}

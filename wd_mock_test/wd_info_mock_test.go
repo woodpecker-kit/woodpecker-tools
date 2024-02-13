@@ -63,40 +63,52 @@ func TestWoodPeckerEnvMock(t *testing.T) {
 	// mock WoodPeckerEnvMock
 
 	type mockArgs struct {
-		workspace string
-		status    string
+		workspace        string
+		status           string
+		ciWorkflowNumber string
 	}
 
 	tests := []struct {
 		name    string
 		args    mockArgs
-		wantRes string
 		wantErr bool
 	}{
 		{
-			name:    "sample",
-			wantRes: "sample",
+			name: "sample",
+			args: mockArgs{
+				//workspace: "",
+				status:           wd_info.BuildStatusCreated,
+				ciWorkflowNumber: "1",
+			},
 		},
 	}
 	for _, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
 
-			// do WoodPeckerEnvMock
+		t.Run(tc.name, func(t *testing.T) {
+			g := goldie.New(t,
+				goldie.WithDiffEngine(goldie.ClassicDiff),
+			)
+
+			// do NewWoodpeckerInfo
 			gotResult := wd_mock.NewWoodpeckerInfo(
 				wd_mock.WithCiWorkspace(tc.args.workspace),
 				wd_mock.WithCurrentPipelineStatus(tc.args.status),
+				wd_mock.WithCurrentWorkflowInfo(
+					wd_mock.WithCiWorkflowNumber(tc.args.ciWorkflowNumber),
+				),
 			)
-
-			env_mock.MockEnvByStruct(*gotResult)
-
-			// verify WoodPeckerEnvMock
 			assert.False(t, tc.wantErr)
 			if tc.wantErr {
 				return
 			}
 
-			printEnvPrefix(t, "CI_")
+			env_mock.MockEnvByStruct(*gotResult)
 
+			t.Logf("~> TestWoodPeckerEnvMock at env: \n%s", findAllEnvByPrefix4Print("CI_"))
+
+			// verify NewWoodpeckerInfo
+			assert.Equal(t, tc.args.ciWorkflowNumber, gotResult.CurrentInfo.CurrentWorkflowInfo.CiWorkflowNumber)
+			g.AssertJson(t, t.Name(), gotResult)
 		})
 	}
 }

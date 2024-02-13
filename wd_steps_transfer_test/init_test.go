@@ -1,4 +1,4 @@
-package wd_mock_test
+package wd_steps_transfer_test
 
 import (
 	"bytes"

@@ -9,6 +9,8 @@ import (
 	"testing"
 )
 
+const transferSampleDirName = "transfer_sample"
+
 func TestWriteEnv2File(t *testing.T) {
 	// mock WriteEnv2File
 	tests := []struct {
@@ -113,7 +115,6 @@ func TestEnvByKeys(t *testing.T) {
 			fileName: env_transfer.DefaultWriterFileName,
 			addEnv: map[string]string{
 				`foo"one"`: "bar",
-				"bar":      "baz",
 			},
 			wantAddErr:    true,
 			removeEnv:     []string{"bar"},

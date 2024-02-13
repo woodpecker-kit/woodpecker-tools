@@ -242,6 +242,11 @@ type (
 		//  Provides the current workflow name
 		//  by env: CI_WORKFLOW_NAME
 		CiWorkflowName string `mock_env_key:"CI_WORKFLOW_NAME"`
+
+		// CiWorkflowNumber
+		//  Provides the current workflow number, this will start from 1
+		//  by env: CI_WORKFLOW_NUMBER
+		CiWorkflowNumber string `mock_env_key:"CI_WORKFLOW_NUMBER" mock_env_default:"1"`
 	}
 
 	// CurrentStepInfo
