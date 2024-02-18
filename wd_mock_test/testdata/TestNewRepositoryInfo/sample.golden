@@ -1,0 +1,13 @@
+{
+  "CIRepo": "github.com",
+  "CIRepoOwner": "woodpecker-kit",
+  "CIRepoName": "guidance-woodpecker-agent",
+  "CIRepoRemoteID": "151",
+  "CIRepoScm": "git",
+  "CIRepoURL": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent",
+  "CIRepoCloneURL": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent.git",
+  "CIRepoCloneSshUrl": "git@gitea.domain.com:woodpecker-kit/guidance-woodpecker-agent.git",
+  "CIRepoDefaultBranch": "main",
+  "CIRepoPrivate": true,
+  "CIRepoTrusted": false
+}

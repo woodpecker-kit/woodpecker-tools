@@ -179,6 +179,11 @@ type (
 		//  Provides the current commit author avatar
 		//  by env: CI_COMMIT_AUTHOR_AVATAR
 		CiCommitAuthorAvatar string `mock_env_key:"CI_COMMIT_AUTHOR_AVATAR"`
+
+		// CiCommitPreRelease
+		//  Provides the current commit release is a pre-release (empty if event is not release)
+		//  support at woodpecker 2.3.0
+		CiCommitPreRelease bool `mock_env_key:"CI_COMMIT_PRE_RELEASE"`
 	}
 
 	// CurrentPipelineInfo

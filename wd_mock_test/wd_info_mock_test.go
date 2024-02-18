@@ -9,56 +9,6 @@ import (
 	"testing"
 )
 
-func TestNewWoodpeckerInfo(t *testing.T) {
-	// mock NewWoodpeckerInfo
-
-	type mockArgs struct {
-		workspace string
-		status    string
-	}
-
-	tests := []struct {
-		name    string
-		args    mockArgs
-		wantErr bool
-	}{
-		{
-			name: "sample", // testdata/TestNewWoodpeckerInfo/sample.golden
-			args: mockArgs{
-				//workspace: "",
-				status: wd_info.BuildStatusCreated,
-			},
-		},
-		{
-			name: "failure-status",
-			args: mockArgs{
-				//workspace: "",
-				status: wd_info.BuildStatusFailure,
-			},
-		},
-	}
-	for _, tc := range tests {
-		t.Run(tc.name, func(t *testing.T) {
-			g := goldie.New(t,
-				goldie.WithDiffEngine(goldie.ClassicDiff),
-			)
-
-			// do NewWoodpeckerInfo
-			gotResult := wd_mock.NewWoodpeckerInfo(
-				wd_mock.WithCiWorkspace(tc.args.workspace),
-				wd_mock.WithCurrentPipelineStatus(tc.args.status),
-			)
-			assert.False(t, tc.wantErr)
-			if tc.wantErr {
-				return
-			}
-			// verify NewWoodpeckerInfo
-			assert.Equal(t, tc.args.status, gotResult.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus)
-			g.AssertJson(t, t.Name(), gotResult)
-		})
-	}
-}
-
 func TestWoodPeckerEnvMock(t *testing.T) {
 	// mock WoodPeckerEnvMock
 
@@ -108,6 +58,56 @@ func TestWoodPeckerEnvMock(t *testing.T) {
 
 			// verify NewWoodpeckerInfo
 			assert.Equal(t, tc.args.ciWorkflowNumber, gotResult.CurrentInfo.CurrentWorkflowInfo.CiWorkflowNumber)
+			g.AssertJson(t, t.Name(), gotResult)
+		})
+	}
+}
+
+func TestNewWoodpeckerInfo(t *testing.T) {
+	// mock NewWoodpeckerInfo
+
+	type mockArgs struct {
+		workspace string
+		status    string
+	}
+
+	tests := []struct {
+		name    string
+		args    mockArgs
+		wantErr bool
+	}{
+		{
+			name: "sample", // testdata/TestNewWoodpeckerInfo/sample.golden
+			args: mockArgs{
+				//workspace: "",
+				status: wd_info.BuildStatusCreated,
+			},
+		},
+		{
+			name: "failure-status",
+			args: mockArgs{
+				//workspace: "",
+				status: wd_info.BuildStatusFailure,
+			},
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			g := goldie.New(t,
+				goldie.WithDiffEngine(goldie.ClassicDiff),
+			)
+
+			// do NewWoodpeckerInfo
+			gotResult := wd_mock.NewWoodpeckerInfo(
+				wd_mock.WithCiWorkspace(tc.args.workspace),
+				wd_mock.WithCurrentPipelineStatus(tc.args.status),
+			)
+			assert.False(t, tc.wantErr)
+			if tc.wantErr {
+				return
+			}
+			// verify NewWoodpeckerInfo
+			assert.Equal(t, tc.args.status, gotResult.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus)
 			g.AssertJson(t, t.Name(), gotResult)
 		})
 	}

@@ -97,5 +97,12 @@ func currentCommitFlag() []cli.Flag {
 			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitAuthorAvatar},
 			Hidden:  true,
 		},
+
+		&cli.StringFlag{
+			Name:    wd_flag.NameCliCurrentCommitCiCommitPreRelease,
+			Usage:   "Provides the current commit release is a pre-release (empty if event is not release)",
+			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitPreRelease},
+			Hidden:  true,
+		},
 	}
 }

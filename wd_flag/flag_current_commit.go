@@ -104,4 +104,14 @@ const (
 	// EnvKeyCurrentCommitCiCommitAuthorAvatar
 	//  Provides the current commit author avatar
 	EnvKeyCurrentCommitCiCommitAuthorAvatar = "CI_COMMIT_AUTHOR_AVATAR"
+
+	// NameCliCurrentCommitCiCommitPreRelease
+	//  Provides the current commit release is a pre-release (empty if event is not release)
+	//  support at woodpecker 2.3.0
+	NameCliCurrentCommitCiCommitPreRelease = "current_commit.ci_commit_prerelease"
+
+	// EnvKeyCurrentCommitCiCommitPreRelease
+	//  Provides the current commit release is a pre-release (empty if event is not release)
+	//  support at woodpecker 2.3.0
+	EnvKeyCurrentCommitCiCommitPreRelease = "CI_COMMIT_PRERELEASE"
 )

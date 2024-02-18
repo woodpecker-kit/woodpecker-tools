@@ -1,0 +1,16 @@
+{
+  "CiCommitSha": "9c764dd487bce596c5c0402478fabde5f0344983",
+  "CiCommitRef": "refs/heads/main",
+  "CiCommitRefSpec": "",
+  "CiCommitBranch": "main",
+  "CiCommitSourceBranch": "",
+  "CiCommitTargetBranch": "",
+  "CiCommitTag": "",
+  "CiCommitPullRequest": "",
+  "CiCommitPullRequestLabels": "",
+  "CiCommitMessage": "test: use source to load env vars at before step",
+  "CiCommitAuthor": "sinlov",
+  "CiCommitAuthorEmail": "sinlov@noreply.localhost",
+  "CiCommitAuthorAvatar": "foo",
+  "CiCommitPreRelease": false
+}

@@ -17,10 +17,11 @@ func setDefaultCurrentCommitInfo() *wd_info.CurrentCommitInfo {
 		CiCommitTag:               "",
 		CiCommitPullRequest:       "",
 		CiCommitPullRequestLabels: "",
-		CiCommitMessage:           "test: use source to load envvarrs at before step",
+		CiCommitMessage:           "test: use source to load env vars at before step",
 		CiCommitAuthor:            "sinlov",
 		CiCommitAuthorEmail:       "sinlov@noreply.localhost",
 		CiCommitAuthorAvatar:      "",
+		CiCommitPreRelease:        false,
 	}
 }
 
@@ -108,6 +109,12 @@ func WithCiCommitAuthorEmail(commitAuthorEmail string) CurrentCommitInfoOption {
 func WithCiCommitAuthorAvatar(commitAuthorAvatar string) CurrentCommitInfoOption {
 	return func(o *wd_info.CurrentCommitInfo) {
 		o.CiCommitAuthorAvatar = commitAuthorAvatar
+	}
+}
+
+func WithCiCommitPreRelease(commitPreRelease bool) CurrentCommitInfoOption {
+	return func(o *wd_info.CurrentCommitInfo) {
+		o.CiCommitPreRelease = commitPreRelease
 	}
 }
 

@@ -26,6 +26,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 			CiCommitAuthor:            c.String(wd_flag.NameCliCurrentCommitCiCommitAuthor),
 			CiCommitAuthorEmail:       c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorEmail),
 			CiCommitAuthorAvatar:      c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorAvatar),
+			CiCommitPreRelease:        c.Bool(wd_flag.NameCliCurrentCommitCiCommitPreRelease),
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
