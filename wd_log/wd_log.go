@@ -6,12 +6,19 @@ import (
 	"fmt"
 	"github.com/gookit/color"
 	"log"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
 )
 
-const DefaultExtLogLineMaxDeep = 2
+const DefaultExtLogLineMaxDeep = 3
+
+const (
+	selfCallerFileMark      = "wd_log/wd_log.go"
+	findExtLogLineCallStart = 2
+	findExtLogLineCallDeep  = 4
+)
 
 var extLogLineMaxDeep = DefaultExtLogLineMaxDeep
 
@@ -45,15 +52,24 @@ func formatLog(msg string) string {
 
 func extLogLine(logContent string) string {
 	srcFile := ""
-	for i := 2; i <= 4; i++ {
-		_, file, line, ok := runtime.Caller(i)
+	for i := findExtLogLineCallStart; i <= findExtLogLineCallDeep; i++ {
+		pc, file, line, ok := runtime.Caller(i)
 
-		if strings.Index(file, "/wd_log.go") > 0 {
+		if strings.LastIndex(file, selfCallerFileMark) > 0 {
 			continue
 		}
-
 		if ok {
-
+			funcFullName := runtime.FuncForPC(pc).Name()
+			funcName := filepath.Base(funcFullName)
+			splitFuncName := strings.Split(funcName, ".")
+			splitFuncLen := len(splitFuncName)
+			funNameTemp := ""
+			if splitFuncLen > 1 {
+				for s := 1; s < splitFuncLen; s++ {
+					funNameTemp = funNameTemp + "." + splitFuncName[s]
+				}
+			}
+			funcName = strings.TrimPrefix(funNameTemp, ".")
 			indexFunc := func(file string) string {
 				// depth: extLogLineMaxDeep
 				backup := "/" + file
@@ -70,11 +86,23 @@ func extLogLine(logContent string) string {
 				}
 				return backup[cacheIndex+1:]
 			}
-			srcFile = indexFunc(file) + ":" + strconv.Itoa(line)
+			srcFile = fmt.Sprintf("%s:%s %s() [g:%d]", indexFunc(file), strconv.Itoa(line), funcName, getRuntimeGid())
 		}
 		break
 	}
 	return fmt.Sprintf("%s %s", srcFile, logContent)
+}
+
+func getRuntimeGid() (gid uint64) {
+	b := make([]byte, 64)
+	b = b[:runtime.Stack(b, false)]
+	b = bytes.TrimPrefix(b, []byte("goroutine "))
+	b = b[:bytes.IndexByte(b, ' ')]
+	n, err := strconv.ParseUint(string(b), 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	return n
 }
 
 func Debug(msg string) {
