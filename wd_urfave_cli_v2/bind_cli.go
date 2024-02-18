@@ -42,7 +42,8 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentWorkflowInfo: wd_info.CurrentWorkflowInfo{
-			CiWorkflowName: c.String(wd_flag.NameCliCurrentCiWorkflowName),
+			CiWorkflowName:   c.String(wd_flag.NameCliCurrentCiWorkflowName),
+			CiWorkflowNumber: c.String(wd_flag.NameCliCurrentCiWorkflowNumber),
 		},
 
 		CurrentStepInfo: wd_info.CurrentStepInfo{

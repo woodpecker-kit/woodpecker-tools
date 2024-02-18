@@ -3,176 +3,44 @@ package wd_mock_test
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/fs"
-	"math/rand"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
 	"testing"
-	"time"
 )
 
 const (
-	defTimeoutSecond = 10
-	keyEnvDebug      = "CI_DEBUG"
-	keyEnvCiNum      = "CI"
-	keyEnvCiKey      = "CI_KEY"
-	keyEnvCiKeys     = "CI_KEYS"
+	keyEnvDebug  = "CI_DEBUG"
+	keyEnvCiNum  = "CI_NUMBER"
+	keyEnvCiKey  = "CI_KEY"
+	keyEnvCiKeys = "CI_KEYS"
 )
 
 var (
-	envDebug = false
+	// testBaseFolderPath
+	//  test base dir will auto get by package init()
+	testBaseFolderPath = ""
+	envDebug           = false
 
 	envCiNum  = 0
 	envCiKey  = ""
 	envCiKeys []string
-
-	strData []string
 )
 
 func init() {
+	testBaseFolderPath, _ = getCurrentFolderPath()
+
 	envDebug = fetchOsEnvBool(keyEnvDebug, false)
 	envCiNum = fetchOsEnvInt(keyEnvCiNum, 1)
 	envCiKey = fetchOsEnvStr(keyEnvCiKey, "")
 	envCiKeys = fetchOsEnvArray(keyEnvCiKeys)
-	for i := 0; i < 200; i++ {
-		strData = append(strData, randomStr(300))
-	}
 }
 
-// test case file tools start
-
-// goldenDataSaveFast
-//
-//	save data to golden file
-//	style as: "TestFuncName/extraName.golden"
-func goldenDataSaveFast(t *testing.T, data interface{}, extraName string) error {
-	marshal, errJson := json.Marshal(data)
-	if errJson != nil {
-		t.Fatal(errJson)
-	}
-	return goldenDataSave(t, marshal, extraName, os.FileMode(0766))
-}
-
-// goldenDataSave
-//
-//	save data to golden file
-//	style as: "TestFuncName/extraName.golden"
-func goldenDataSave(t *testing.T, data []byte, extraName string, fileMod fs.FileMode) error {
-	testDataFolderFullPath, err := getOrCreateTestDataFolderFullPath()
-	if err != nil {
-		return fmt.Errorf("try goldenDataSave err: %v", err)
-	}
-	testDataFolder := filepath.Join(testDataFolderFullPath, t.Name())
-	if !pathExistsFast(testDataFolder) {
-		errMk := mkdir(testDataFolder)
-		if errMk != nil {
-			t.Fatal(errMk)
-		}
-	}
-	savePath := filepath.Join(testDataFolderFullPath, t.Name(), fmt.Sprintf("%s.golden", extraName))
-	var str bytes.Buffer
-	err = json.Indent(&str, data, "", "  ")
-	if err != nil {
-		return err
-	}
-	err = writeFileByByte(savePath, str.Bytes(), fileMod, true)
-	if err != nil {
-		return fmt.Errorf("try goldenDataSave at path: %s err: %v", savePath, err)
-	}
-	return nil
-}
-
-// goldenDataReadAsByte
-//
-//	read golden file as byte
-//	style as: "TestFuncName/extraName.golden"
-func goldenDataReadAsByte(t *testing.T, extraName string) ([]byte, error) {
-	testDataFolderFullPath, err := getOrCreateTestDataFolderFullPath()
-	if err != nil {
-		return nil, fmt.Errorf("try goldenDataReadAsByte err: %v", err)
-	}
-
-	savePath := filepath.Join(testDataFolderFullPath, t.Name(), fmt.Sprintf("%s.golden", extraName))
-
-	fileAsByte, err := readFileAsByte(savePath)
-	if err != nil {
-		return nil, fmt.Errorf("try goldenDataReadAsByte err: %v", err)
-	}
-	return fileAsByte, nil
-}
-
-// goldenDataReadAsType
-//
-//	read golden file as type
-//	style as: "TestFuncName/extraName.golden"
-func goldenDataReadAsType(t *testing.T, extraName string, v interface{}) error {
-	readAsByte, err := goldenDataReadAsByte(t, extraName)
-	if err != nil {
-		t.Fatal(err)
-	}
-	return json.Unmarshal(readAsByte, v)
-}
-
-var currentTestDataFolderAbsPath = ""
-
-// getOrCreateTestDataFullPath
-//
-//	get or create test data full path will under this package testdata
-//	this function will create dir for return full path
-func getOrCreateTestDataFullPath(elem ...string) (string, error) {
-	if elem == nil || len(elem) < 1 {
-		return "", fmt.Errorf("must has one elem")
-	}
-	dataFolderFullPath, err := getOrCreateTestDataFolderFullPath()
-	if err != nil {
-		return "", err
-	}
-	fullPath := filepath.Join(dataFolderFullPath, elem[0])
-	if len(elem) > 1 {
-		for i := 1; i < len(elem); i++ {
-			fullPath = filepath.Join(fullPath, elem[i])
-		}
-	}
-	baseDir := filepath.Dir(fullPath)
-	if !pathExistsFast(baseDir) {
-		errMkdir := mkdir(baseDir)
-		if errMkdir != nil {
-			return fullPath, errMkdir
-		}
-	}
-	if !pathIsDir(baseDir) {
-		return "", fmt.Errorf("getOrCreateTestDataFullPath exist file, and can not create dir at path: %s", baseDir)
-	}
-
-	return fullPath, nil
-}
-
-// getOrCreateTestDataFolderFullPath
-//
-//	will create testdata folder under this package
-func getOrCreateTestDataFolderFullPath() (string, error) {
-	if currentTestDataFolderAbsPath != "" {
-		return currentTestDataFolderAbsPath, nil
-	}
-	currentFolderPath, err := getCurrentFolderPath()
-	if err != nil {
-		return "", err
-	}
-	currentTestDataFolderAbsPath = filepath.Join(currentFolderPath, "testdata")
-	if !pathExistsFast(currentTestDataFolderAbsPath) {
-		err := mkdir(currentTestDataFolderAbsPath)
-		if err != nil {
-			currentTestDataFolderAbsPath = ""
-			return "", err
-		}
-	}
-	return currentTestDataFolderAbsPath, nil
-}
+// test case basic tools start
 
 // getCurrentFolderPath
 //
@@ -180,7 +48,7 @@ func getOrCreateTestDataFolderFullPath() (string, error) {
 func getCurrentFolderPath() (string, error) {
 	_, file, _, ok := runtime.Caller(1)
 	if !ok {
-		return "", errors.New("can not get current file info")
+		return "", fmt.Errorf("can not get current file info")
 	}
 	return filepath.Dir(file), nil
 }
@@ -352,6 +220,61 @@ func writeFileAsJsonBeauty(path string, v interface{}, coverage bool) error {
 	return writeFileAsJson(path, v, os.FileMode(0766), coverage, true)
 }
 
+var currentTestDataFolderAbsPath = ""
+
+// getOrCreateTestDataFullPath
+//
+//	get or create test data full path will under this package testdata
+//	this function will create dir for return full path
+func getOrCreateTestDataFullPath(elem ...string) (string, error) {
+	if elem == nil || len(elem) < 1 {
+		return "", fmt.Errorf("must has one elem")
+	}
+	dataFolderFullPath, err := getOrCreateTestDataFolderFullPath()
+	if err != nil {
+		return "", err
+	}
+	fullPath := filepath.Join(dataFolderFullPath, elem[0])
+	if len(elem) > 1 {
+		for i := 1; i < len(elem); i++ {
+			fullPath = filepath.Join(fullPath, elem[i])
+		}
+	}
+	baseDir := filepath.Dir(fullPath)
+	if !pathExistsFast(baseDir) {
+		errMkdir := mkdir(baseDir)
+		if errMkdir != nil {
+			return fullPath, errMkdir
+		}
+	}
+	if !pathIsDir(baseDir) {
+		return "", fmt.Errorf("getOrCreateTestDataFullPath exist file, and can not create dir at path: %s", baseDir)
+	}
+
+	return fullPath, nil
+}
+
+// getOrCreateTestDataFolderFullPath
+//
+//	will create testdata folder under this package
+func getOrCreateTestDataFolderFullPath() (string, error) {
+	if currentTestDataFolderAbsPath != "" {
+		return currentTestDataFolderAbsPath, nil
+	}
+	if testBaseFolderPath == "" {
+		return "", fmt.Errorf("please testBaseFolderPath at each test case at init()")
+	}
+	currentTestDataFolderAbsPath = filepath.Join(testBaseFolderPath, "testdata")
+	if !pathExistsFast(currentTestDataFolderAbsPath) {
+		err := mkdir(currentTestDataFolderAbsPath)
+		if err != nil {
+			currentTestDataFolderAbsPath = ""
+			return "", err
+		}
+	}
+	return currentTestDataFolderAbsPath, nil
+}
+
 // fetchOsEnvBool
 //
 //	fetch os env by key.
@@ -464,39 +387,56 @@ func setEnvInt64(t *testing.T, key string, val int64) {
 	}
 }
 
-// printEnvPrefix
+// findAllEnvByPrefix4Print
 //
-//	print env by prefix
+//	find out all env by prefix for print
+//	if not found will return ""
 //
 //nolint:golint,unused
-func printEnvPrefix(t *testing.T, prefix string) {
+func findAllEnvByPrefix4Print(prefix string) string {
+	var sb strings.Builder
 	for _, e := range os.Environ() {
 		if strings.Index(e, prefix) == 0 {
-			t.Logf("printEnvPrefix [ %s ]: %s\n", prefix, e)
+			sb.WriteString(e)
+			sb.WriteString("\n")
 		}
 	}
-}
-
-// randomStr
-//
-//	new random string by cnt
-func randomStr(cnt uint) string {
-	var letters = []byte("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
-	result := make([]byte, cnt)
-	keyL := len(letters)
-	rand.Seed(time.Now().Unix())
-	for i := range result {
-		result[i] = letters[rand.Intn(keyL)]
+	if sb.Len() > 0 {
+		return sb.String()
 	}
-	return string(result)
+	return ""
 }
 
-// randomInt
+// findAllEnvByPrefix
 //
-//	new random int by max
-func randomInt(max int) int {
-	rand.Seed(time.Now().Unix())
-	return rand.Intn(max)
+//	find out all env by prefix
+//	if not found will return nil
+//
+//nolint:golint,unused
+func findAllEnvByPrefix(prefix string) map[string]string {
+	var out map[string]string
+	for _, e := range os.Environ() {
+		if strings.Index(e, prefix) == 0 {
+			envSplit := strings.Split(e, "=")
+			if len(envSplit) > 1 {
+				if out == nil {
+					out = make(map[string]string)
+				}
+				out[envSplit[0]] = envSplit[1]
+			} else if len(envSplit) > 0 {
+				if out == nil {
+					out = make(map[string]string)
+				}
+				out[envSplit[0]] = ""
+			} else {
+				continue
+			}
+		}
+	}
+	if len(out) > 0 {
+		return out
+	}
+	return nil
 }
 
-// test case file tools end
+// test case basic tools end

@@ -22,7 +22,7 @@ INFO_DOCKER_COMPOSE_DEFAULT_FILE ?=docker-compose.yml
 
 ## run info start
 ENV_RUN_INFO_HELP_ARGS= -h
-ENV_RUN_INFO_ARGS=
+ENV_RUN_INFO_ARGS=--plugin.debug true
 ## run info end
 
 ## build dist env start
@@ -136,6 +136,12 @@ style: modTidy modVerify modFmt modLintRun
 
 ci: modTidy modVerify modFmt modVet modLintRun test
 
+ciTestBenchmark: modTidy modVerify testBenchmark
+
+ciCoverageShow: modTidy modVerify modVet testCoverage testCoverageShow
+
+ciAll: ci ciTestBenchmark ciCoverageShow
+
 buildMain:
 	@echo "-> start build local OS: ${PLATFORM} ${OS_BIT}"
 ifeq ($(OS),Windows_NT)
@@ -174,18 +180,13 @@ helpProjectRoot:
 	@echo "Help: Project root Makefile"
 ifeq ($(OS),Windows_NT)
 	@echo ""
-	@echo "warning: other install make cli tools has bug, please use: scoop install main/make"
+	@echo "warning: other install make cli tools has bug"
 	@echo " run will at make tools version 4.+"
 	@echo "windows use this kit must install tools blow:"
-	@echo ""
-	@echo "https://scoop.sh/#/apps?q=busybox&s=0&d=1&o=true"
-	@echo "-> scoop install main/busybox"
-	@echo "and"
-	@echo "https://scoop.sh/#/apps?q=shasum&s=0&d=1&o=true"
-	@echo "-> scoop install main/shasum"
+	@echo "-> scoop install main/make"
 	@echo ""
 endif
-	@echo "-- now build name: ${ROOT_NAME} version: ${ENV_DIST_VERSION}"
+	@echo "-- now build name: ${ROOT_NAME} dist mark: ${ENV_DIST_MARK}"
 	@echo "-- distTestOS or distReleaseOS will out abi as: ${ENV_DIST_GO_OS} ${ENV_DIST_GO_ARCH} --"
 	@echo ""
 	@echo "~> make env                 - print env of this project"
@@ -197,7 +198,11 @@ endif
 	@echo "~> make testCoverageBrowser - see coverage at browser --invert-match by config"
 	@echo "~> make testBenchmark       - run go test benchmark case all"
 	@echo "~> make ci                  - run CI tools tasks"
+	@echo "~> make ciTestBenchmark     - run CI tasks as test benchmark"
+	@echo "~> make ciCoverageShow      - run CI tasks as test coverage and show"
+	@echo "~> make ciAll               - run CI tasks all"
 	@echo "~> make style               - run local code fmt and style check"
+	@echo "~> make devHelp             - run as develop mode see help with ${ENV_RUN_INFO_HELP_ARGS}"
 	@echo "~> make dev                 - run as develop mode"
 	@echo "~> make runHelp             - run use ${ENV_RUN_INFO_HELP_ARGS}"
 

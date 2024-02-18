@@ -6,6 +6,9 @@ import (
 	"path/filepath"
 )
 
+// OverloadEnvFromFile
+// overload env from file，can use DefaultWriterFileName
+// this method will read file and overload env
 func OverloadEnvFromFile(root string, fileName string) (map[string]string, error) {
 	readerTarget := filepath.Join(root, fileName)
 	if !pathExistsFast(readerTarget) {

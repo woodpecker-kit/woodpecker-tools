@@ -11,6 +11,10 @@ import (
 	"strings"
 )
 
+const DefaultExtLogLineMaxDeep = 2
+
+var extLogLineMaxDeep = DefaultExtLogLineMaxDeep
+
 var (
 	openDebug  = false
 	showLineNo = false
@@ -25,6 +29,13 @@ func ShowLogLineNo(openLine bool) {
 	showLineNo = openLine
 }
 
+func SetLogLineDeep(deep uint) {
+	if deep < 1 {
+		deep = 1
+	}
+	extLogLineMaxDeep = int(deep)
+}
+
 func formatLog(msg string) string {
 	if showLineNo {
 		return extLogLine(msg)
@@ -37,35 +48,40 @@ func extLogLine(logContent string) string {
 	for i := 2; i <= 4; i++ {
 		_, file, line, ok := runtime.Caller(i)
 
-		if strings.Index(file, "d_log.go") > 0 {
+		if strings.Index(file, "/wd_log.go") > 0 {
 			continue
 		}
 
 		if ok {
-			//idx := strings.LastIndex(file, "src")
-			//switch {
-			//case idx >= 0:
-			//	srcFile = file[idx+4:]
-			//default:
-			//	srcFile = file
-			//}
+
 			indexFunc := func(file string) string {
+				// depth: extLogLineMaxDeep
 				backup := "/" + file
-				lastSlashIndex := strings.LastIndex(backup, "/")
-				if lastSlashIndex < 0 {
-					return backup
+
+				cacheIndex := 0
+				findCache := backup
+				for i := 0; i < extLogLineMaxDeep; i++ {
+					findIndex := strings.LastIndex(findCache, "/")
+					if findIndex < 0 {
+						return backup[cacheIndex+1 : 0]
+					}
+					cacheIndex = findIndex
+					findCache = findCache[:findIndex]
 				}
-				secondLastSlashIndex := strings.LastIndex(backup[:lastSlashIndex], "/")
-				if secondLastSlashIndex < 0 {
-					return backup[lastSlashIndex+1:]
-				}
-				return backup[secondLastSlashIndex+1:]
+				return backup[cacheIndex+1:]
 			}
 			srcFile = indexFunc(file) + ":" + strconv.Itoa(line)
 		}
 		break
 	}
 	return fmt.Sprintf("%s %s", srcFile, logContent)
+}
+
+func Debug(msg string) {
+	if !openDebug {
+		return
+	}
+	log.Printf("%s %s", color.Blue.Render("debug:"), formatLog(msg))
 }
 
 func Debugf(format string, v ...any) {
@@ -119,6 +135,10 @@ func VerboseJsonf(d any, format string, v ...any) {
 	} else {
 		log.Printf("%s\n", formatLog(dStr))
 	}
+}
+
+func Info(msg string) {
+	log.Printf("%s %s", color.Green.Render("info:"), formatLog(msg))
 }
 
 func Infof(format string, v ...any) {

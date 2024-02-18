@@ -13,5 +13,12 @@ func currentWorkflowFlag() []cli.Flag {
 			EnvVars: []string{wd_flag.EnvKeyCurrentCiWorkflowName},
 			Hidden:  true,
 		},
+
+		&cli.StringFlag{
+			Name:    wd_flag.NameCliCurrentCiWorkflowNumber,
+			Usage:   "Provides workflow number, this will start from 1",
+			EnvVars: []string{wd_flag.EnvKeyCurrentCiWorkflowNumber},
+			Hidden:  true,
+		},
 	}
 }

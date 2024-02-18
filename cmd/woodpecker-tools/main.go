@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	wd_log.SetLogLineDeep(wd_log.DefaultExtLogLineMaxDeep)
 	pkgJson.InitPkgJsonContent(resource.PackageJson)
 
 	app := cli.NewCliApp()
