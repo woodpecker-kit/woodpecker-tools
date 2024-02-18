@@ -1,0 +1,12 @@
+{
+  "CiPipelineNumber": "10",
+  "CiPipelineParent": "0",
+  "CiPipelineEvent": "push",
+  "CiPipelineUrl": "https://woodpecker.domain.com/repos/2/pipeline/10",
+  "CiPipelineForgeUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+  "CiPipelineDeployTarget": "",
+  "CiPipelineStatus": "success",
+  "CiPipelineCreated": 1705658141,
+  "CiPipelineStarted": 1705658156,
+  "CiPipelineFinished": 1705658166
+}

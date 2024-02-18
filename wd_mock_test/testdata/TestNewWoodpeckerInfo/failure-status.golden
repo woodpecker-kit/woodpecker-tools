@@ -7,7 +7,7 @@
     "CiSystemName": "woodpecker",
     "CiSystemUrl": "https://woodpecker.domain.com",
     "CiSystemHost": "woodpecker.domain.com",
-    "CiSystemVersion": "2.0.0"
+    "CiSystemVersion": "2.3.0"
   },
   "CiForgeInfo": {
     "CiForgeType": "gitea",
@@ -37,10 +37,11 @@
       "CiCommitTag": "",
       "CiCommitPullRequest": "",
       "CiCommitPullRequestLabels": "",
-      "CiCommitMessage": "test: use source to load envvarrs at before step",
+      "CiCommitMessage": "test: use source to load env vars at before step",
       "CiCommitAuthor": "sinlov",
       "CiCommitAuthorEmail": "sinlov@noreply.localhost",
-      "CiCommitAuthorAvatar": ""
+      "CiCommitAuthorAvatar": "",
+      "CiCommitPreRelease": false
     },
     "CurrentPipelineInfo": {
       "CiPipelineNumber": "10",

@@ -1,3 +1,3 @@
 package wd_info
 
-const WoodpeckerInfoSupportVersion = "2.0.0"
+const WoodpeckerInfoSupportVersion = "2.3.0"

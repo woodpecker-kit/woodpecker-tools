@@ -1,0 +1,13 @@
+{
+  "CiPreviousCommitSha": "b2542f37e23645b2032fcf9f180e6940ef6915ac",
+  "CiPreviousCommitRef": "refs/heads/main",
+  "CiPreviousCommitRefSpec": "",
+  "CiPreviousCommitBranch": "main",
+  "CiPreviousCommitSourceBranch": "",
+  "CiPreviousCommitTargetBranch": "",
+  "CiPreviousCommitUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
+  "CiPreviousCommitMessage": "test: try send env between steps",
+  "CiPreviousCommitAuthor": "sinlov",
+  "CiPreviousCommitAuthorEmail": "sinlov@mail.localhost",
+  "CiPreviousCommitAuthorAvatar": ""
+}

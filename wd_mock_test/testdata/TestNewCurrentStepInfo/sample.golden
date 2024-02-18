@@ -1,0 +1,8 @@
+{
+  "CiStepName": "checkout",
+  "CiStepNumber": "0",
+  "CiStepStatus": "success",
+  "CiStepStarted": 1705658156,
+  "CiStepFinished": 1705658166,
+  "CiStepUrl": "https://woodpecker.domain.com/repos/2/pipeline/10"
+}
