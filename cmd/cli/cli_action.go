@@ -80,7 +80,7 @@ func GlobalAction(c *cli.Context) error {
 		}
 	}
 
-	errCheckVersion := wd_info.CiSystemVersionCheck(*wdPlugin.WoodpeckerInfo)
+	errCheckVersion := wd_info.CiSystemVersionMinimumSupport(*wdPlugin.WoodpeckerInfo)
 	if errCheckVersion != nil {
 		return cli_exit_urfave.Err(errCheckVersion)
 	}
