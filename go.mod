@@ -3,6 +3,7 @@ module github.com/woodpecker-kit/woodpecker-tools
 go 1.19
 
 require (
+	github.com/Masterminds/semver/v3 v3.2.1
 	github.com/gookit/color v1.5.4
 	github.com/joho/godotenv v1.5.1
 	github.com/sebdah/goldie/v2 v2.5.3

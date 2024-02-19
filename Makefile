@@ -1,7 +1,7 @@
 .PHONY: test check clean build dist all
 #TOP_DIR := $(shell pwd)
 # can change by env:ENV_CI_DIST_VERSION use and change by env:ENV_CI_DIST_MARK by CI
-ENV_DIST_VERSION =v0.1.2
+ENV_DIST_VERSION =2.3.0
 ENV_DIST_MARK=
 
 ROOT_NAME ?=woodpecker-tools
@@ -22,7 +22,7 @@ INFO_DOCKER_COMPOSE_DEFAULT_FILE ?=docker-compose.yml
 
 ## run info start
 ENV_RUN_INFO_HELP_ARGS= -h
-ENV_RUN_INFO_ARGS=--plugin.debug true
+ENV_RUN_INFO_ARGS=
 ## run info end
 
 ## build dist env start
@@ -152,6 +152,7 @@ else
 	@echo "-> finish build out path: ${ENV_ROOT_BUILD_BIN_PATH}"
 endif
 
+devDebug: export CI_SYSTEM_VERSION=${ENV_DIST_VERSION}
 devDebug: export CI_SYSTEM_NAME=woodpecker
 devDebug: export CI=woodpecker
 devDebug: export PLUGIN_DEBUG=true
@@ -162,8 +163,10 @@ else
 	${ENV_ROOT_BUILD_BIN_PATH} ${ENV_RUN_INFO_ARGS}
 endif
 
-dev: export PLUGIN_DEBUG=false
+dev: export CI_SYSTEM_VERSION=${ENV_DIST_VERSION}
+dev: export CI_SYSTEM_NAME=woodpecker
 dev: export CI=woodpecker
+dev: export PLUGIN_DEBUG=false
 dev: cleanBuild buildMain
 ifeq ($(OS),Windows_NT)
 	$(subst /,\,${ENV_ROOT_BUILD_BIN_PATH}).exe ${ENV_RUN_INFO_ARGS}
@@ -171,7 +174,7 @@ else
 	${ENV_ROOT_BUILD_BIN_PATH} ${ENV_RUN_INFO_ARGS}
 endif
 
-runHelp: export CLI_VERBOSE=false
+runHelp: export CI_SYSTEM_NAME=woodpecker
 runHelp: export CI=woodpecker
 runHelp:
 	go run -v ${ENV_ROOT_BUILD_ENTRANCE} ${ENV_RUN_INFO_HELP_ARGS}

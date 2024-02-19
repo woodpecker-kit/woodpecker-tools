@@ -42,6 +42,7 @@ $ echo "go mod vendor"
 
 ## Features
 
+- [x] `wd_log` package support debug at line number and gid
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
