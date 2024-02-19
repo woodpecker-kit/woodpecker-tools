@@ -2,6 +2,7 @@ package wd_mock_test
 
 import (
 	"github.com/stretchr/testify/assert"
+	"github.com/woodpecker-kit/woodpecker-tools/env_mock"
 	"testing"
 )
 
@@ -21,15 +22,15 @@ func TestEnvKeys(t *testing.T) {
 
 	// verify EnvKeys
 
-	assert.True(t, fetchOsEnvBool(keyEnvDebug, false))
-	assert.Equal(t, 2, fetchOsEnvInt(keyEnvCiNum, 0))
-	assert.Equal(t, "foo", fetchOsEnvStr(keyEnvCiKey, ""))
-	envArray := fetchOsEnvArray(keyEnvs)
+	assert.True(t, env_mock.FetchOsEnvBool(keyEnvDebug, false))
+	assert.Equal(t, 2, env_mock.FetchOsEnvInt(keyEnvCiNum, 0))
+	assert.Equal(t, "foo", env_mock.FetchOsEnvStr(keyEnvCiKey, ""))
+	envArray := env_mock.FetchOsEnvArray(keyEnvs)
 	assert.Nil(t, envArray)
 
 	setEnvStr(t, keyEnvs, "foo, bar,My ")
 
-	envArray = fetchOsEnvArray(keyEnvs)
+	envArray = env_mock.FetchOsEnvArray(keyEnvs)
 
 	assert.NotNil(t, envArray)
 	assert.Equal(t, "foo", envArray[0])
