@@ -45,6 +45,7 @@ $ echo "go mod vendor"
 - [x] `wd_log` package support debug at line number and gid
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
+- [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system version
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
   as [github.com/urfave/cli/v2](https://github.com/urfave/cli/)
 - [x] `wd_info.WoodpeckerInfoSupportVersion` support version begin `2.0.0`
