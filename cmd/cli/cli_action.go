@@ -1,12 +1,12 @@
 package cli
 
 import (
-	"fmt"
 	"github.com/urfave/cli/v2"
 	"github.com/woodpecker-kit/woodpecker-tools/pkgJson"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_log"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2/cli_exit_urfave"
 	"log"
 	"os"
 	"strings"
@@ -57,7 +57,19 @@ func GlobalBeforeAction(c *cli.Context) error {
 // do cli Action before flag.
 func GlobalAction(c *cli.Context) error {
 	if wdPlugin == nil {
-		panic(fmt.Errorf("must success run GlobalBeforeAction then run GlobalAction"))
+		return cli_exit_urfave.ErrMsg("must success run GlobalBeforeAction then run GlobalAction")
+	}
+
+	if wdPlugin.Name == "" {
+		return cli_exit_urfave.ErrMsg("missing name, please set name")
+	}
+
+	if wdPlugin.Version == "" {
+		return cli_exit_urfave.ErrMsg("missing version, please set version")
+	}
+
+	if wdPlugin.WoodpeckerInfo == nil {
+		return cli_exit_urfave.ErrMsg("missing woodpecker info, please set woodpecker info env")
 	}
 
 	if wdPlugin.Debug { // print now all env
@@ -66,6 +78,11 @@ func GlobalAction(c *cli.Context) error {
 				log.Println(e)
 			}
 		}
+	}
+
+	errCheckVersion := wd_info.CiSystemVersionCheck(*wdPlugin.WoodpeckerInfo)
+	if errCheckVersion != nil {
+		return cli_exit_urfave.Err(errCheckVersion)
 	}
 
 	return nil

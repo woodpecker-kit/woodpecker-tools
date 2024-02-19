@@ -5,7 +5,7 @@ import (
 	"github.com/urfave/cli/v2"
 	"github.com/woodpecker-kit/woodpecker-tools/pkgJson"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2"
-	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2/exit_cli"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2/cli_exit_urfave"
 	"runtime"
 	"time"
 )
@@ -17,7 +17,7 @@ const (
 
 func NewCliApp() *cli.App {
 	name := pkgJson.GetPackageJsonName()
-	exit_cli.ChangeDefaultExitCode(defaultExitCode)
+	cli_exit_urfave.ChangeDefaultExitCode(defaultExitCode)
 	if name == "" {
 		panic("package.json name is empty")
 	}
