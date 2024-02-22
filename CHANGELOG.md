@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.1.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.0.2...v1.1.0) (2024-02-22)
+
+### BREAKING CHANGE:
+
+* wd_urfave_cli_v2/exit_cli/exit.go -> wd_urfave_cli_v2/cli_exit_urfave/exit.go
+
+### ✨ Features
+
+* wd_info.CiSystemVersionMinimumSupport and wd_info.CiSystemVersionConstraint can check version ([a05a6f47](https://github.com/woodpecker-kit/woodpecker-tools/commit/a05a6f47e1c8dd1a9cf2c33d3da0b8f2bb25bd05)), fe [#18](https://github.com/woodpecker-kit/woodpecker-tools/issues/18)
+
+* add wd_info.CiSystemVersionCheck for check woodpecker-tools version support ([607c495a](https://github.com/woodpecker-kit/woodpecker-tools/commit/607c495ad58d3c01d60e89eb563e3a92cebe2348))
+
+* let wd_log can show method info and gid by runtimeStack ([1b3b1f73](https://github.com/woodpecker-kit/woodpecker-tools/commit/1b3b1f738fb2882ddbb871674e4da420fb43b699)), fe [#15](https://github.com/woodpecker-kit/woodpecker-tools/issues/15)
+
+* add flag CI_COMMIT_PRERELEASE and load by cli or mock by unit test ([9f290452](https://github.com/woodpecker-kit/woodpecker-tools/commit/9f290452119eb06dacb1867675881cb10c957216)), fe [#11](https://github.com/woodpecker-kit/woodpecker-tools/issues/11)
+
+* add wd_steps_transfer and test case ([73d2ee5d](https://github.com/woodpecker-kit/woodpecker-tools/commit/73d2ee5d875c637b71fb271ee466e0699152cce6)), fe [#12](https://github.com/woodpecker-kit/woodpecker-tools/issues/12)
+
+* add env_transfer AddEnvByKey RemoveEnvByKey SaveEnv2File ([3577ac4d](https://github.com/woodpecker-kit/woodpecker-tools/commit/3577ac4d60b7c68c58e6d7b9811eefab339ff001))
+
+* add env_transfer AddEnvByKey RemoveEnvByKey SaveEnv2File ([a08be278](https://github.com/woodpecker-kit/woodpecker-tools/commit/a08be2781d98fea797db7d1961d5a1b2b13a18b3))
+
+* add env_transfer package to writer or read as file and load to env ([dce1b994](https://github.com/woodpecker-kit/woodpecker-tools/commit/dce1b99407e00aa48a67fa6a11bddad17ec0ed21)), fe [#9](https://github.com/woodpecker-kit/woodpecker-tools/issues/9)
+
+* add env_transfer package to writer or read as file and load to env ([5dbf22c2](https://github.com/woodpecker-kit/woodpecker-tools/commit/5dbf22c29b72da5a68d31a190ad782ebe93f63b6)), fe [#9](https://github.com/woodpecker-kit/woodpecker-tools/issues/9)
+
+### 👷‍ Build System
+
+* bump codecov/codecov-action from 3.1.4 to 4.0.0 ([bacccfd0](https://github.com/woodpecker-kit/woodpecker-tools/commit/bacccfd0f85c6b2e351e87ae00ba9fa1b7d5924a))
+
+* bump actions/setup-go from 4 to 5 ([25f1a82d](https://github.com/woodpecker-kit/woodpecker-tools/commit/25f1a82daf55e8aebb73956990d03ec1fb0236ca))
+
+* bump actions/checkout from 3 to 4 ([b1515299](https://github.com/woodpecker-kit/woodpecker-tools/commit/b1515299aaeb6277e4a828e11f1b1d28b2bebed9))
+
 ## [1.0.2](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.0.1...v1.0.2) (2024-01-22)
 
 ### 👷‍ Build System
