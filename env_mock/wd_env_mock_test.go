@@ -1,8 +1,8 @@
 package env_mock
 
 import (
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/stretchr/testify/assert"
-	"github.com/woodpecker-kit/woodpecker-tools/env_kit"
 	"os"
 	"strings"
 	"testing"

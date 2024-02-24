@@ -1,8 +1,9 @@
 package wd_mock_test
 
 import (
+	"github.com/sinlov-go/unittest-kit/env_kit"
+	"github.com/sinlov-go/unittest-kit/unittest_env_kit"
 	"github.com/stretchr/testify/assert"
-	"github.com/woodpecker-kit/woodpecker-tools/env_kit"
 	"testing"
 )
 
@@ -11,11 +12,11 @@ func TestEnvKeys(t *testing.T) {
 	const keyEnvs = "ENV_KEYS"
 	t.Logf("~> mock EnvKeys")
 
-	setEnvBool(t, keyEnvDebug, true)
+	unittest_env_kit.SetEnvBool(t, keyEnvDebug, true)
 
-	setEnvInt64(t, keyEnvCiNum, 2)
+	unittest_env_kit.SetEnvInt64(t, keyEnvCiNum, 2)
 
-	setEnvStr(t, keyEnvCiKey, "foo")
+	unittest_env_kit.SetEnvStr(t, keyEnvCiKey, "foo")
 
 	// do EnvKeys
 	t.Logf("~> do EnvKeys")
@@ -28,7 +29,7 @@ func TestEnvKeys(t *testing.T) {
 	envArray := env_kit.FetchOsEnvArray(keyEnvs)
 	assert.Nil(t, envArray)
 
-	setEnvStr(t, keyEnvs, "foo, bar,My ")
+	unittest_env_kit.SetEnvStr(t, keyEnvs, "foo, bar,My ")
 
 	envArray = env_kit.FetchOsEnvArray(keyEnvs)
 
@@ -36,6 +37,8 @@ func TestEnvKeys(t *testing.T) {
 	assert.Equal(t, "foo", envArray[0])
 	assert.Equal(t, "bar", envArray[1])
 	assert.Equal(t, "My", envArray[2])
-	t.Logf("~> print EnvKeys prefix as [ CI_ ]:\n%s\n", env_kit.FindAllEnvByPrefix4Print("CI_"))
-	t.Logf("~> print All Env as sort and just:\n%s\n", env_kit.FindAllEnv4PrintAsSortJust(24))
+
+	t.Logf("~> verify EnvKeys: \n%s", env_kit.FindAllEnvByPrefix4Print("CI_"))
+	envByPrefix := env_kit.FindAllEnvByPrefix("CI_")
+	t.Logf("~> print findAllEnvByPrefix: %v", envByPrefix)
 }

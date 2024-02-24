@@ -2,6 +2,7 @@ package wd_mock_test
 
 import (
 	"github.com/sebdah/goldie/v2"
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/stretchr/testify/assert"
 	"github.com/woodpecker-kit/woodpecker-tools/env_mock"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
@@ -54,7 +55,7 @@ func TestWoodPeckerEnvMock(t *testing.T) {
 
 			env_mock.MockEnvByStruct(*gotResult)
 
-			t.Logf("~> TestWoodPeckerEnvMock at env: \n%s", findAllEnvByPrefix4Print("CI_"))
+			t.Logf("~> TestWoodPeckerEnvMock at env: \n%s", env_kit.FindEnv4PrintAsPrefixSortJust("CI_", 36))
 
 			// verify NewWoodpeckerInfo
 			assert.Equal(t, tc.args.ciWorkflowNumber, gotResult.CurrentInfo.CurrentWorkflowInfo.CiWorkflowNumber)

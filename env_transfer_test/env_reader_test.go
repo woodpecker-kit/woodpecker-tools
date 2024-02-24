@@ -2,6 +2,7 @@ package env_transfer_test
 
 import (
 	"github.com/sebdah/goldie/v2"
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/stretchr/testify/assert"
 	"github.com/woodpecker-kit/woodpecker-tools/env_transfer"
 	"path/filepath"
@@ -117,7 +118,7 @@ func TestOverloadEnvFromFile(t *testing.T) {
 			}
 			for k, v := range tc.checkEnvMap {
 				assert.Equal(t, loadEnvMap[k], v)
-				assert.Equal(t, fetchOsEnvStr(k, ""), v)
+				assert.Equal(t, env_kit.FetchOsEnvStr(k, ""), v)
 			}
 			// verify OverloadEnvFromFile
 			g.AssertJson(t, t.Name(), loadEnvMap)

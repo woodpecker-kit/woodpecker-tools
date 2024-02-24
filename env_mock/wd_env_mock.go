@@ -2,7 +2,7 @@ package env_mock
 
 import (
 	"fmt"
-	"github.com/woodpecker-kit/woodpecker-tools/env_kit"
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"reflect"
 	"strconv"
 )
