@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.2.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.1.0...v1.2.0) (2024-02-24)
+
+### BREAKING CHANGE:
+
+* change package name and mehtod is compatibility
+
+* env_mock.Set* or env_moce.FetchOsEnv* move to package env_kit
+
+### ✨ Features
+
+* use github.com/sinlov-go/unittest-kit for env at unittest case ([da784428](https://github.com/woodpecker-kit/woodpecker-tools/commit/da784428e5b42fa7b9760b780826059b63ef4f47))
+
+* env_kit for consistent management of environment variables is required ([4ee96e49](https://github.com/woodpecker-kit/woodpecker-tools/commit/4ee96e4929cfd9f53f2198cd9f9c07def59e4e2a)), fe [#20](https://github.com/woodpecker-kit/woodpecker-tools/issues/20)
+
 ## [1.1.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.0.2...v1.1.0) (2024-02-22)
 
 ### BREAKING CHANGE:
