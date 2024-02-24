@@ -49,6 +49,9 @@ $ echo "go mod vendor"
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
   as [github.com/urfave/cli/v2](https://github.com/urfave/cli/)
 - [x] `wd_info.WoodpeckerInfoSupportVersion` support version begin `2.0.0`
+- [x] `env_kit` package
+  - `env_kit.FetchOsEnv*` and `env_kit.SetEnv*` for env get or set
+  - `env_kit.FindAllEnv4Print`, `env_kit.FindAllEnvByPrefix`, `env_kit.FindAllEnv4PrintAsSortJust` for find print env string
 - [x] `env_mock.MockEnvByStruct` support struct tag `mock_env_key` or `mock_env_default` for unit test of plugin
 - [x] `env_transfer.AddOrCoverEnvByKey` `env_transfer.RemoveEnvByKey` and `env_transfer.SaveEnv2File` for transfer env between steps
     - please add `.env.woodpecker_transfer.local` at git ignore, to use `env_transfer.DefaultWriterFileName` to transfer env

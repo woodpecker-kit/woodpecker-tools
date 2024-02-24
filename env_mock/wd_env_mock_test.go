@@ -2,6 +2,7 @@ package env_mock
 
 import (
 	"github.com/stretchr/testify/assert"
+	"github.com/woodpecker-kit/woodpecker-tools/env_kit"
 	"os"
 	"strings"
 	"testing"
@@ -79,7 +80,7 @@ func TestMockEnvByStruct(t *testing.T) {
 			}
 			//assert.Equal(t, tc.wantRes, gotResult)
 			for key, val := range tc.wantRes {
-				osEnvStr := FetchOsEnvStr(key, "")
+				osEnvStr := env_kit.FetchOsEnvStr(key, "")
 				assert.Equal(t, val, osEnvStr)
 			}
 

@@ -433,7 +433,7 @@ func findAllEnvByPrefix(prefix string) map[string]string {
 			}
 		}
 	}
-	if len(out) > 0 {
+	if out != nil && len(out) > 0 {
 		return out
 	}
 	return nil
