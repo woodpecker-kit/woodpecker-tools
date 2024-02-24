@@ -2,11 +2,9 @@ package env_mock
 
 import (
 	"fmt"
-	"log"
-	"os"
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"reflect"
 	"strconv"
-	"strings"
 )
 
 // MockEnvByStruct
@@ -54,7 +52,7 @@ func MockEnvByStruct(input interface{}) {
 				default:
 					//fmt.Printf("Field [ %s ] : %v\n", fType.Name, fType.Type)
 				case reflect.Bool:
-					SetEnvBool(envTagVal, fVal.Bool())
+					env_kit.SetEnvBool(envTagVal, fVal.Bool())
 				case reflect.String:
 					vStr := fVal.String()
 					if vStr == "" {
@@ -63,102 +61,15 @@ func MockEnvByStruct(input interface{}) {
 							vStr = envTagDefault
 						}
 					}
-					SetEnvStr(envTagVal, vStr)
+					env_kit.SetEnvStr(envTagVal, vStr)
 				case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-					SetEnvU64(envTagVal, fVal.Uint())
+					env_kit.SetEnvU64(envTagVal, fVal.Uint())
 				case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-					SetEnvStr(envTagVal, strconv.FormatInt(fVal.Int(), 10))
+					env_kit.SetEnvStr(envTagVal, strconv.FormatInt(fVal.Int(), 10))
 				case reflect.Float32, reflect.Float64:
-					SetEnvStr(envTagVal, strconv.FormatFloat(fVal.Float(), 'f', -1, 64))
+					env_kit.SetEnvStr(envTagVal, strconv.FormatFloat(fVal.Float(), 'f', -1, 64))
 				}
 			}
 		}
 	}
-}
-
-func SetEnvStr(key string, val string) {
-	err := os.Setenv(key, val)
-	if err != nil {
-		log.Fatalf("set env key [%v] string err: %v", key, err)
-	}
-}
-
-func SetEnvBool(key string, val bool) {
-	var err error
-	if val {
-		err = os.Setenv(key, "true")
-	} else {
-		err = os.Setenv(key, "false")
-	}
-	if err != nil {
-		log.Fatalf("set env key [%v] bool err: %v", key, err)
-	}
-}
-
-func SetEnvU64(key string, val uint64) {
-	err := os.Setenv(key, strconv.FormatUint(val, 10))
-	if err != nil {
-		log.Fatalf("set env key [%v] uint64 err: %v", key, err)
-	}
-}
-
-// FetchOsEnvBool
-//
-//	fetch os env by key.
-//	if not found will return devValue.
-//	return env not same as true (will be lowercase, so TRUE is same)
-func FetchOsEnvBool(key string, devValue bool) bool {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	return strings.ToLower(os.Getenv(key)) == "true"
-}
-
-// FetchOsEnvInt
-//
-//	fetch os env by key.
-//	return not found will return devValue.
-//	if not parse to int, return devValue
-func FetchOsEnvInt(key string, devValue int) int {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	outNum, err := strconv.Atoi(os.Getenv(key))
-	if err != nil {
-		return devValue
-	}
-
-	return outNum
-}
-
-// FetchOsEnvStr
-//
-//	fetch os env by key.
-//	return not found will return devValue.
-func FetchOsEnvStr(key, devValue string) string {
-	if os.Getenv(key) == "" {
-		return devValue
-	}
-	return os.Getenv(key)
-}
-
-// FetchOsEnvArray
-//
-//	fetch os env split by `,` and trim space
-//	return not found will return []string(nil).
-func FetchOsEnvArray(key string) []string {
-	var devValueStr []string
-	if os.Getenv(key) == "" {
-		return devValueStr
-	}
-	envValue := os.Getenv(key)
-	splitVal := strings.Split(envValue, ",")
-	if len(splitVal) == 0 {
-		return devValueStr
-	}
-	for _, item := range splitVal {
-		devValueStr = append(devValueStr, strings.TrimSpace(item))
-	}
-
-	return devValueStr
 }

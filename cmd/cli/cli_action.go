@@ -1,15 +1,13 @@
 package cli
 
 import (
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/urfave/cli/v2"
 	"github.com/woodpecker-kit/woodpecker-tools/pkgJson"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_log"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_urfave_cli_v2/cli_exit_urfave"
-	"log"
-	"os"
-	"strings"
 )
 
 var wdPlugin *Plugin
@@ -73,11 +71,7 @@ func GlobalAction(c *cli.Context) error {
 	}
 
 	if wdPlugin.Debug { // print now all env
-		for _, e := range os.Environ() {
-			if strings.Index(e, "CI") == 0 {
-				log.Println(e)
-			}
-		}
+		wd_log.Debugf("this plugin start with all env: %s", env_kit.FindAllEnv4PrintAsSortJust(36))
 	}
 
 	errCheckVersion := wd_info.CiSystemVersionMinimumSupport(*wdPlugin.WoodpeckerInfo)

@@ -45,17 +45,26 @@ $ echo "go mod vendor"
 - [x] `wd_log` package support debug at line number and gid
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
-- [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system version
+- [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system
+  version
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
   as [github.com/urfave/cli/v2](https://github.com/urfave/cli/)
 - [x] `wd_info.WoodpeckerInfoSupportVersion` support version begin `2.0.0`
 - [x] `env_mock.MockEnvByStruct` support struct tag `mock_env_key` or `mock_env_default` for unit test of plugin
-- [x] `env_transfer.AddOrCoverEnvByKey` `env_transfer.RemoveEnvByKey` and `env_transfer.SaveEnv2File` for transfer env between steps
-    - please add `.env.woodpecker_transfer.local` at git ignore, to use `env_transfer.DefaultWriterFileName` to transfer env
-    - `env_transfer.AddOrCoverEnvByKey` or `env_transfer.RemoveEnvByKey` will append `env_transfer.PrefixTransfer` and upper case at runner env
+- [x] `env_transfer.AddOrCoverEnvByKey` `env_transfer.RemoveEnvByKey` and `env_transfer.SaveEnv2File` for transfer env
+  between steps
+    - please add `.env.woodpecker_transfer.local` at git ignore, to use `env_transfer.DefaultWriterFileName` to transfer
+      env
+    - `env_transfer.AddOrCoverEnvByKey` or `env_transfer.RemoveEnvByKey` will append `env_transfer.PrefixTransfer` and
+      upper case at runner env
     - load env can use `env_transfer.OverloadEnvFromFile`, most use file name as `env_transfer.DefaultWriterFileName`
 - [x] `wd_steps_transfer.Out` and `wd_steps_transfer.In` for transfer data between steps with same workflow
-    - please add `.woodpecker_kit.steps.transfer` at git ignore, to use `wd_steps_transfer.DefaultWriterFileName` to transfer data
+    - please add `.woodpecker_kit.steps.transfer` at git ignore, to use `wd_steps_transfer.DefaultWriterFileName` to
+      transfer data
+- [x] `env_kit` package use [github.com/sinlov-go/unittest-kit](https://github.com/sinlov-go/unittest-kit)
+    - `env_kit.FetchOsEnv*` and `env_kit.SetEnv*` for env get or set
+    - `env_kit.FindAllEnv4Print`, `env_kit.FindAllEnvByPrefix`, `env_kit.FindAllEnv4PrintAsSortJust` for find print env
+      string
 - [x] code check
     - [x] full check by golang version
     - [x] full check for docker build

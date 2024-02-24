@@ -1,6 +1,7 @@
 package env_mock
 
 import (
+	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"strings"
@@ -79,7 +80,7 @@ func TestMockEnvByStruct(t *testing.T) {
 			}
 			//assert.Equal(t, tc.wantRes, gotResult)
 			for key, val := range tc.wantRes {
-				osEnvStr := FetchOsEnvStr(key, "")
+				osEnvStr := env_kit.FetchOsEnvStr(key, "")
 				assert.Equal(t, val, osEnvStr)
 			}
 
