@@ -1,7 +1,9 @@
 package wd_urfave_cli_v2
 
 import (
+	"fmt"
 	"github.com/urfave/cli/v2"
+	"sort"
 )
 
 // WoodpeckerUrfaveCliFlags
@@ -21,12 +23,38 @@ func WoodpeckerUrfaveCliFlags() []cli.Flag {
 	)
 }
 
+func in(target string, strArray []string) bool {
+	sort.Strings(strArray)
+	index := sort.SearchStrings(strArray, target)
+	if index < len(strArray) && strArray[index] == target {
+		return true
+	}
+	return false
+}
+
 // UrfaveCliAppendCliFlag
 //
 //	append cli.Flag
+//	if flag name exists will panic: do UrfaveCliAppendCliFlag err, flag exists name xxx at [xxx]
 func UrfaveCliAppendCliFlag(target []cli.Flag, elem []cli.Flag) []cli.Flag {
 	if len(elem) == 0 {
 		return target
+	}
+	var appendFlagName []string
+	for _, flag := range elem {
+		appendFlagName = append(appendFlagName, flag.Names()...)
+	}
+	if len(target) > 0 { // check target name exists
+		for _, flag := range target {
+			targetNames := flag.Names()
+			if len(targetNames) > 0 {
+				for _, name := range targetNames {
+					if in(name, appendFlagName) {
+						panic(fmt.Errorf("do UrfaveCliAppendCliFlag err, flag exists name %s at %v", name, targetNames))
+					}
+				}
+			}
+		}
 	}
 
 	return append(target, elem...)
