@@ -4,6 +4,11 @@
     "CIWorkspace": ""
   },
   "CiSystemInfo": {
+    "WoodpeckerBackend": "docker",
+    "WoodpeckerAgentHostName": "",
+    "WoodpeckerFilterLabels": null,
+    "CiMachine": "worker",
+    "CiSystemPlatform": "linux/amd64",
     "CiSystemName": "woodpecker",
     "CiSystemUrl": "https://woodpecker.domain.com",
     "CiSystemHost": "woodpecker.domain.com",

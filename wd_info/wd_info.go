@@ -18,6 +18,37 @@ type (
 	// CiSystemInfo
 	//  woodpecker ci system info.
 	CiSystemInfo struct {
+
+		// WoodpeckerBackend
+		//  Provides the backend flag. This value is type when the is run in woodpecker, default is empty.
+		//  Possible values are auto-detect, docker, local or kubernetes
+		//  by env: WOODPECKER_BACKEND
+		WoodpeckerBackend string `mock_env_key:"WOODPECKER_BACKEND" mock_env_default:"docker"`
+
+		// WoodpeckerAgentHostName
+		//  Provides the configures the agent hostname. default is empty.
+		//  by env: WOODPECKER_HOST_NAME
+		WoodpeckerAgentHostName string `mock_env_key:"WOODPECKER_HOST_NAME"`
+
+		// WoodpeckerFilterLabels
+		//  Configures labels to filter pipeline pick up.
+		//  Use a list of key-value pairs like key=value,second-key=*. * can be used as a wildcard.
+		//  By default, agents provide three additional labels platform=os/arch, hostname=my-agent and repo=*
+		//  most this will be empty
+		//  by env: WOODPECKER_FILTER_LABELS
+		WoodpeckerFilterLabels []string `mock_env_key:"WOODPECKER_FILTER_LABELS"`
+
+		// CiMachine
+		//  Provides name of the CI machine
+		//  by env: CI_MACHINE
+		CiMachine string `mock_env_key:"CI_MACHINE"`
+
+		// CiSystemPlatform
+		//  Provides ci system platform as: linux/amd64, linux/arm64, windows/amd64, darwin/amd64, darwin/arm64
+		//  The syntax of the platform is GOOS/GOARCH from https://go.dev/doc/install/source
+		//  by env: CI_SYSTEM_PLATFORM
+		CiSystemPlatform string `mock_env_key:"CI_SYSTEM_PLATFORM"`
+
 		// CiSystemName
 		//  Provides name of the CI system: woodpecker
 		//  by env: CI_SYSTEM_NAME

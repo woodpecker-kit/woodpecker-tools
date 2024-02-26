@@ -93,10 +93,15 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CiSystemInfo: wd_info.CiSystemInfo{
-			CiSystemName:    c.String(wd_flag.NameCliCiSystemName),
-			CiSystemUrl:     c.String(wd_flag.NameCliCiSystemUrl),
-			CiSystemHost:    c.String(wd_flag.NameCliCiSystemHost),
-			CiSystemVersion: c.String(wd_flag.NameCliCiSystemVersion),
+			WoodpeckerBackend:       c.String(wd_flag.NameCliWoodpeckerBackend),
+			WoodpeckerAgentHostName: c.String(wd_flag.NameCliWoodpeckerHostName),
+			WoodpeckerFilterLabels:  c.StringSlice(wd_flag.NameCliWoodpeckerFilterLabels),
+			CiMachine:               c.String(wd_flag.NameCliCiMachine),
+			CiSystemPlatform:        c.String(wd_flag.NameCliCiSystemPlatform),
+			CiSystemName:            c.String(wd_flag.NameCliCiSystemName),
+			CiSystemUrl:             c.String(wd_flag.NameCliCiSystemUrl),
+			CiSystemHost:            c.String(wd_flag.NameCliCiSystemHost),
+			CiSystemVersion:         c.String(wd_flag.NameCliCiSystemVersion),
 		},
 
 		CiForgeInfo: wd_info.CiForgeInfo{

@@ -11,10 +11,15 @@ import (
 func TestNewCiSystemInfo(t *testing.T) {
 	// mock NewCiSystemInfo
 	type args struct {
-		ciSystemName    string
-		ciSystemUrl     string
-		ciSystemHost    string
-		ciSystemVersion string
+		woodpeckerBackend       string
+		woodpeckerAgentHostName string
+		woodpeckerFilterLabels  []string
+		ciMachine               string
+		ciSystemPlatform        string
+		ciSystemName            string
+		ciSystemUrl             string
+		ciSystemHost            string
+		ciSystemVersion         string
 	}
 	tests := []struct {
 		name    string
@@ -24,19 +29,29 @@ func TestNewCiSystemInfo(t *testing.T) {
 		{
 			name: "woodpecker", // testdata/TestNewCiSystemInfo/woodpecker.golden
 			args: args{
-				ciSystemName:    "woodpecker",
-				ciSystemUrl:     "https://woodpecker.domain.com",
-				ciSystemHost:    "woodpecker.domain.com",
-				ciSystemVersion: wd_info.WoodpeckerInfoSupportVersion,
+				woodpeckerBackend:       "docker",
+				woodpeckerAgentHostName: "",
+				woodpeckerFilterLabels:  nil,
+				ciMachine:               "worker",
+				ciSystemPlatform:        "linux/amd64",
+				ciSystemName:            "woodpecker",
+				ciSystemUrl:             "https://woodpecker.domain.com",
+				ciSystemHost:            "woodpecker.domain.com",
+				ciSystemVersion:         wd_info.WoodpeckerInfoSupportVersion,
 			},
 		},
 		{
 			name: "self-system", // testdata/TestNewCiSystemInfo/self-system.golden
 			args: args{
-				ciSystemName:    "self-system",
-				ciSystemUrl:     "https://self-system.domain.com",
-				ciSystemHost:    "self-system.domain.com",
-				ciSystemVersion: "v1.0.0",
+				woodpeckerBackend:       "local",
+				woodpeckerAgentHostName: "",
+				woodpeckerFilterLabels:  nil,
+				ciMachine:               "worker",
+				ciSystemPlatform:        "linux/amd64",
+				ciSystemName:            "self-system",
+				ciSystemUrl:             "https://self-system.domain.com",
+				ciSystemHost:            "self-system.domain.com",
+				ciSystemVersion:         "v1.0.0",
 			},
 		},
 	}
@@ -48,6 +63,11 @@ func TestNewCiSystemInfo(t *testing.T) {
 
 			// do NewCiSystemInfo
 			gotResult := wd_mock.NewCiSystemInfo(
+				wd_mock.WithWoodpeckerBackend(tc.args.woodpeckerBackend),
+				wd_mock.WithWoodpeckerAgentHostName(tc.args.woodpeckerAgentHostName),
+				wd_mock.WithWoodpeckerFilterLabels(tc.args.woodpeckerFilterLabels),
+				wd_mock.WithCiMachine(tc.args.ciMachine),
+				wd_mock.WithCiSystemPlatform(tc.args.ciSystemPlatform),
 				wd_mock.WithCiSystemName(tc.args.ciSystemName),
 				wd_mock.WithCiSystemUrl(tc.args.ciSystemUrl),
 				wd_mock.WithCiSystemHost(tc.args.ciSystemHost),
