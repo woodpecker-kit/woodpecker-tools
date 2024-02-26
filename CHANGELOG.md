@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.5.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.4.0...v1.5.0) (2024-02-27)
+
+### ✨ Features
+
+* add wd_info.EventPipelin* for const of Pipeline events ([d8ae1574](https://github.com/woodpecker-kit/woodpecker-tools/commit/d8ae1574d1828e8e8052d84a0d26885074ea10d9)), fe [#26](https://github.com/woodpecker-kit/woodpecker-tools/issues/26)
+
 ## [1.4.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.3.0...v1.4.0) (2024-02-27)
 
 ### BREAKING CHANGE:
