@@ -1,6 +1,6 @@
 {
   "name": "woodpecker-tools",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "woodpecker info lib and can mock data",
   "directories": {
     "doc": "doc"
