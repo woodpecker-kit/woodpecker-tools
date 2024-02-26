@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.3.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.2.0...v1.3.0) (2024-02-26)
+
+### ✨ Features
+
+* wd_urfave_cli_v2.UrfaveCliAppendCliFlag same name of flag will let cli parse error ([53e5d627](https://github.com/woodpecker-kit/woodpecker-tools/commit/53e5d62730fdeec5e37d624d8946f3f0566683ba)), fe [#22](https://github.com/woodpecker-kit/woodpecker-tools/issues/22)
+
 ## [1.2.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.1.0...v1.2.0) (2024-02-24)
 
 ### BREAKING CHANGE:
