@@ -55,7 +55,7 @@ func extLogLine(logContent string) string {
 	for i := findExtLogLineCallStart; i <= findExtLogLineCallDeep; i++ {
 		pc, file, line, ok := runtime.Caller(i)
 
-		if strings.LastIndex(file, selfCallerFileMark) > 0 {
+		if strings.HasSuffix(file, selfCallerFileMark) {
 			continue
 		}
 		if ok {
