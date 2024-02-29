@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.7.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.6.0...v1.7.0) (2024-03-01)
+
+### ✨ Features
+
+* add wd_template package for support Handlebars.js for golang ([0386beed](https://github.com/woodpecker-kit/woodpecker-tools/commit/0386beed34a57e9f8ef9c035dccad854b2de85ab)), fe [#28](https://github.com/woodpecker-kit/woodpecker-tools/issues/28)
+
 ## [1.6.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.5.0...v1.6.0) (2024-02-29)
 
 ### BREAKING CHANGE:
