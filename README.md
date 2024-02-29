@@ -65,6 +65,8 @@ $ echo "go mod vendor"
     - `env_kit.FetchOsEnv*` and `env_kit.SetEnv*` for env get or set
     - `env_kit.FindAllEnv4Print`, `env_kit.FindAllEnvByPrefix`, `env_kit.FindAllEnv4PrintAsSortJust` for find print env
       string
+- [x] `wd_template` for support Handlebars.js for golang
+    - use `wd_template.RegisterSettings(DefaultFunctions)` once to register default functions then use
 - [x] code check
     - [x] full check by golang version
     - [x] full check for docker build
