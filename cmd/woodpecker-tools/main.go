@@ -15,6 +15,9 @@ func main() {
 	wd_log.SetLogLineDeep(wd_log.DefaultExtLogLineMaxDeep)
 	pkgJson.InitPkgJsonContent(resource.PackageJson)
 
+	// init wd_template
+	//wd_template.RegisterSettings(wd_template.DefaultHelpers)
+
 	app := cli.NewCliApp()
 
 	// app run as urfave
