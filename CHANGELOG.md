@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.8.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.7.0...v1.8.0) (2024-03-02)
+
+### ✨ Features
+
+* add wd_info struct tag `string_line_2_raw` for fast format ([049adf21](https://github.com/woodpecker-kit/woodpecker-tools/commit/049adf21c77af4cd60e0e28d3efce315f7f157fa))
+
+### 👷‍ Build System
+
+* bump github.com/sinlov-go/unittest-kit from 1.0.0 to 1.1.0 ([cb4a33ab](https://github.com/woodpecker-kit/woodpecker-tools/commit/cb4a33ab892bc26c4270ff905abc349c57b872c8))
+
+* bump github.com/stretchr/testify from 1.8.4 to 1.9.0 ([6689d83e](https://github.com/woodpecker-kit/woodpecker-tools/commit/6689d83eb5f3383adc69e21f549a13e8b6906078))
+
+* bump golangci/golangci-lint-action from 3 to 4 ([3227723a](https://github.com/woodpecker-kit/woodpecker-tools/commit/3227723a56fe1d6aa17493aa76f483cdd6986981))
+
+* bump codecov/codecov-action from 4.0.0 to 4.1.0 ([ba512f3b](https://github.com/woodpecker-kit/woodpecker-tools/commit/ba512f3b4669afe93ec18a5aa8a382cae1643bcf))
+
 ## [1.7.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.6.0...v1.7.0) (2024-03-01)
 
 ### ✨ Features
