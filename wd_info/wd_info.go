@@ -270,15 +270,30 @@ type (
 		//  by env: CI_PIPELINE_CREATED
 		CiPipelineCreated uint64 `mock_env_key:"CI_PIPELINE_CREATED"`
 
+		// CiPipelineCreatedT
+		// Provides the current pipeline created, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PIPELINE_CREATED
+		CiPipelineCreatedT string
+
 		// CiPipelineStarted
 		//  Provides the current pipeline started
 		//  by env: CI_PIPELINE_STARTED
 		CiPipelineStarted uint64 `mock_env_key:"CI_PIPELINE_STARTED"`
 
+		// CiPipelineStartedT
+		// Provides the current pipeline started, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PIPELINE_STARTED
+		CiPipelineStartedT string
+
 		// CiPipelineFinished
 		//  Provides the current pipeline finished
 		//  by env: CI_PIPELINE_FINISHED
 		CiPipelineFinished uint64 `mock_env_key:"CI_PIPELINE_FINISHED"`
+
+		// CiPipelineFinishedT
+		// Provides the current pipeline finished, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PIPELINE_FINISHED
+		CiPipelineFinishedT string
 	}
 
 	// CurrentWorkflowInfo
@@ -318,10 +333,20 @@ type (
 		//  by env: CI_STEP_STARTED
 		CiStepStarted uint64 `mock_env_key:"CI_STEP_STARTED"`
 
+		// CiStepStartedT
+		// Provides the current step started, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_STEP_STARTED
+		CiStepStartedT string
+
 		// CiStepFinished
 		//  Provides the step finished UNIX timestamp
 		//  by env: CI_STEP_FINISHED
 		CiStepFinished uint64 `mock_env_key:"CI_STEP_FINISHED"`
+
+		// CiStepFinishedT
+		// Provides the current step finished, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_STEP_FINISHED
+		CiStepFinishedT string
 
 		// CiStepUrl
 		//  Provides the current URL to step in UI
@@ -443,15 +468,30 @@ type (
 		//  by env: CI_PREV_PIPELINE_CREATED
 		CiPreviousPipelineCreated uint64 `mock_env_key:"CI_PREV_PIPELINE_CREATED"`
 
+		// CiPreviousPipelineCreatedT
+		// Provides the previous pipeline created, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PREV_PIPELINE_CREATED
+		CiPreviousPipelineCreatedT string
+
 		// CiPreviousPipelineStarted
 		//  Provides the previous pipeline started
 		//  by env: CI_PREV_PIPELINE_STARTED
 		CiPreviousPipelineStarted uint64 `mock_env_key:"CI_PREV_PIPELINE_STARTED"`
 
+		// CiPreviousPipelineStartedT
+		// Provides the previous pipeline started, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PREV_PIPELINE_STARTED
+		CiPreviousPipelineStartedT string
+
 		// CiPreviousPipelineFinished
 		//  Provides the previous pipeline finished
 		//  by env: CI_PREV_PIPELINE_FINISHED
 		CiPreviousPipelineFinished uint64 `mock_env_key:"CI_PREV_PIPELINE_FINISHED"`
+
+		// CiPreviousPipelineFinishedT
+		// Provides the previous pipeline finished, unix timestamp format by wd_flag.TimeFormatDefault
+		//  by env: CI_PREV_PIPELINE_FINISHED
+		CiPreviousPipelineFinishedT string
 	}
 
 	// PreviousInfo

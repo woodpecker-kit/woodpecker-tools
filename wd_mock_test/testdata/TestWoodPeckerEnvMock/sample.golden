@@ -59,8 +59,11 @@
       "CiPipelineDeployTarget": "",
       "CiPipelineStatus": "created",
       "CiPipelineCreated": 1705658141,
+      "CiPipelineCreatedT": "2024-01-19-09-55-41",
       "CiPipelineStarted": 1705658156,
-      "CiPipelineFinished": 1705658166
+      "CiPipelineStartedT": "2024-01-19-09-55-56",
+      "CiPipelineFinished": 1705658166,
+      "CiPipelineFinishedT": "2024-01-19-09-56-06"
     },
     "CurrentWorkflowInfo": {
       "CiWorkflowName": "build",
@@ -71,7 +74,9 @@
       "CiStepNumber": "0",
       "CiStepStatus": "success",
       "CiStepStarted": 1705658156,
+      "CiStepStartedT": "2024-01-19-09-55-56",
       "CiStepFinished": 1705658166,
+      "CiStepFinishedT": "2024-01-19-09-56-06",
       "CiStepUrl": "https://woodpecker.domain.com/repos/2/pipeline/10"
     }
   },
@@ -98,8 +103,11 @@
       "CiPreviousPipelineDeployTarget": "",
       "CiPreviousPipelineStatus": "success",
       "CiPreviousPipelineCreated": 1705657931,
+      "CiPreviousPipelineCreatedT": "2024-01-19-09-52-11",
       "CiPreviousPipelineStarted": 1705657942,
-      "CiPreviousPipelineFinished": 1705657957
+      "CiPreviousPipelineStartedT": "2024-01-19-09-52-22",
+      "CiPreviousPipelineFinished": 1705657957,
+      "CiPreviousPipelineFinishedT": "2024-01-19-09-52-37"
     }
   }
 }

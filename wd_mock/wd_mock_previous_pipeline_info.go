@@ -1,6 +1,9 @@
 package wd_mock
 
-import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
+import (
+	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+)
 
 var defaultPreviousPipelineInfo = setDefaultPreviousPipelineInfo()
 
@@ -16,8 +19,11 @@ func setDefaultPreviousPipelineInfo() *wd_info.PreviousPipelineInfo {
 		CiPreviousPipelineDeployTarget: "",
 		CiPreviousPipelineStatus:       "success",
 		CiPreviousPipelineCreated:      1705657931,
+		CiPreviousPipelineCreatedT:     wd_flag.FormatTimeUTC(1705657931, wd_flag.TimeFormatDefault),
 		CiPreviousPipelineStarted:      1705657942,
+		CiPreviousPipelineStartedT:     wd_flag.FormatTimeUTC(1705657942, wd_flag.TimeFormatDefault),
 		CiPreviousPipelineFinished:     1705657957,
+		CiPreviousPipelineFinishedT:    wd_flag.FormatTimeUTC(1705657957, wd_flag.TimeFormatDefault),
 	}
 }
 
@@ -75,18 +81,21 @@ func WithCiPreviousPipelineStatus(pipelineStatus string) PreviousPipelineInfoOpt
 func WithCiPreviousPipelineCreated(pipelineCreated uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineCreated = pipelineCreated
+		o.CiPreviousPipelineCreatedT = wd_flag.FormatTimeUTC(pipelineCreated, wd_flag.TimeFormatDefault)
 	}
 }
 
 func WithCiPreviousPipelineStarted(pipelineStarted uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineStarted = pipelineStarted
+		o.CiPreviousPipelineStartedT = wd_flag.FormatTimeUTC(pipelineStarted, wd_flag.TimeFormatDefault)
 	}
 }
 
 func WithCiPreviousPipelineFinished(pipelineFinished uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineFinished = pipelineFinished
+		o.CiPreviousPipelineFinishedT = wd_flag.FormatTimeUTC(pipelineFinished, wd_flag.TimeFormatDefault)
 	}
 }
 

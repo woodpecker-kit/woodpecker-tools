@@ -1,5 +1,7 @@
 package wd_flag
 
+import "time"
+
 const (
 	// TimeFormatDefault
 	//  default time format
@@ -21,3 +23,10 @@ const (
 	//  Provides the Path of the workspace where source code gets cloned to
 	EnvKeyNameCiWorkspace = "CI_WORKSPACE"
 )
+
+func FormatTimeUTC(timestamp uint64, format string) string {
+	if timestamp == 0 {
+		return ""
+	}
+	return time.Unix(int64(timestamp), 0).UTC().Format(format)
+}
