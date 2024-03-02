@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.10.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.9.0...v1.10.0) (2024-03-03)
+
+### ✨ Features
+
+* add all woodpecker timestamp by format wd_flag.TimeFormatDefault ([e243c85e](https://github.com/woodpecker-kit/woodpecker-tools/commit/e243c85e28da01c89d7f9e76c28132eb1e44347f))
+
 ## [1.9.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.8.0...v1.9.0) (2024-03-02)
 
 ### ✨ Features
