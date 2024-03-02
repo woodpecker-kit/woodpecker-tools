@@ -194,17 +194,17 @@ type (
 		// CiCommitMessage
 		//  Provides the current commit message
 		//  by env: CI_COMMIT_MESSAGE
-		CiCommitMessage string `mock_env_key:"CI_COMMIT_MESSAGE"`
+		CiCommitMessage string `mock_env_key:"CI_COMMIT_MESSAGE" string_line_2_raw:"ci_commit_message"`
 
 		// CiCommitAuthor
 		//  Provides the current commit author name
 		//  by env: CI_COMMIT_AUTHOR
-		CiCommitAuthor string `mock_env_key:"CI_COMMIT_AUTHOR"`
+		CiCommitAuthor string `mock_env_key:"CI_COMMIT_AUTHOR" string_line_2_raw:"ci_commit_author"`
 
 		// CiCommitAuthorEmail
 		//  Provides the current commit author email
 		//  by env: CI_COMMIT_AUTHOR_EMAIL
-		CiCommitAuthorEmail string `mock_env_key:"CI_COMMIT_AUTHOR_EMAIL"`
+		CiCommitAuthorEmail string `mock_env_key:"CI_COMMIT_AUTHOR_EMAIL" string_line_2_raw:"ci_commit_author_email"`
 
 		// CiCommitAuthorAvatar
 		//  Provides the current commit author avatar
@@ -277,7 +277,7 @@ type (
 		// CiWorkflowName
 		//  Provides the current workflow name
 		//  by env: CI_WORKFLOW_NAME
-		CiWorkflowName string `mock_env_key:"CI_WORKFLOW_NAME"`
+		CiWorkflowName string `mock_env_key:"CI_WORKFLOW_NAME" string_line_2_raw:"ci_workflow_name"`
 
 		// CiWorkflowNumber
 		//  Provides the current workflow number, this will start from 1
@@ -291,7 +291,7 @@ type (
 		// CiStepName
 		//  Provides the current step name
 		//  by env: CI_STEP_NAME
-		CiStepName string `mock_env_key:"CI_STEP_NAME"`
+		CiStepName string `mock_env_key:"CI_STEP_NAME" string_line_2_raw:"ci_step_name"`
 
 		// CiStepNumber
 		//  Provides the current step number
@@ -372,17 +372,17 @@ type (
 		// CiPreviousCommitMessage
 		//  Provides the previous commit message
 		//  by env: CI_PREV_COMMIT_MESSAGE
-		CiPreviousCommitMessage string `mock_env_key:"CI_PREV_COMMIT_MESSAGE"`
+		CiPreviousCommitMessage string `mock_env_key:"CI_PREV_COMMIT_MESSAGE" string_line_2_raw:"ci_prev_commit_message"`
 
 		// CiPreviousCommitAuthor
 		//  Provides the previous commit author username
 		//  by env: CI_PREV_COMMIT_AUTHOR
-		CiPreviousCommitAuthor string `mock_env_key:"CI_PREV_COMMIT_AUTHOR"`
+		CiPreviousCommitAuthor string `mock_env_key:"CI_PREV_COMMIT_AUTHOR" string_line_2_raw:"ci_prev_commit_author"`
 
 		// CiPreviousCommitAuthorEmail
 		//  Provides the previous commit author email
 		//  by env: CI_PREV_COMMIT_AUTHOR_EMAIL
-		CiPreviousCommitAuthorEmail string `mock_env_key:"CI_PREV_COMMIT_AUTHOR_EMAIL"`
+		CiPreviousCommitAuthorEmail string `mock_env_key:"CI_PREV_COMMIT_AUTHOR_EMAIL" string_line_2_raw:"ci_prev_commit_author_email"`
 
 		// CiPreviousCommitAuthorAvatar
 		//  Provides the previous commit author avatar
