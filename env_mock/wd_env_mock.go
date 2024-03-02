@@ -63,7 +63,7 @@ func MockEnvByStruct(input interface{}) {
 					}
 					env_kit.SetEnvStr(envTagVal, vStr)
 				case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-					env_kit.SetEnvU64(envTagVal, fVal.Uint())
+					env_kit.SetEnvUint64(envTagVal, fVal.Uint())
 				case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 					env_kit.SetEnvStr(envTagVal, strconv.FormatInt(fVal.Int(), 10))
 				case reflect.Float32, reflect.Float64:
