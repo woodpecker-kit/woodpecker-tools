@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.9.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.8.0...v1.9.0) (2024-03-02)
+
+### ✨ Features
+
+* add CurrentCommitInfo.CiCommitUrl and CurrentPipelineInfo.CiPipelineFiles ([f3382d84](https://github.com/woodpecker-kit/woodpecker-tools/commit/f3382d84b04f4df83460adf3a70a04f568b55dcc))
+
 ## [1.8.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.7.0...v1.8.0) (2024-03-02)
 
 ### ✨ Features
