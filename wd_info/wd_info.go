@@ -161,6 +161,11 @@ type (
 		//  by env: CI_COMMIT_REFSPEC
 		CiCommitRefSpec string `mock_env_key:"CI_COMMIT_REFSPEC"`
 
+		// CiCommitUrl
+		//  Provides the current commit url
+		//  by env: CI_COMMIT_URL
+		CiCommitUrl string `mock_env_key:"CI_COMMIT_URL"`
+
 		// CiCommitBranch
 		//  Provides the current commit branch (equals target branch for pull requests)
 		//  by env: CI_COMMIT_BRANCH
@@ -220,6 +225,11 @@ type (
 	// CurrentPipelineInfo
 	//  woodpecker current pipeline info.
 	CurrentPipelineInfo struct {
+		// CiPipelineFiles
+		//  Provides the current pipeline files, like [".woodpecker/.build.yml"]
+		//  by env: CI_PIPELINE_FILES
+		CiPipelineFiles string `mock_env_key:"CI_PIPELINE_FILES"`
+
 		// CiPipelineNumber
 		//  Provides the current pipeline number
 		//  by env: CI_PIPELINE_NUMBER

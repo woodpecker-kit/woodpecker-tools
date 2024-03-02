@@ -10,6 +10,7 @@ import (
 func TestNewCurrentPipelineInfo(t *testing.T) {
 	// mock NewCurrentPipelineInfo
 	type args struct {
+		ciPipelineFiles        string
 		ciPipelineNumber       string
 		ciPipelineParent       string
 		ciPipelineEvent        string
@@ -29,6 +30,7 @@ func TestNewCurrentPipelineInfo(t *testing.T) {
 		{
 			name: "sample", // testdata/TestNewCurrentPipelineInfo/sample.golden
 			args: args{
+				ciPipelineFiles:        `[".woodpecker/.build.yml"]`,
 				ciPipelineNumber:       "10",
 				ciPipelineParent:       "0",
 				ciPipelineEvent:        "push",
@@ -44,6 +46,7 @@ func TestNewCurrentPipelineInfo(t *testing.T) {
 		{
 			name: "one", // testdata/TestNewCurrentPipelineInfo/one.golden
 			args: args{
+				ciPipelineFiles:        `[".woodpecker/.ci.yml"]`,
 				ciPipelineNumber:       "1",
 				ciPipelineParent:       "0",
 				ciPipelineEvent:        "push",
@@ -65,6 +68,7 @@ func TestNewCurrentPipelineInfo(t *testing.T) {
 
 			// do NewCurrentPipelineInfo
 			gotResult := wd_mock.NewCurrentPipelineInfo(
+				wd_mock.WithCiPipelineFiles(tc.args.ciPipelineFiles),
 				wd_mock.WithCiPipelineNumber(tc.args.ciPipelineNumber),
 				wd_mock.WithCiPipelineParent(tc.args.ciPipelineParent),
 				wd_mock.WithCiPipelineEvent(tc.args.ciPipelineEvent),

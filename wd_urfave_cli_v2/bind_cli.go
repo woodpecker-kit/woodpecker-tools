@@ -16,6 +16,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 			CiCommitSha:               c.String(wd_flag.NameCliCurrentCommitCiCommitSha),
 			CiCommitRef:               c.String(wd_flag.NameCliCurrentCommitCiCommitRef),
 			CiCommitRefSpec:           c.String(wd_flag.NameCliCurrentCommitCiCommitRefSpec),
+			CiCommitUrl:               c.String(wd_flag.NameCliCurrentCommitCiCommitUrl),
 			CiCommitBranch:            c.String(wd_flag.NameCliCurrentCommitCiCommitBranch),
 			CiCommitSourceBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitSourceBranch),
 			CiCommitTargetBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitTargetBranch),
@@ -30,6 +31,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
+			CiPipelineFiles:        c.String(wd_flag.NameCliCurrentPipelineFiles),
 			CiPipelineNumber:       c.String(wd_flag.NameCliCurrentPipelineNumber),
 			CiPipelineParent:       c.String(wd_flag.NameCliCurrentPipelineParent),
 			CiPipelineEvent:        c.String(wd_flag.NameCliCurrentPipelineEvent),

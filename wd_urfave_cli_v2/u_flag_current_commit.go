@@ -29,6 +29,13 @@ func currentCommitFlag() []cli.Flag {
 		},
 
 		&cli.StringFlag{
+			Name:    wd_flag.NameCliCurrentCommitCiCommitUrl,
+			Usage:   "Provides the current commit URL",
+			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitUrl},
+			Hidden:  true,
+		},
+
+		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCommitCiCommitBranch,
 			Usage:   "Provides the current commit branch (equals target branch for pull requests)",
 			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitBranch},

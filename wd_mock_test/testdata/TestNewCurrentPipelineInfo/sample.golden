@@ -1,4 +1,5 @@
 {
+  "CiPipelineFiles": "[\".woodpecker/.build.yml\"]",
   "CiPipelineNumber": "10",
   "CiPipelineParent": "0",
   "CiPipelineEvent": "push",

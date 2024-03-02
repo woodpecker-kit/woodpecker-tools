@@ -25,6 +25,14 @@ const (
 	//  Provides the current commit ref spec
 	EnvKeyCurrentCommitCiCommitRefSpec = "CI_COMMIT_REFSPEC"
 
+	// NameCliCurrentCommitCiCommitUrl
+	// Provides the current commit URL
+	NameCliCurrentCommitCiCommitUrl = "current_commit.ci_commit_url"
+
+	// EnvKeyCurrentCommitCiCommitUrl
+	// Provides the current commit URL
+	EnvKeyCurrentCommitCiCommitUrl = "CI_COMMIT_URL"
+
 	// NameCliCurrentCommitCiCommitBranch
 	//  Provides the current commit branch (equals target branch for pull requests)
 	NameCliCurrentCommitCiCommitBranch = "current_commit.ci_commit_branch"

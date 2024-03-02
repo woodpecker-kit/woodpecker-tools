@@ -1,6 +1,14 @@
 package wd_flag
 
 const (
+	// NameCliCurrentPipelineFiles
+	//  Provides the current pipeline files, like [".woodpecker/.build.yml"]
+	NameCliCurrentPipelineFiles = "current_pipeline.files"
+
+	// EnvKeyCurrentPipelineFiles
+	//  Provides the current pipeline files, like [".woodpecker/.build.yml"]
+	EnvKeyCurrentPipelineFiles = "CI_PIPELINE_FILES"
+
 	// NameCliCurrentPipelineNumber
 	//  Provides the current pipeline number
 	NameCliCurrentPipelineNumber = "current_pipeline.number"

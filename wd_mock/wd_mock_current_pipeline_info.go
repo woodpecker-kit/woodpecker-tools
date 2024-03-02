@@ -8,6 +8,7 @@ type CurrentPipelineInfoOption func(*wd_info.CurrentPipelineInfo)
 
 func setDefaultCurrentPipelineInfo() *wd_info.CurrentPipelineInfo {
 	return &wd_info.CurrentPipelineInfo{
+		CiPipelineFiles:        `[".woodpecker/.build.yml"]`,
 		CiPipelineNumber:       "10",
 		CiPipelineParent:       "0",
 		CiPipelineEvent:        "push",
@@ -28,6 +29,12 @@ func NewCurrentPipelineInfo(opts ...CurrentPipelineInfoOption) (opt *wd_info.Cur
 	}
 	defaultCurrentPipelineInfo = setDefaultCurrentPipelineInfo()
 	return
+}
+
+func WithCiPipelineFiles(files string) CurrentPipelineInfoOption {
+	return func(o *wd_info.CurrentPipelineInfo) {
+		o.CiPipelineFiles = files
+	}
 }
 
 func WithCiPipelineNumber(number string) CurrentPipelineInfoOption {

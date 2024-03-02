@@ -11,6 +11,7 @@ func setDefaultCurrentCommitInfo() *wd_info.CurrentCommitInfo {
 		CiCommitSha:               "9c764dd487bce596c5c0402478fabde5f0344983",
 		CiCommitRef:               "refs/heads/main",
 		CiCommitRefSpec:           "",
+		CiCommitUrl:               "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
 		CiCommitBranch:            "main",
 		CiCommitSourceBranch:      "",
 		CiCommitTargetBranch:      "",
@@ -49,6 +50,12 @@ func WithCiCommitRef(commitRef string) CurrentCommitInfoOption {
 func WithCiCommitRefSpec(commitRefSpec string) CurrentCommitInfoOption {
 	return func(o *wd_info.CurrentCommitInfo) {
 		o.CiCommitRefSpec = commitRefSpec
+	}
+}
+
+func WithCiCommitUrl(commitUrl string) CurrentCommitInfoOption {
+	return func(o *wd_info.CurrentCommitInfo) {
+		o.CiCommitUrl = commitUrl
 	}
 }
 
