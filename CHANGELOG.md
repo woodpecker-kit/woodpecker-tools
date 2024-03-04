@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.11.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.10.0...v1.11.0) (2024-03-04)
+
+### ✨ Features
+
+* add WoodpeckerInfo some struct calculated by created and finished time ([ec186202](https://github.com/woodpecker-kit/woodpecker-tools/commit/ec186202cd54e2e6bc9e9e85178b624bcc1a47df))
+
 ## [1.10.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.9.0...v1.10.0) (2024-03-03)
 
 ### ✨ Features
