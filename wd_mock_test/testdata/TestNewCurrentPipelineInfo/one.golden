@@ -12,5 +12,6 @@
   "CiPipelineStarted": 1705638156,
   "CiPipelineStartedT": "2024-01-19-04-22-36",
   "CiPipelineFinished": 1705458166,
-  "CiPipelineFinishedT": "2024-01-17-02-22-46"
+  "CiPipelineFinishedT": "2024-01-17-02-22-46",
+  "CiPipelineDurationHuman": "N/A"
 }

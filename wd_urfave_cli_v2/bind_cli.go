@@ -17,6 +17,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	pipelineStartAtT := wd_flag.FormatTimeUTC(pipelineStartAt, wd_flag.TimeFormatDefault)
 	pipelineFinishAt := c.Uint64(wd_flag.NameCliCurrentPipelineFinished)
 	pipelineFinishAtT := wd_flag.FormatTimeUTC(pipelineFinishAt, wd_flag.TimeFormatDefault)
+	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineStartAt), int64(pipelineFinishAt))
 
 	previousPipelineCreateAt := c.Uint64(wd_flag.NameCliPreviousPipelineCreated)
 	previousPipelineCreateAtT := wd_flag.FormatTimeUTC(previousPipelineCreateAt, wd_flag.TimeFormatDefault)
@@ -24,11 +25,13 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	previousPipelineStartedAtT := wd_flag.FormatTimeUTC(previousPipelineStartedAt, wd_flag.TimeFormatDefault)
 	previousPipelineFinishedAt := c.Uint64(wd_flag.NameCliPreviousPipelineFinished)
 	previousPipelineFinishedAtT := wd_flag.FormatTimeUTC(previousPipelineFinishedAt, wd_flag.TimeFormatDefault)
+	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(previousPipelineStartedAt), int64(previousPipelineFinishedAt))
 
 	stepStartedAt := c.Uint64(wd_flag.NameCliCurrentCiStepStarted)
 	stepStartedAtT := wd_flag.FormatTimeUTC(stepStartedAt, wd_flag.TimeFormatDefault)
 	stepFinishedAt := c.Uint64(wd_flag.NameCliCurrentCiStepFinished)
 	stepFinishedAtT := wd_flag.FormatTimeUTC(stepFinishedAt, wd_flag.TimeFormatDefault)
+	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(stepStartedAt), int64(stepFinishedAt))
 
 	var currentInfo = wd_info.CurrentInfo{
 		CurrentCommitInfo: wd_info.CurrentCommitInfo{
@@ -50,20 +53,21 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
-			CiPipelineFiles:        c.String(wd_flag.NameCliCurrentPipelineFiles),
-			CiPipelineNumber:       c.String(wd_flag.NameCliCurrentPipelineNumber),
-			CiPipelineParent:       c.String(wd_flag.NameCliCurrentPipelineParent),
-			CiPipelineEvent:        c.String(wd_flag.NameCliCurrentPipelineEvent),
-			CiPipelineUrl:          c.String(wd_flag.NameCliCurrentPipelineUrl),
-			CiPipelineForgeUrl:     c.String(wd_flag.NameCliCurrentPipelineForgeUrl),
-			CiPipelineDeployTarget: c.String(wd_flag.NameCliCurrentPipelineDeployTarget),
-			CiPipelineStatus:       c.String(wd_flag.NameCliCurrentPipelineStatus),
-			CiPipelineCreated:      pipelineCreateAt,
-			CiPipelineCreatedT:     pipelineCreateAtT,
-			CiPipelineStarted:      pipelineStartAt,
-			CiPipelineStartedT:     pipelineStartAtT,
-			CiPipelineFinished:     pipelineFinishAt,
-			CiPipelineFinishedT:    pipelineFinishAtT,
+			CiPipelineFiles:         c.String(wd_flag.NameCliCurrentPipelineFiles),
+			CiPipelineNumber:        c.String(wd_flag.NameCliCurrentPipelineNumber),
+			CiPipelineParent:        c.String(wd_flag.NameCliCurrentPipelineParent),
+			CiPipelineEvent:         c.String(wd_flag.NameCliCurrentPipelineEvent),
+			CiPipelineUrl:           c.String(wd_flag.NameCliCurrentPipelineUrl),
+			CiPipelineForgeUrl:      c.String(wd_flag.NameCliCurrentPipelineForgeUrl),
+			CiPipelineDeployTarget:  c.String(wd_flag.NameCliCurrentPipelineDeployTarget),
+			CiPipelineStatus:        c.String(wd_flag.NameCliCurrentPipelineStatus),
+			CiPipelineCreated:       pipelineCreateAt,
+			CiPipelineCreatedT:      pipelineCreateAtT,
+			CiPipelineStarted:       pipelineStartAt,
+			CiPipelineStartedT:      pipelineStartAtT,
+			CiPipelineFinished:      pipelineFinishAt,
+			CiPipelineFinishedT:     pipelineFinishAtT,
+			CiPipelineDurationHuman: pipelineDurationHuman,
 		},
 
 		CurrentWorkflowInfo: wd_info.CurrentWorkflowInfo{
@@ -72,14 +76,15 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentStepInfo: wd_info.CurrentStepInfo{
-			CiStepName:      c.String(wd_flag.NameCliCurrentCiStepName),
-			CiStepNumber:    c.String(wd_flag.NameCliCurrentCiStepNumber),
-			CiStepStatus:    c.String(wd_flag.NameCliCurrentCiStepStatus),
-			CiStepStarted:   stepStartedAt,
-			CiStepStartedT:  stepStartedAtT,
-			CiStepFinished:  stepFinishedAt,
-			CiStepFinishedT: stepFinishedAtT,
-			CiStepUrl:       c.String(wd_flag.NameCliCurrentCiStepUrl),
+			CiStepName:          c.String(wd_flag.NameCliCurrentCiStepName),
+			CiStepNumber:        c.String(wd_flag.NameCliCurrentCiStepNumber),
+			CiStepStatus:        c.String(wd_flag.NameCliCurrentCiStepStatus),
+			CiStepStarted:       stepStartedAt,
+			CiStepStartedT:      stepStartedAtT,
+			CiStepFinished:      stepFinishedAt,
+			CiStepFinishedT:     stepFinishedAtT,
+			CiStepDurationHuman: stepDurationHuman,
+			CiStepUrl:           c.String(wd_flag.NameCliCurrentCiStepUrl),
 		},
 	}
 
@@ -99,19 +104,20 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		PreviousPipelineInfo: wd_info.PreviousPipelineInfo{
-			CiPreviousPipelineNumber:       c.String(wd_flag.NameCliPreviousPipelineNumber),
-			CiPreviousPipelineParent:       c.String(wd_flag.NameCliPreviousPipelineParent),
-			CiPreviousPipelineEvent:        c.String(wd_flag.NameCliPreviousPipelineEvent),
-			CiPreviousPipelineUrl:          c.String(wd_flag.NameCliPreviousPipelineUrl),
-			CiPreviousPipelineForgeUrl:     c.String(wd_flag.NameCliPreviousPipelineForgeUrl),
-			CiPreviousPipelineDeployTarget: c.String(wd_flag.NameCliPreviousPipelineDeployTarget),
-			CiPreviousPipelineStatus:       c.String(wd_flag.NameCliPreviousPipelineStatus),
-			CiPreviousPipelineCreated:      previousPipelineCreateAt,
-			CiPreviousPipelineCreatedT:     previousPipelineCreateAtT,
-			CiPreviousPipelineStarted:      previousPipelineStartedAt,
-			CiPreviousPipelineStartedT:     previousPipelineStartedAtT,
-			CiPreviousPipelineFinished:     previousPipelineFinishedAt,
-			CiPreviousPipelineFinishedT:    previousPipelineFinishedAtT,
+			CiPreviousPipelineNumber:        c.String(wd_flag.NameCliPreviousPipelineNumber),
+			CiPreviousPipelineParent:        c.String(wd_flag.NameCliPreviousPipelineParent),
+			CiPreviousPipelineEvent:         c.String(wd_flag.NameCliPreviousPipelineEvent),
+			CiPreviousPipelineUrl:           c.String(wd_flag.NameCliPreviousPipelineUrl),
+			CiPreviousPipelineForgeUrl:      c.String(wd_flag.NameCliPreviousPipelineForgeUrl),
+			CiPreviousPipelineDeployTarget:  c.String(wd_flag.NameCliPreviousPipelineDeployTarget),
+			CiPreviousPipelineStatus:        c.String(wd_flag.NameCliPreviousPipelineStatus),
+			CiPreviousPipelineCreated:       previousPipelineCreateAt,
+			CiPreviousPipelineCreatedT:      previousPipelineCreateAtT,
+			CiPreviousPipelineStarted:       previousPipelineStartedAt,
+			CiPreviousPipelineStartedT:      previousPipelineStartedAtT,
+			CiPreviousPipelineFinished:      previousPipelineFinishedAt,
+			CiPreviousPipelineFinishedT:     previousPipelineFinishedAtT,
+			CiPreviousPipelineDurationHuman: previousPipelineDurationHuman,
 		},
 	}
 

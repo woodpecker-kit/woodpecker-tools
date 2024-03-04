@@ -63,7 +63,8 @@
       "CiPipelineStarted": 1705658156,
       "CiPipelineStartedT": "2024-01-19-09-55-56",
       "CiPipelineFinished": 1705658166,
-      "CiPipelineFinishedT": "2024-01-19-09-56-06"
+      "CiPipelineFinishedT": "2024-01-19-09-56-06",
+      "CiPipelineDurationHuman": "25s"
     },
     "CurrentWorkflowInfo": {
       "CiWorkflowName": "build",
@@ -77,6 +78,7 @@
       "CiStepStartedT": "2024-01-19-09-55-56",
       "CiStepFinished": 1705658166,
       "CiStepFinishedT": "2024-01-19-09-56-06",
+      "CiStepDurationHuman": "10s",
       "CiStepUrl": "https://woodpecker.domain.com/repos/2/pipeline/10"
     }
   },
@@ -107,7 +109,8 @@
       "CiPreviousPipelineStarted": 1705657942,
       "CiPreviousPipelineStartedT": "2024-01-19-09-52-22",
       "CiPreviousPipelineFinished": 1705657957,
-      "CiPreviousPipelineFinishedT": "2024-01-19-09-52-37"
+      "CiPreviousPipelineFinishedT": "2024-01-19-09-52-37",
+      "CiPreviousPipelineDurationHuman": "15s"
     }
   }
 }

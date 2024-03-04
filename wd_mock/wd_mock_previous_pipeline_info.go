@@ -11,19 +11,20 @@ type PreviousPipelineInfoOption func(*wd_info.PreviousPipelineInfo)
 
 func setDefaultPreviousPipelineInfo() *wd_info.PreviousPipelineInfo {
 	return &wd_info.PreviousPipelineInfo{
-		CiPreviousPipelineNumber:       "9",
-		CiPreviousPipelineParent:       "",
-		CiPreviousPipelineEvent:        "push",
-		CiPreviousPipelineUrl:          "https://woodpecker.domain.com/repos/2/pipeline/9",
-		CiPreviousPipelineForgeUrl:     "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
-		CiPreviousPipelineDeployTarget: "",
-		CiPreviousPipelineStatus:       "success",
-		CiPreviousPipelineCreated:      1705657931,
-		CiPreviousPipelineCreatedT:     wd_flag.FormatTimeUTC(1705657931, wd_flag.TimeFormatDefault),
-		CiPreviousPipelineStarted:      1705657942,
-		CiPreviousPipelineStartedT:     wd_flag.FormatTimeUTC(1705657942, wd_flag.TimeFormatDefault),
-		CiPreviousPipelineFinished:     1705657957,
-		CiPreviousPipelineFinishedT:    wd_flag.FormatTimeUTC(1705657957, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineNumber:        "9",
+		CiPreviousPipelineParent:        "",
+		CiPreviousPipelineEvent:         "push",
+		CiPreviousPipelineUrl:           "https://woodpecker.domain.com/repos/2/pipeline/9",
+		CiPreviousPipelineForgeUrl:      "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
+		CiPreviousPipelineDeployTarget:  "",
+		CiPreviousPipelineStatus:        "success",
+		CiPreviousPipelineCreated:       1705657931,
+		CiPreviousPipelineCreatedT:      wd_flag.FormatTimeUTC(1705657931, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineStarted:       1705657942,
+		CiPreviousPipelineStartedT:      wd_flag.FormatTimeUTC(1705657942, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineFinished:      1705657957,
+		CiPreviousPipelineFinishedT:     wd_flag.FormatTimeUTC(1705657957, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705657942, 1705657957),
 	}
 }
 
@@ -89,6 +90,7 @@ func WithCiPreviousPipelineStarted(pipelineStarted uint64) PreviousPipelineInfoO
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineStarted = pipelineStarted
 		o.CiPreviousPipelineStartedT = wd_flag.FormatTimeUTC(pipelineStarted, wd_flag.TimeFormatDefault)
+		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineStarted), int64(o.CiPreviousPipelineFinished))
 	}
 }
 
@@ -96,6 +98,7 @@ func WithCiPreviousPipelineFinished(pipelineFinished uint64) PreviousPipelineInf
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineFinished = pipelineFinished
 		o.CiPreviousPipelineFinishedT = wd_flag.FormatTimeUTC(pipelineFinished, wd_flag.TimeFormatDefault)
+		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineStarted), int64(o.CiPreviousPipelineFinished))
 	}
 }
 

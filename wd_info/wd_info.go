@@ -294,6 +294,11 @@ type (
 		// Provides the current pipeline finished, unix timestamp format by wd_flag.TimeFormatDefault
 		//  by env: CI_PIPELINE_FINISHED
 		CiPipelineFinishedT string
+
+		// CiPipelineDurationHuman
+		//  Provides the total pipeline time in seconds.
+		//  This value is calculated by subtracting the pipeline created timestamp from the build finished timestamp.
+		CiPipelineDurationHuman string
 	}
 
 	// CurrentWorkflowInfo
@@ -347,6 +352,11 @@ type (
 		// Provides the current step finished, unix timestamp format by wd_flag.TimeFormatDefault
 		//  by env: CI_STEP_FINISHED
 		CiStepFinishedT string
+
+		// CiStepDurationHuman
+		//  Provides the total step time in seconds.
+		//  This value is calculated by subtracting the step created timestamp from the build finished timestamp.
+		CiStepDurationHuman string
 
 		// CiStepUrl
 		//  Provides the current URL to step in UI
@@ -492,6 +502,11 @@ type (
 		// Provides the previous pipeline finished, unix timestamp format by wd_flag.TimeFormatDefault
 		//  by env: CI_PREV_PIPELINE_FINISHED
 		CiPreviousPipelineFinishedT string
+
+		// CiPreviousPipelineDurationHuman
+		//  Provides the total pipeline time in seconds.
+		//  This value is calculated by subtracting the pipeline created timestamp from the build finished timestamp.
+		CiPreviousPipelineDurationHuman string
 	}
 
 	// PreviousInfo
