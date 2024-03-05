@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.12.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.11.0...v1.12.0) (2024-03-05)
+
+### ✨ Features
+
+* add wd_flag.SetTimeFormat(format string) to change wd_info time format ([8680c869](https://github.com/woodpecker-kit/woodpecker-tools/commit/8680c86946757370052f6ab7a353dc639d17b47e))
+
 ## [1.11.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.10.0...v1.11.0) (2024-03-04)
 
 ### ✨ Features
