@@ -20,11 +20,11 @@ func setDefaultCurrentPipelineInfo() *wd_info.CurrentPipelineInfo {
 		CiPipelineDeployTarget:  "",
 		CiPipelineStatus:        "success",
 		CiPipelineCreated:       1705658141,
-		CiPipelineCreatedT:      wd_flag.FormatTimeUTC(1705658141, wd_flag.TimeFormatDefault),
+		CiPipelineCreatedT:      wd_flag.FormatTimeUTCBySetting(1705658141),
 		CiPipelineStarted:       1705658156,
-		CiPipelineStartedT:      wd_flag.FormatTimeUTC(1705658156, wd_flag.TimeFormatDefault),
+		CiPipelineStartedT:      wd_flag.FormatTimeUTCBySetting(1705658156),
 		CiPipelineFinished:      1705658166,
-		CiPipelineFinishedT:     wd_flag.FormatTimeUTC(1705658166, wd_flag.TimeFormatDefault),
+		CiPipelineFinishedT:     wd_flag.FormatTimeUTCBySetting(1705658166),
 		CiPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705658141, 1705658166),
 	}
 }
@@ -89,14 +89,14 @@ func WithCiPipelineStatus(status string) CurrentPipelineInfoOption {
 func WithCiPipelineCreated(created uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineCreated = created
-		o.CiPipelineCreatedT = wd_flag.FormatTimeUTC(created, wd_flag.TimeFormatDefault)
+		o.CiPipelineCreatedT = wd_flag.FormatTimeUTCBySetting(created)
 	}
 }
 
 func WithCiPipelineStarted(started uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineStarted = started
-		o.CiPipelineStartedT = wd_flag.FormatTimeUTC(started, wd_flag.TimeFormatDefault)
+		o.CiPipelineStartedT = wd_flag.FormatTimeUTCBySetting(started)
 		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineStarted), int64(o.CiPipelineFinished))
 	}
 }
@@ -104,7 +104,7 @@ func WithCiPipelineStarted(started uint64) CurrentPipelineInfoOption {
 func WithCiPipelineFinished(finished uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineFinished = finished
-		o.CiPipelineFinishedT = wd_flag.FormatTimeUTC(finished, wd_flag.TimeFormatDefault)
+		o.CiPipelineFinishedT = wd_flag.FormatTimeUTCBySetting(finished)
 		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineStarted), int64(o.CiPipelineFinished))
 	}
 }

@@ -13,7 +13,7 @@ const (
 
 	// EventPipelinePullRequestClose
 	//  A pull request closed event is triggered when a pull request is closed or merged.
-	EventPipelinePullRequestClose = "pull_request_close"
+	EventPipelinePullRequestClose = "pull_request_closed"
 
 	// EventPipelineTag
 	//  A tag event is triggered when a tag is pushed.

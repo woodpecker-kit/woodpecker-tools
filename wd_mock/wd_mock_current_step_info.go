@@ -15,9 +15,9 @@ func setDefaultCurrentStepInfo() *wd_info.CurrentStepInfo {
 		CiStepNumber:        "0",
 		CiStepStatus:        "success",
 		CiStepStarted:       1705658156,
-		CiStepStartedT:      wd_flag.FormatTimeUTC(1705658156, wd_flag.TimeFormatDefault),
+		CiStepStartedT:      wd_flag.FormatTimeUTCBySetting(1705658156),
 		CiStepFinished:      1705658166,
-		CiStepFinishedT:     wd_flag.FormatTimeUTC(1705658166, wd_flag.TimeFormatDefault),
+		CiStepFinishedT:     wd_flag.FormatTimeUTCBySetting(1705658166),
 		CiStepDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705658156, 1705658166),
 		CiStepUrl:           "https://woodpecker.domain.com/repos/2/pipeline/10",
 	}
@@ -53,7 +53,7 @@ func WithCiStepStatus(stepStatus string) CurrentStepInfoOption {
 func WithCiStepStarted(stepStarted uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
 		o.CiStepStarted = stepStarted
-		o.CiStepStartedT = wd_flag.FormatTimeUTC(stepStarted, wd_flag.TimeFormatDefault)
+		o.CiStepStartedT = wd_flag.FormatTimeUTCBySetting(stepStarted)
 		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
 	}
 }
@@ -61,7 +61,7 @@ func WithCiStepStarted(stepStarted uint64) CurrentStepInfoOption {
 func WithCiStepFinished(stepFinished uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
 		o.CiStepFinished = stepFinished
-		o.CiStepFinishedT = wd_flag.FormatTimeUTC(stepFinished, wd_flag.TimeFormatDefault)
+		o.CiStepFinishedT = wd_flag.FormatTimeUTCBySetting(stepFinished)
 		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
 	}
 }

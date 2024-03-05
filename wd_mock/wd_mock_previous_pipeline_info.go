@@ -19,11 +19,11 @@ func setDefaultPreviousPipelineInfo() *wd_info.PreviousPipelineInfo {
 		CiPreviousPipelineDeployTarget:  "",
 		CiPreviousPipelineStatus:        "success",
 		CiPreviousPipelineCreated:       1705657931,
-		CiPreviousPipelineCreatedT:      wd_flag.FormatTimeUTC(1705657931, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineCreatedT:      wd_flag.FormatTimeUTCBySetting(1705657931),
 		CiPreviousPipelineStarted:       1705657942,
-		CiPreviousPipelineStartedT:      wd_flag.FormatTimeUTC(1705657942, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineStartedT:      wd_flag.FormatTimeUTCBySetting(1705657942),
 		CiPreviousPipelineFinished:      1705657957,
-		CiPreviousPipelineFinishedT:     wd_flag.FormatTimeUTC(1705657957, wd_flag.TimeFormatDefault),
+		CiPreviousPipelineFinishedT:     wd_flag.FormatTimeUTCBySetting(1705657957),
 		CiPreviousPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705657942, 1705657957),
 	}
 }
@@ -82,14 +82,14 @@ func WithCiPreviousPipelineStatus(pipelineStatus string) PreviousPipelineInfoOpt
 func WithCiPreviousPipelineCreated(pipelineCreated uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineCreated = pipelineCreated
-		o.CiPreviousPipelineCreatedT = wd_flag.FormatTimeUTC(pipelineCreated, wd_flag.TimeFormatDefault)
+		o.CiPreviousPipelineCreatedT = wd_flag.FormatTimeUTCBySetting(pipelineCreated)
 	}
 }
 
 func WithCiPreviousPipelineStarted(pipelineStarted uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineStarted = pipelineStarted
-		o.CiPreviousPipelineStartedT = wd_flag.FormatTimeUTC(pipelineStarted, wd_flag.TimeFormatDefault)
+		o.CiPreviousPipelineStartedT = wd_flag.FormatTimeUTCBySetting(pipelineStarted)
 		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineStarted), int64(o.CiPreviousPipelineFinished))
 	}
 }
@@ -97,7 +97,7 @@ func WithCiPreviousPipelineStarted(pipelineStarted uint64) PreviousPipelineInfoO
 func WithCiPreviousPipelineFinished(pipelineFinished uint64) PreviousPipelineInfoOption {
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineFinished = pipelineFinished
-		o.CiPreviousPipelineFinishedT = wd_flag.FormatTimeUTC(pipelineFinished, wd_flag.TimeFormatDefault)
+		o.CiPreviousPipelineFinishedT = wd_flag.FormatTimeUTCBySetting(pipelineFinished)
 		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineStarted), int64(o.CiPreviousPipelineFinished))
 	}
 }

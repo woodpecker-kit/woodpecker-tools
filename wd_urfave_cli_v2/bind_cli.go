@@ -9,28 +9,30 @@ import (
 // UrfaveCliBindInfo
 //
 //	woodpecker urfave cli bind info
+//
+// want change time format, please change wd_flag.SetTimeFormat before this method
 func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 
 	pipelineCreateAt := c.Uint64(wd_flag.NameCliCurrentPipelineCreated)
-	pipelineCreateAtT := wd_flag.FormatTimeUTC(pipelineCreateAt, wd_flag.TimeFormatDefault)
+	pipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(pipelineCreateAt)
 	pipelineStartAt := c.Uint64(wd_flag.NameCliCurrentPipelineStarted)
-	pipelineStartAtT := wd_flag.FormatTimeUTC(pipelineStartAt, wd_flag.TimeFormatDefault)
+	pipelineStartAtT := wd_flag.FormatTimeUTCBySetting(pipelineStartAt)
 	pipelineFinishAt := c.Uint64(wd_flag.NameCliCurrentPipelineFinished)
-	pipelineFinishAtT := wd_flag.FormatTimeUTC(pipelineFinishAt, wd_flag.TimeFormatDefault)
+	pipelineFinishAtT := wd_flag.FormatTimeUTCBySetting(pipelineFinishAt)
 	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineStartAt), int64(pipelineFinishAt))
 
 	previousPipelineCreateAt := c.Uint64(wd_flag.NameCliPreviousPipelineCreated)
-	previousPipelineCreateAtT := wd_flag.FormatTimeUTC(previousPipelineCreateAt, wd_flag.TimeFormatDefault)
+	previousPipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineCreateAt)
 	previousPipelineStartedAt := c.Uint64(wd_flag.NameCliPreviousPipelineStarted)
-	previousPipelineStartedAtT := wd_flag.FormatTimeUTC(previousPipelineStartedAt, wd_flag.TimeFormatDefault)
+	previousPipelineStartedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineStartedAt)
 	previousPipelineFinishedAt := c.Uint64(wd_flag.NameCliPreviousPipelineFinished)
-	previousPipelineFinishedAtT := wd_flag.FormatTimeUTC(previousPipelineFinishedAt, wd_flag.TimeFormatDefault)
+	previousPipelineFinishedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineFinishedAt)
 	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(previousPipelineStartedAt), int64(previousPipelineFinishedAt))
 
 	stepStartedAt := c.Uint64(wd_flag.NameCliCurrentCiStepStarted)
-	stepStartedAtT := wd_flag.FormatTimeUTC(stepStartedAt, wd_flag.TimeFormatDefault)
+	stepStartedAtT := wd_flag.FormatTimeUTCBySetting(stepStartedAt)
 	stepFinishedAt := c.Uint64(wd_flag.NameCliCurrentCiStepFinished)
-	stepFinishedAtT := wd_flag.FormatTimeUTC(stepFinishedAt, wd_flag.TimeFormatDefault)
+	stepFinishedAtT := wd_flag.FormatTimeUTCBySetting(stepFinishedAt)
 	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(stepStartedAt), int64(stepFinishedAt))
 
 	var currentInfo = wd_info.CurrentInfo{

@@ -11,6 +11,29 @@ const (
 	TimeFormatDefault = "2006-01-02-03-04-05"
 )
 
+var (
+	timeFormatSet = TimeFormatDefault
+)
+
+// SetTimeFormat
+// will change time format by wd_flag.FormatTimeUTCBySetting(timestamp uint64)
+//
+//	effect must before package
+//	- wd_flag
+//	- wd_urfave_cli_v2
+//	- wd_info
+//	- wd_mock
+func SetTimeFormat(format string) {
+	timeFormatSet = format
+}
+
+// FormatTimeUTCBySetting
+// format time by wd_flag.SetTimeFormat
+// if not change will use wd_flag.TimeFormatDefault
+func FormatTimeUTCBySetting(timestamp uint64) string {
+	return FormatTimeUTC(timestamp, timeFormatSet)
+}
+
 func FormatTimeUTC(timestamp uint64, format string) string {
 	if timestamp == 0 {
 		return ""
