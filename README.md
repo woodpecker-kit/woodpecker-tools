@@ -44,7 +44,8 @@ $ echo "go mod vendor"
 
 - [x] `wd_log` package support debug at line number and gid
 - [x] `wd_flag` package is flag for woodpecker plugin
-    - `wd_flag.SetTimeFormat(format string)` will change time format like `2006-01-02 15:04:05`, must before `wd_urfave_cli_v2.UrfaveCliBindInfo()` 
+    - `wd_flag.SetTimeFormat(format string)` will change time format like `2006-01-02 15:04:05`, must
+      before `wd_urfave_cli_v2.UrfaveCliBindInfo()`
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
 - [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system
