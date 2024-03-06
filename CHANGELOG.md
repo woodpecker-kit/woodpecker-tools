@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.13.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.12.0...v1.13.0) (2024-03-06)
+
+### ✨ Features
+
+* hide flag current_pipeline.files ([a69ec36d](https://github.com/woodpecker-kit/woodpecker-tools/commit/a69ec36d4d73a70690be79553daa3102cae9d01a))
+
 ## [1.12.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.11.0...v1.12.0) (2024-03-05)
 
 ### ✨ Features
