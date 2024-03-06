@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.14.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.13.0...v1.14.0) (2024-03-06)
+
+### ✨ Features
+
+* let CiPipelineDurationHuman CiPreviousPipelineDurationHuman use create time to Finish time ([399b0978](https://github.com/woodpecker-kit/woodpecker-tools/commit/399b0978edfb0569000b4315d4e8c4d524d89306))
+
 ## [1.13.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.12.0...v1.13.0) (2024-03-06)
 
 ### ✨ Features
