@@ -19,7 +19,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	pipelineStartAtT := wd_flag.FormatTimeUTCBySetting(pipelineStartAt)
 	pipelineFinishAt := c.Uint64(wd_flag.NameCliCurrentPipelineFinished)
 	pipelineFinishAtT := wd_flag.FormatTimeUTCBySetting(pipelineFinishAt)
-	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineStartAt), int64(pipelineFinishAt))
+	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineCreateAt), int64(pipelineFinishAt))
 
 	previousPipelineCreateAt := c.Uint64(wd_flag.NameCliPreviousPipelineCreated)
 	previousPipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineCreateAt)
@@ -27,7 +27,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	previousPipelineStartedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineStartedAt)
 	previousPipelineFinishedAt := c.Uint64(wd_flag.NameCliPreviousPipelineFinished)
 	previousPipelineFinishedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineFinishedAt)
-	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(previousPipelineStartedAt), int64(previousPipelineFinishedAt))
+	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(previousPipelineCreateAt), int64(previousPipelineFinishedAt))
 
 	stepStartedAt := c.Uint64(wd_flag.NameCliCurrentCiStepStarted)
 	stepStartedAtT := wd_flag.FormatTimeUTCBySetting(stepStartedAt)

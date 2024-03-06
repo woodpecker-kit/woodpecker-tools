@@ -24,7 +24,7 @@ func setDefaultPreviousPipelineInfo() *wd_info.PreviousPipelineInfo {
 		CiPreviousPipelineStartedT:      wd_flag.FormatTimeUTCBySetting(1705657942),
 		CiPreviousPipelineFinished:      1705657957,
 		CiPreviousPipelineFinishedT:     wd_flag.FormatTimeUTCBySetting(1705657957),
-		CiPreviousPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705657942, 1705657957),
+		CiPreviousPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705657931, 1705657957),
 	}
 }
 
@@ -83,6 +83,7 @@ func WithCiPreviousPipelineCreated(pipelineCreated uint64) PreviousPipelineInfoO
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineCreated = pipelineCreated
 		o.CiPreviousPipelineCreatedT = wd_flag.FormatTimeUTCBySetting(pipelineCreated)
+		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineCreated), int64(o.CiPreviousPipelineFinished))
 	}
 }
 
@@ -90,7 +91,6 @@ func WithCiPreviousPipelineStarted(pipelineStarted uint64) PreviousPipelineInfoO
 	return func(o *wd_info.PreviousPipelineInfo) {
 		o.CiPreviousPipelineStarted = pipelineStarted
 		o.CiPreviousPipelineStartedT = wd_flag.FormatTimeUTCBySetting(pipelineStarted)
-		o.CiPreviousPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPreviousPipelineStarted), int64(o.CiPreviousPipelineFinished))
 	}
 }
 

@@ -90,6 +90,7 @@ func WithCiPipelineCreated(created uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineCreated = created
 		o.CiPipelineCreatedT = wd_flag.FormatTimeUTCBySetting(created)
+		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineCreated), int64(o.CiPipelineFinished))
 	}
 }
 
@@ -97,7 +98,6 @@ func WithCiPipelineStarted(started uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineStarted = started
 		o.CiPipelineStartedT = wd_flag.FormatTimeUTCBySetting(started)
-		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineStarted), int64(o.CiPipelineFinished))
 	}
 }
 
