@@ -11,6 +11,7 @@ func currentPipelineFlag() []cli.Flag {
 			Name:    wd_flag.NameCliCurrentPipelineFiles,
 			Usage:   "Provides the current pipeline files just like [\".woodpecker/.build.yml\"]",
 			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineFiles},
+			Hidden:  true,
 		},
 
 		&cli.StringFlag{
