@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.17.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.16.0...v1.17.0) (2024-03-08)
+
+### ✨ Features
+
+* add wd_mock.WithFastMockTags WithFastMockPullRequest for fast mock ([1ae8dc4e](https://github.com/woodpecker-kit/woodpecker-tools/commit/1ae8dc4edede741fb4e8a86f5ab5f5494a038dff))
+
 ## [1.16.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.15.0...v1.16.0) (2024-03-08)
 
 ### ✨ Features
