@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.15.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.14.0...v1.15.0) (2024-03-08)
+
+### ✨ Features
+
+* add package wd_info_parse and wd_info.RepositoryInfo parse from CI_REPO_CLONE_URL ([e467d020](https://github.com/woodpecker-kit/woodpecker-tools/commit/e467d020ee81c879128edcfdf2435422d9d6baf8))
+
 ## [1.14.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.13.0...v1.14.0) (2024-03-06)
 
 ### ✨ Features
