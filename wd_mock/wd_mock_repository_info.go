@@ -1,13 +1,16 @@
 package wd_mock
 
-import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
+import (
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
+)
 
 var defaultRepositoryInfo = setDefaultRepositoryInfo()
 
 type RepositoryInfoOption func(*wd_info.RepositoryInfo)
 
 func setDefaultRepositoryInfo() *wd_info.RepositoryInfo {
-	return &wd_info.RepositoryInfo{
+	info := wd_info.RepositoryInfo{
 		CIRepo:              "woodpecker-kit/guidance-woodpecker-agent",
 		CIRepoOwner:         "woodpecker-kit",
 		CIRepoName:          "guidance-woodpecker-agent",
@@ -20,6 +23,8 @@ func setDefaultRepositoryInfo() *wd_info.RepositoryInfo {
 		CIRepoPrivate:       true,
 		CIRepoTrusted:       false,
 	}
+	_ = wd_info_parse.ParseRepositoryInfoByRepositoryInfo(&info)
+	return &info
 }
 
 func NewRepositoryInfo(opts ...RepositoryInfoOption) (opt *wd_info.RepositoryInfo) {
@@ -70,6 +75,7 @@ func WithCIRepoURL(ciRepoURL string) RepositoryInfoOption {
 func WithCIRepoCloneURL(ciRepoCloneURL string) RepositoryInfoOption {
 	return func(o *wd_info.RepositoryInfo) {
 		o.CIRepoCloneURL = ciRepoCloneURL
+		_ = wd_info_parse.ParseRepositoryInfoByRepositoryInfo(o)
 	}
 }
 

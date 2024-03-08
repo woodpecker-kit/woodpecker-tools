@@ -9,5 +9,8 @@
   "CIRepoCloneSshUrl": "git@gitea.domain.com:woodpecker-kit/guidance-woodpecker-agent.git",
   "CIRepoDefaultBranch": "main",
   "CIRepoPrivate": true,
-  "CIRepoTrusted": false
+  "CIRepoTrusted": false,
+  "CiRepoHost": "gitea.domain.com",
+  "CiRepoHostname": "gitea.domain.com",
+  "CiRepoPort": ""
 }

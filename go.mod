@@ -6,6 +6,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.2.1
 	github.com/Masterminds/sprig/v3 v3.2.3
 	github.com/aymerick/raymond v2.0.2+incompatible
+	github.com/chainguard-dev/git-urls v1.0.2
 	github.com/gookit/color v1.5.4
 	github.com/joho/godotenv v1.5.1
 	github.com/sebdah/goldie/v2 v2.5.3

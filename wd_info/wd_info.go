@@ -141,6 +141,18 @@ type (
 		//  Provides the repository trusted flag. repository trusted.
 		//  by env: CI_REPO_TRUSTED
 		CIRepoTrusted bool `mock_env_key:"CI_REPO_TRUSTED"`
+
+		// CIRepoHost
+		//  Provides the repository host, parse from env `CI_REPO_CLONE_URL`
+		CiRepoHost string
+
+		// CIRepoHostname
+		//  Provides the repository hostname, parse from env `CI_REPO_CLONE_URL`
+		CiRepoHostname string
+
+		// CIRepoPort
+		//  Provides the repository port, parse from env `CI_REPO_CLONE_URL`
+		CiRepoPort string
 	}
 
 	// CurrentCommitInfo

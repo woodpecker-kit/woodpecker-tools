@@ -4,6 +4,7 @@ import (
 	"github.com/urfave/cli/v2"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
 )
 
 // UrfaveCliBindInfo
@@ -163,5 +164,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 
 		PreviousInfo: previousInfo,
 	}
+	_ = wd_info_parse.ParseRepositoryInfoByWoodPeckerInfo(&wdInfo)
+
 	return wdInfo
 }

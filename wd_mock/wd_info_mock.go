@@ -1,13 +1,16 @@
 package wd_mock
 
-import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
+import (
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
+)
 
 var (
 	defaultOptionWoodpeckerInfo = setDefaultOptionWoodpeckerInfo()
 )
 
 func setDefaultOptionWoodpeckerInfo() *wd_info.WoodpeckerInfo {
-	return &wd_info.WoodpeckerInfo{
+	info := wd_info.WoodpeckerInfo{
 		BasicInfo:      *NewBasicInfoFull(),
 		CiSystemInfo:   *NewCiSystemInfoFull(),
 		CiForgeInfo:    *NewCiForgeInfoFull(),
@@ -23,6 +26,7 @@ func setDefaultOptionWoodpeckerInfo() *wd_info.WoodpeckerInfo {
 			PreviousPipelineInfo: *NewPreviousPipelineInfoFull(),
 		},
 	}
+	return &info
 }
 
 type WoodpeckerInfoOption func(*wd_info.WoodpeckerInfo)
@@ -70,6 +74,7 @@ func WithCiForgeInfo(opts ...CiForgeInfoOption) WoodpeckerInfoOption {
 func WithRepositoryInfo(opts ...RepositoryInfoOption) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.RepositoryInfo = *NewRepositoryInfo(opts...)
+		_ = wd_info_parse.ParseRepositoryInfoByRepositoryInfo(&o.RepositoryInfo)
 	}
 }
 
