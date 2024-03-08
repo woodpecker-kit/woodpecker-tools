@@ -1,6 +1,7 @@
 package wd_mock
 
 import (
+	"fmt"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
 )
@@ -56,6 +57,34 @@ func WithCiWorkspace(workspace string) WoodpeckerInfoOption {
 func WithCurrentPipelineStatus(status string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = status
+	}
+}
+
+func WithFastMockTag(tagName string, msg string) WoodpeckerInfoOption {
+	return func(o *wd_info.WoodpeckerInfo) {
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("tag: %s, %s", tagName, msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = tagName
+		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = fmt.Sprintf("refs/tags/%s", tagName)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/tags/%s", tagName)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTargetBranch = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequestLabels = ""
+		o.CurrentInfo.CurrentPipelineInfo.CiPipelineEvent = wd_info.EventPipelineTag
+	}
+}
+
+func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+	return func(o *wd_info.WoodpeckerInfo) {
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("pr: %s, %s", prNumber, msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = prNumber
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/pull/%s/head", prNumber)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = sourceBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTargetBranch = targetBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = commitBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequestLabels = ""
+		o.CurrentInfo.CurrentPipelineInfo.CiPipelineEvent = wd_info.EventPipelinePullRequest
 	}
 }
 

@@ -11,8 +11,7 @@ import (
 func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 	// mock ParseWoodpeckerInfo2Shot
 	type args struct {
-		workspace string
-		status    string
+		info wd_info.WoodpeckerInfo
 	}
 	tests := []struct {
 		name    string
@@ -22,8 +21,33 @@ func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 		{
 			name: "sample", // testdata/TestParseWoodpeckerInfo2Shot/sample.golden
 			args: args{
-				//workspace: "",
-				status: wd_info.BuildStatusSuccess,
+				info: *wd_mock.NewWoodpeckerInfo(
+					wd_mock.WithCurrentPipelineStatus(wd_info.BuildStatusSuccess),
+				),
+			},
+		},
+		{
+			name: "statusFailure",
+			args: args{
+				info: *wd_mock.NewWoodpeckerInfo(
+					wd_mock.WithCurrentPipelineStatus(wd_info.BuildStatusFailure),
+				),
+			},
+		},
+		{
+			name: "fastTag",
+			args: args{
+				info: *wd_mock.NewWoodpeckerInfo(
+					wd_mock.WithFastMockTag("v1.0.0", "new tag"),
+				),
+			},
+		},
+		{
+			name: "fastPullRequest",
+			args: args{
+				info: *wd_mock.NewWoodpeckerInfo(
+					wd_mock.WithFastMockPullRequest("1", "new pr", "feature-support", "main", "main"),
+				),
 			},
 		},
 	}
@@ -33,12 +57,8 @@ func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 				goldie.WithDiffEngine(goldie.ClassicDiff),
 			)
 
-			gotWoodPeckerInfo := wd_mock.NewWoodpeckerInfo(
-				wd_mock.WithCiWorkspace(tc.args.workspace),
-				wd_mock.WithCurrentPipelineStatus(tc.args.status),
-			)
 			// do ParseWoodpeckerInfo2Shot
-			gotResult := wd_info_shot.ParseWoodpeckerInfo2Shot(*gotWoodPeckerInfo)
+			gotResult := wd_info_shot.ParseWoodpeckerInfo2Shot(tc.args.info)
 			if tc.wantErr != nil {
 				return
 			}

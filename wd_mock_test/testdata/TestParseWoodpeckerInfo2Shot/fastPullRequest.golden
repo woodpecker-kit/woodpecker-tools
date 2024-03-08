@@ -1,0 +1,103 @@
+{
+  "Repo": {
+    "Scm": "git",
+    "Link": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent",
+    "FullName": "woodpecker-kit/guidance-woodpecker-agent",
+    "ShortName": "guidance-woodpecker-agent",
+    "OwnerName": "woodpecker-kit",
+    "HttpUrl": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent.git",
+    "SshUrl": "git@gitea.domain.com:woodpecker-kit/guidance-woodpecker-agent.git",
+    "Host": "gitea.domain.com",
+    "Hostname": "gitea.domain.com",
+    "Port": ""
+  },
+  "System": {
+    "Version": "2.3.0",
+    "Url": "https://woodpecker.domain.com",
+    "Hostname": "woodpecker.domain.com",
+    "Name": "woodpecker",
+    "RunnerBackend": "docker",
+    "RunnerMachine": "worker",
+    "RunnerHostName": "",
+    "RunnerPlatform": "linux/amd64"
+  },
+  "Build": {
+    "WorkSpace": "",
+    "Status": "success",
+    "Number": "10",
+    "LinkCi": "https://woodpecker.domain.com/repos/2/pipeline/10",
+    "LinkCommit": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+    "Event": "pull_request",
+    "Sha": "9c764dd487bce596c5c0402478fabde5f0344983",
+    "Ref": "refs/pull/1/head",
+    "RefSpec": "",
+    "Message": "pr: 1, new pr",
+    "CommitBranch": "main",
+    "Tag": "",
+    "PR": "1",
+    "SourceBranch": "feature-support",
+    "TargetBranch": "main",
+    "Created": 1705658141,
+    "CreatedAt": "2024-01-19-09-55-41",
+    "Started": 1705658156,
+    "StartedAt": "2024-01-19-09-55-56",
+    "Finished": 1705658166,
+    "FinishedAt": "2024-01-19-09-56-06",
+    "DurationHuman": "25s"
+  },
+  "Commit": {
+    "Link": "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+    "Sha": "9c764dd487bce596c5c0402478fabde5f0344983",
+    "Ref": "refs/pull/1/head",
+    "RefSpec": "",
+    "CommitBranch": "main",
+    "Message": "pr: 1, new pr",
+    "Tag": "",
+    "PR": "1",
+    "SourceBranch": "feature-support",
+    "TargetBranch": "main",
+    "PreRelease": false,
+    "CommitAuthor": {
+      "Username": "sinlov",
+      "Email": "sinlov@noreply.localhost",
+      "Avatar": ""
+    }
+  },
+  "Stage": {
+    "Name": "checkout",
+    "NumStep": "0",
+    "Status": "success",
+    "Started": 1705658156,
+    "StartedAt": "2024-01-19-09-55-56",
+    "Finished": 1705658166,
+    "FinishedAt": "2024-01-19-09-56-06",
+    "DurationStepHuman": "10s"
+  },
+  "PrevBuild": {
+    "Status": "success",
+    "Number": "9",
+    "LinkCi": "https://woodpecker.domain.com/repos/2/pipeline/9",
+    "LinkCommit": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/b2542f37e23645b2032fcf9f180e6940ef6915ac",
+    "Event": "push",
+    "Sha": "b2542f37e23645b2032fcf9f180e6940ef6915ac",
+    "Ref": "refs/heads/main",
+    "RefSpec": "",
+    "Message": "test: try send env between steps",
+    "CommitBranch": "main",
+    "SourceBranch": "",
+    "TargetBranch": "",
+    "Created": 1705657931,
+    "CreatedAt": "2024-01-19-09-52-11",
+    "Started": 1705657942,
+    "StartedAt": "2024-01-19-09-52-22",
+    "Finished": 1705657957,
+    "FinishedAt": "2024-01-19-09-52-37",
+    "DurationHuman": "26s",
+    "DeployTarget": "",
+    "CommitAuthor": {
+      "Username": "sinlov",
+      "Email": "sinlov@noreply.localhost",
+      "Avatar": ""
+    }
+  }
+}

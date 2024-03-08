@@ -54,6 +54,9 @@ $ echo "go mod vendor"
   as [github.com/urfave/cli/v2](https://github.com/urfave/cli/)
 - [x] `wd_info.WoodpeckerInfoSupportVersion` support version begin `2.0.0`
 - [x] `env_mock.MockEnvByStruct` support struct tag `mock_env_key` or `mock_env_default` for unit test of plugin
+    - `wd_mock.WithFastMockTags` for fast mock tag fast
+    - `wd_mock.WithFastMockPullRequest` for fast mock tag fast
+    - `wd_mock.WithCurrentPipelineStatus` for fast mock tag fast
 - [x] `env_transfer.AddOrCoverEnvByKey` `env_transfer.RemoveEnvByKey` and `env_transfer.SaveEnv2File` for transfer env
   between steps
     - please add `.env.woodpecker_transfer.local` at git ignore, to use `env_transfer.DefaultWriterFileName` to transfer
@@ -70,6 +73,8 @@ $ echo "go mod vendor"
       string
 - [x] `wd_template` for support Handlebars.js for golang
     - use `wd_template.RegisterSettings(DefaultFunctions)` once to register default functions then use
+- [x] `wd_info_shot.ParseWoodpeckerInfo2Shot` can parse `wd_info.WoodpeckerInfo` to `wd_info_shot.WoodpeckerInfoShot`
+  for template more clear
 - [x] code check
     - [x] full check by golang version
     - [x] full check for docker build
