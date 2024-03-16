@@ -1,8 +1,8 @@
-package wd_info_shot
+package wd_short_info
 
 import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
 
-func ParseWoodpeckerInfo2Shot(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort {
+func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort {
 	short := WoodpeckerInfoShort{
 		Repo: Repo{
 			Scm:       info.RepositoryInfo.CIRepoScm,

@@ -73,7 +73,7 @@ $ echo "go mod vendor"
       string
 - [x] `wd_template` for support Handlebars.js for golang
     - use `wd_template.RegisterSettings(DefaultFunctions)` once to register default functions then use
-- [x] `wd_info_shot.ParseWoodpeckerInfo2Shot` can parse `wd_info.WoodpeckerInfo` to `wd_info_shot.WoodpeckerInfoShot`
+- [x] `wd_short_info.ParseWoodpeckerInfo2Short` can parse `wd_info.WoodpeckerInfo` to `wd_short_info.WoodpeckerInfoShot` (v1.18+)
   for template more clear
 - [x] code check
     - [x] full check by golang version

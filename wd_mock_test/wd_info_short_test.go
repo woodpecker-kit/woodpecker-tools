@@ -3,13 +3,13 @@ package wd_mock_test
 import (
 	"github.com/sebdah/goldie/v2"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
-	"github.com/woodpecker-kit/woodpecker-tools/wd_info_shot"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_mock"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_short_info"
 	"testing"
 )
 
 func TestParseWoodpeckerInfo2Shot(t *testing.T) {
-	// mock ParseWoodpeckerInfo2Shot
+	// mock ParseWoodpeckerInfo2Short
 	type args struct {
 		info wd_info.WoodpeckerInfo
 	}
@@ -57,12 +57,12 @@ func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 				goldie.WithDiffEngine(goldie.ClassicDiff),
 			)
 
-			// do ParseWoodpeckerInfo2Shot
-			gotResult := wd_info_shot.ParseWoodpeckerInfo2Shot(tc.args.info)
+			// do ParseWoodpeckerInfo2Short
+			gotResult := wd_short_info.ParseWoodpeckerInfo2Short(tc.args.info)
 			if tc.wantErr != nil {
 				return
 			}
-			// verify ParseWoodpeckerInfo2Shot
+			// verify ParseWoodpeckerInfo2Short
 			g.AssertJson(t, t.Name(), gotResult)
 		})
 	}
