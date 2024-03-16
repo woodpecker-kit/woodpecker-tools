@@ -1,4 +1,4 @@
-package wd_info_shot
+package wd_short_info
 
 import _ "github.com/woodpecker-kit/woodpecker-tools/wd_info"
 
