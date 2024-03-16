@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.18.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.17.0...v1.18.0) (2024-03-16)
+
+### BREAKING CHANGE:
+
+* must change package wd_info_shot -> wd_short_info and method
+
+### ✨ Features
+
+* rename wd_info_shot -> wd_short_info ([a196ab9d](https://github.com/woodpecker-kit/woodpecker-tools/commit/a196ab9d39534236d8b0eda3f8bc77db038ce389)), fix [#34](https://github.com/woodpecker-kit/woodpecker-tools/issues/34)
+
 ## [1.17.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.16.0...v1.17.0) (2024-03-08)
 
 ### ✨ Features
