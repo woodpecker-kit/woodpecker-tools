@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.19.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.18.0...v1.19.0) (2024-04-05)
+
+### ✨ Features
+
+* add `wd_mock.Fast*()` method for fast mock ([ad008153](https://github.com/woodpecker-kit/woodpecker-tools/commit/ad0081535539fd384c33d5c30214ae6acba5ff76))
+
+### 👷‍ Build System
+
+* bump codecov/codecov-action from 4.1.0 to 4.1.1 ([92d6d51c](https://github.com/woodpecker-kit/woodpecker-tools/commit/92d6d51c9779144c3b81af6e6b6c73c567d5721f))
+
 ## [1.18.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.17.0...v1.18.0) (2024-03-16)
 
 ### BREAKING CHANGE:
