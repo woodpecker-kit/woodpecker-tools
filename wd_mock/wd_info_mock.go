@@ -48,16 +48,28 @@ func NewWoodpeckerInfo(opts ...WoodpeckerInfoOption) (opt *wd_info.WoodpeckerInf
 	return
 }
 
+func FastWorkSpace(workspace string) WoodpeckerInfoOption {
+	return WithCiWorkspace(workspace)
+}
+
 func WithCiWorkspace(workspace string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.BasicInfo.CIWorkspace = workspace
 	}
 }
 
+func FastCurrentStatus(status string) WoodpeckerInfoOption {
+	return WithCurrentPipelineStatus(status)
+}
+
 func WithCurrentPipelineStatus(status string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = status
 	}
+}
+
+func FastTag(tagName string, msg string) WoodpeckerInfoOption {
+	return WithFastMockTag(tagName, msg)
 }
 
 func WithFastMockTag(tagName string, msg string) WoodpeckerInfoOption {
@@ -74,6 +86,10 @@ func WithFastMockTag(tagName string, msg string) WoodpeckerInfoOption {
 	}
 }
 
+func FastPullRequest(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+	return WithFastMockPullRequest(prNumber, msg, sourceBranch, targetBranch, commitBranch)
+}
+
 func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("pr: %s, %s", prNumber, msg)
@@ -85,6 +101,56 @@ func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBr
 		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = commitBranch
 		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequestLabels = ""
 		o.CurrentInfo.CurrentPipelineInfo.CiPipelineEvent = wd_info.EventPipelinePullRequest
+
+		if o.RepositoryInfo.CIRepoURL != "" {
+			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
+			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
+			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
+		}
+
+	}
+}
+
+func FastPullRequestClose(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+	return func(o *wd_info.WoodpeckerInfo) {
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("pr close: %s, %s", prNumber, msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = prNumber
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/pull/%s/head", prNumber)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = sourceBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTargetBranch = targetBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = commitBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequestLabels = ""
+		o.CurrentInfo.CurrentPipelineInfo.CiPipelineEvent = wd_info.EventPipelinePullRequestClose
+
+		if o.RepositoryInfo.CIRepoURL != "" {
+			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
+			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
+			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
+		}
+
+	}
+}
+
+func FastPushCommitBranch(commitBranch, sha, msg string) WoodpeckerInfoOption {
+	return func(o *wd_info.WoodpeckerInfo) {
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("push: %s", msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitSha = sha
+		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = commitBranch
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/heads/%s", commitBranch)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitTargetBranch = ""
+		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequestLabels = ""
+		o.CurrentInfo.CurrentPipelineInfo.CiPipelineEvent = wd_info.EventPipelinePush
+
+		if o.RepositoryInfo.CIRepoURL != "" {
+			forgeUrl := fmt.Sprintf("%s/commit/%s", o.RepositoryInfo.CIRepoURL, sha)
+			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
+			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
+		}
+
 	}
 }
 
