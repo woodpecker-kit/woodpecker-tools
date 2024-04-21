@@ -4,6 +4,10 @@ import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
 
 func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort {
 	short := WoodpeckerInfoShort{
+		CurrentWorkflow: CurrentWorkflow{
+			Name:   info.CurrentInfo.CurrentWorkflowInfo.CiWorkflowName,
+			Number: info.CurrentInfo.CurrentWorkflowInfo.CiWorkflowNumber,
+		},
 		Repo: Repo{
 			Scm:       info.RepositoryInfo.CIRepoScm,
 			Link:      info.RepositoryInfo.CIRepoURL,

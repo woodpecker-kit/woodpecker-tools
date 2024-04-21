@@ -1,4 +1,8 @@
 {
+  "CurrentWorkflow": {
+    "Name": "build",
+    "Number": "1"
+  },
   "Repo": {
     "Scm": "git",
     "Link": "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent",
