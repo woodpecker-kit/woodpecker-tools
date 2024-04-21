@@ -3,6 +3,16 @@ package wd_short_info
 import _ "github.com/woodpecker-kit/woodpecker-tools/wd_info"
 
 type (
+	CurrentWorkflow struct {
+		// Name
+		// from wd_info.CurrentWorkflowInfo member CiWorkflowName
+		Name string
+
+		// Number
+		// from wd_info.CurrentWorkflowInfo member CiWorkflowNumber
+		Number string
+	}
+
 	// Repo repo base info
 	Repo struct {
 		// Scm
@@ -276,12 +286,13 @@ type (
 	}
 
 	WoodpeckerInfoShort struct {
-		Repo      Repo
-		System    System
-		Build     Build
-		Commit    Commit
-		Stage     Stage
-		PrevBuild PrevBuild
+		CurrentWorkflow CurrentWorkflow
+		Repo            Repo
+		System          System
+		Build           Build
+		Commit          Commit
+		Stage           Stage
+		PrevBuild       PrevBuild
 	}
 )
 
