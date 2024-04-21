@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.20.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.19.0...v1.20.0) (2024-04-21)
+
+### ✨ Features
+
+* add CurrentWorkflowInfo at WoodpeckerInfoShort ([280ed9ed](https://github.com/woodpecker-kit/woodpecker-tools/commit/280ed9ed16aa96521f91dc6dd4a7ff6ad1c7c4f2)), feat [#37](https://github.com/woodpecker-kit/woodpecker-tools/issues/37)
+
 ## [1.19.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.18.0...v1.19.0) (2024-04-05)
 
 ### ✨ Features
