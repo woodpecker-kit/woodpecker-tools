@@ -13,7 +13,7 @@ const (
   "author": {
     "name": "woodpecker-kit",
     "email": "woodpecker-kitgmppt@gmail.com",
-    "url": "https://github.com/woodpecker-kit/temp-golang-cli-fast"
+    "url": "https://github.com/woodpecker-kit/woodpecker-tools"
   }
 }
 `
@@ -24,10 +24,10 @@ const (
   "author": {
     "name": "woodpecker-kit",
     "email": "woodpecker-kitgmppt@gmail.com",
-    "url": "https://github.com/woodpecker-kit/temp-golang-cli-fast"
+    "url": "https://github.com/woodpecker-kit/woodpecker-tools"
   },
   "description": "mock go style",
-  "homepage": "https://github.com/woodpecker-kit/temp-golang-cli-fast#readme"
+  "homepage": "https://github.com/woodpecker-kit/woodpecker-tools#readme"
 }
 `
 )
@@ -215,5 +215,5 @@ func TestGetPackageJsonHomepage(t *testing.T) {
 	assert.Equal(t, "", GetPackageJsonHomepage())
 
 	InitPkgJsonContent(jsonInfoGoStyle)
-	assert.Equal(t, "https://github.com/woodpecker-kit/temp-golang-cli-fast#readme", GetPackageJsonHomepage())
+	assert.Equal(t, "https://github.com/woodpecker-kit/woodpecker-tools#readme", GetPackageJsonHomepage())
 }
