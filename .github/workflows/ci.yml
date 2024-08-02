@@ -5,16 +5,17 @@ on:
     paths-ignore:
       - '**/README.md'
     branches:
-      - 'main'
+      # - 'main'
       - 'release-*'
-      - 'FE-*'
       - '*-feature-*'
-      - 'BF-*'
+      - '*-enhancement-*'
+      - '*-hotfix-*'
       - '*-bug-*'
+      - '*-documentation-*'
+      - 'BF-*'
+      - 'FE-*'
       - 'PU-*'
       - 'DOC-*'
-      - '*-documentation-*'
-      - '*-hotfix-*'
     tags:
       - '*' # Push events to matching *, i.e. 1.0.0 v1.0, v20.15.10
   pull_request:
@@ -58,6 +59,7 @@ jobs:
     secrets: inherit
     with:
       version_name: latest
+      go_build_id: ${{ needs.version.outputs.short_sha }}
 
 #   docker-buildx-bake-hubdocker-latest:
 #     name: docker-buildx-bake-hubdocker-latest
@@ -83,6 +85,7 @@ jobs:
     secrets: inherit
     with:
       version_name: ${{ needs.version.outputs.tag_name }}
+      go_build_id: ${{ needs.version.outputs.short_sha }}
       upload_artifact_name: go-release
 
 #   docker-buildx-bake-hubdocker-tag:

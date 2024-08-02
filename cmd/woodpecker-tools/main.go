@@ -11,6 +11,14 @@ import (
 	"os"
 )
 
+var buildID string
+
+func init() {
+	if buildID == "" {
+		buildID = "unknown"
+	}
+}
+
 func main() {
 	wd_log.SetLogLineDeep(wd_log.DefaultExtLogLineMaxDeep)
 	pkgJson.InitPkgJsonContent(resource.PackageJson)
@@ -18,7 +26,7 @@ func main() {
 	// init wd_template
 	//wd_template.RegisterSettings(wd_template.DefaultHelpers)
 
-	app := cli.NewCliApp()
+	app := cli.NewCliApp(buildID)
 
 	// app run as urfave
 	if err := app.Run(os.Args); nil != err {
