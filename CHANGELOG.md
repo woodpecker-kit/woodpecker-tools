@@ -2,6 +2,60 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.21.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.20.0...v1.21.0) (2024-12-21)
+
+### ✨ Features
+
+* update Go version to 1.21 ([bf684503](https://github.com/woodpecker-kit/woodpecker-tools/commit/bf68450329f56cee4448d4eb7ea0d5286b7cdb87)), re [#61](https://github.com/woodpecker-kit/woodpecker-tools/issues/61)
+
+### 📝 Documentation
+
+* update guidelines and remove unnecessary content ([e39fc452](https://github.com/woodpecker-kit/woodpecker-tools/commit/e39fc452acf0254b5ab4f86c228d4feacd7e1267))
+
+### 👷‍ Build System
+
+* bump codecov/codecov-action from 5.0.7 to 5.1.2 ([6ca6109b](https://github.com/woodpecker-kit/woodpecker-tools/commit/6ca6109b9fb5dd32bc5f1233154260267520efda))
+
+* update GitHub release action to v2 ([c470a214](https://github.com/woodpecker-kit/woodpecker-tools/commit/c470a214c8458a0d8808cd968ffc942b9c039b8a))
+
+* bump codecov/codecov-action from 4.6.0 to 5.0.7 ([ac5bf5f9](https://github.com/woodpecker-kit/woodpecker-tools/commit/ac5bf5f973e5964c5e17541669e4127e451a9d81))
+
+* bump github.com/stretchr/testify from 1.9.0 to 1.10.0 ([9993ae4f](https://github.com/woodpecker-kit/woodpecker-tools/commit/9993ae4f69dc30bf2336e6a45ca674aab9171c3a))
+
+* bump github.com/Masterminds/semver/v3 from 3.3.0 to 3.3.1 ([d80e6bd4](https://github.com/woodpecker-kit/woodpecker-tools/commit/d80e6bd44acec273ec7777f28dab15cf9555d697))
+
+* bump github.com/urfave/cli/v2 from 2.27.4 to 2.27.5 ([1c74a23a](https://github.com/woodpecker-kit/woodpecker-tools/commit/1c74a23a2755c0a0afc5af1b63d410e23d6bfc7e))
+
+* bump codecov/codecov-action from 4.5.0 to 4.6.0 ([097d53d8](https://github.com/woodpecker-kit/woodpecker-tools/commit/097d53d81042ada2e0f5bb68b64f12b8e2263907))
+
+* bump github.com/sinlov-go/unittest-kit from 1.1.1 to 1.2.1 ([1622437c](https://github.com/woodpecker-kit/woodpecker-tools/commit/1622437c8990ca1b7bbf4966caeecb40abd12ce9))
+
+* bump github.com/sinlov-go/unittest-kit from 1.1.0 to 1.1.1 ([50b256a8](https://github.com/woodpecker-kit/woodpecker-tools/commit/50b256a88d521e6835c7c9f564462c2443f564dc))
+
+* bump github.com/Masterminds/sprig/v3 from 3.2.3 to 3.3.0 ([8dc155b5](https://github.com/woodpecker-kit/woodpecker-tools/commit/8dc155b5a6b0abbf090dcfcd016e5d7c8f6ed7c4))
+
+* bump github.com/urfave/cli/v2 from 2.27.3 to 2.27.4 ([0c643b67](https://github.com/woodpecker-kit/woodpecker-tools/commit/0c643b67d46bbff4468dd79aff154c8e367597cb))
+
+* bump github.com/sebdah/goldie/v2 from 2.5.3 to 2.5.5 ([664c85c2](https://github.com/woodpecker-kit/woodpecker-tools/commit/664c85c2e6f421056f663f62b77c96f5694dc703))
+
+* update go and project dependabot, and add buildID ineject at pipline ([1fec6d82](https://github.com/woodpecker-kit/woodpecker-tools/commit/1fec6d8234dc4ebb88c64b36291b05730ac6ada0)), build [#48](https://github.com/woodpecker-kit/woodpecker-tools/issues/48)
+
+* bump github.com/urfave/cli/v2 from 2.27.2 to 2.27.3 ([74a375ce](https://github.com/woodpecker-kit/woodpecker-tools/commit/74a375ce5fba05995e29028efb6b02ec2797aa99))
+
+* bump codecov/codecov-action from 4.4.1 to 4.5.0 ([e97656ce](https://github.com/woodpecker-kit/woodpecker-tools/commit/e97656cefe589e60c18d737dd30856cb756b6b20))
+
+* bump golangci/golangci-lint-action from 5 to 6 ([cd990956](https://github.com/woodpecker-kit/woodpecker-tools/commit/cd990956c05baba4de364ded471c83ffef094d9d))
+
+* bump codecov/codecov-action from 4.3.1 to 4.4.1 ([9828ca4c](https://github.com/woodpecker-kit/woodpecker-tools/commit/9828ca4c75fba84ce23a4c4113d7b29bfa66258c))
+
+* bump golangci/golangci-lint-action from 4 to 5 ([c4cfec92](https://github.com/woodpecker-kit/woodpecker-tools/commit/c4cfec92a5d90df2c96c02368c8c654e3d17475a))
+
+* bump codecov/codecov-action from 4.1.1 to 4.3.1 ([c7aefbd5](https://github.com/woodpecker-kit/woodpecker-tools/commit/c7aefbd5b02ebc6c0463193542c83e0bd2348165))
+
+* bump convention-change/conventional-version-check ([c1384e91](https://github.com/woodpecker-kit/woodpecker-tools/commit/c1384e91871f67c4b812f352d880cb522fb3afbc))
+
+* bump github.com/urfave/cli/v2 from 2.27.1 to 2.27.2 ([d3d1750b](https://github.com/woodpecker-kit/woodpecker-tools/commit/d3d1750b6bee2d53f76a06249773d7885fe3cc58))
+
 ## [1.20.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.19.0...v1.20.0) (2024-04-21)
 
 ### ✨ Features
