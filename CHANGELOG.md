@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.21.1](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.21.0...v1.21.1) (2025-01-27)
+
+### 🐛 Bug Fixes
+
+* CI_PIPELINE_STATUS not found will try use Drone env ([b846e85d](https://github.com/woodpecker-kit/woodpecker-tools/commit/b846e85d484d7e4b33b6b218602680c23a2bfbf9)), fix [#64](https://github.com/woodpecker-kit/woodpecker-tools/issues/64)
+
+### ♻ Refactor
+
+* update pipeline status reference ([6109a67e](https://github.com/woodpecker-kit/woodpecker-tools/commit/6109a67eb914f7c5cb5934029b847f71d3072d4c))
+
 ## [1.21.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.20.0...v1.21.0) (2024-12-21)
 
 ### ✨ Features
