@@ -2,6 +2,8 @@ package wd_mock
 
 import (
 	"fmt"
+	"github.com/sinlov-go/unittest-kit/env_kit"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
 )
@@ -45,7 +47,16 @@ func NewWoodpeckerInfo(opts ...WoodpeckerInfoOption) (opt *wd_info.WoodpeckerInf
 		o(opt)
 	}
 	defaultOptionWoodpeckerInfo = setDefaultOptionWoodpeckerInfo()
+
+	changByDroneEnv(opt)
 	return
+}
+
+func changByDroneEnv(info *wd_info.WoodpeckerInfo) {
+	if info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus == "" {
+		relateCIPipelineStatus := env_kit.FetchOsEnvStr(wd_flag.RelatedEnvDroneCIPipelineStatus, "")
+		info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = relateCIPipelineStatus
+	}
 }
 
 func FastWorkSpace(workspace string) WoodpeckerInfoOption {
