@@ -1,6 +1,10 @@
 package wd_short_info
 
-import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
+import (
+	"github.com/sinlov-go/unittest-kit/env_kit"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+)
 
 func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort {
 	short := WoodpeckerInfoShort{
@@ -111,5 +115,15 @@ func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort 
 			},
 		},
 	}
+
+	relatedShortInfo(&short)
+
 	return short
+}
+
+func relatedShortInfo(w *WoodpeckerInfoShort) {
+	if w.Build.Status == "" {
+		relateCIPipelineStatus := env_kit.FetchOsEnvStr(wd_flag.RelatedEnvDroneCIPipelineStatus, "")
+		w.Build.Status = relateCIPipelineStatus
+	}
 }
