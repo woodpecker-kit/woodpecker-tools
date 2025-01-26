@@ -18,7 +18,7 @@ func setDefaultCurrentPipelineInfo() *wd_info.CurrentPipelineInfo {
 		CiPipelineUrl:           "https://woodpecker.domain.com/repos/2/pipeline/10",
 		CiPipelineForgeUrl:      "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
 		CiPipelineDeployTarget:  "",
-		CiPipelineStatus:        "success",
+		CiPipelineStatus:        wd_info.BuildStatusSuccess,
 		CiPipelineCreated:       1705658141,
 		CiPipelineCreatedT:      wd_flag.FormatTimeUTCBySetting(1705658141),
 		CiPipelineStarted:       1705658156,

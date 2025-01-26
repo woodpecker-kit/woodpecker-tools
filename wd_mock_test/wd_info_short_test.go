@@ -56,6 +56,7 @@ func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 			g := goldie.New(t,
 				goldie.WithDiffEngine(goldie.ClassicDiff),
 			)
+			//tc.args.info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = ""
 
 			// do ParseWoodpeckerInfo2Short
 			gotResult := wd_short_info.ParseWoodpeckerInfo2Short(tc.args.info)
