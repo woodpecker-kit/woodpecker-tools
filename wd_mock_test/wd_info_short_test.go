@@ -62,8 +62,18 @@ func TestParseWoodpeckerInfo2Shot(t *testing.T) {
 			if tc.wantErr != nil {
 				return
 			}
+			errCheck := wd_info.CheckBuildStatusSupport(tc.args.info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus)
+			if errCheck != nil {
+				t.Errorf("check build status error: %v", errCheck)
+			}
+			errParseCheck := wd_info.CheckBuildStatusSupport(gotResult.Build.Status)
+			if errParseCheck != nil {
+				t.Fatalf("check build status error: %v", errParseCheck)
+			}
+
 			// verify ParseWoodpeckerInfo2Short
 			g.AssertJson(t, t.Name(), gotResult)
+
 		})
 	}
 }
