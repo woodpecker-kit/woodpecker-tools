@@ -55,8 +55,6 @@ func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort 
 			CreatedAt:     info.CurrentInfo.CurrentPipelineInfo.CiPipelineCreatedT,
 			Started:       info.CurrentInfo.CurrentPipelineInfo.CiPipelineStarted,
 			StartedAt:     info.CurrentInfo.CurrentPipelineInfo.CiPipelineStartedT,
-			Finished:      info.CurrentInfo.CurrentPipelineInfo.CiPipelineFinished,
-			FinishedAt:    info.CurrentInfo.CurrentPipelineInfo.CiPipelineFinishedT,
 			DurationHuman: info.CurrentInfo.CurrentPipelineInfo.CiPipelineDurationHuman,
 		},
 		Commit: Commit{
@@ -123,7 +121,10 @@ func ParseWoodpeckerInfo2Short(info wd_info.WoodpeckerInfo) WoodpeckerInfoShort 
 
 func relatedShortInfo(w *WoodpeckerInfoShort) {
 	if w.Build.Status == "" {
+		// https://github.com/woodpecker-ci/woodpecker/pull/4193
 		relateCIPipelineStatus := env_kit.FetchOsEnvStr(wd_flag.RelatedEnvDroneCIPipelineStatus, "")
-		w.Build.Status = relateCIPipelineStatus
+		if relateCIPipelineStatus != "" {
+			w.Build.Status = relateCIPipelineStatus
+		}
 	}
 }

@@ -11,7 +11,6 @@ type CurrentPipelineInfoOption func(*wd_info.CurrentPipelineInfo)
 
 func setDefaultCurrentPipelineInfo() *wd_info.CurrentPipelineInfo {
 	return &wd_info.CurrentPipelineInfo{
-		CiPipelineFiles:         `[".woodpecker/.build.yml"]`,
 		CiPipelineNumber:        "10",
 		CiPipelineParent:        "0",
 		CiPipelineEvent:         "push",
@@ -23,8 +22,6 @@ func setDefaultCurrentPipelineInfo() *wd_info.CurrentPipelineInfo {
 		CiPipelineCreatedT:      wd_flag.FormatTimeUTCBySetting(1705658141),
 		CiPipelineStarted:       1705658156,
 		CiPipelineStartedT:      wd_flag.FormatTimeUTCBySetting(1705658156),
-		CiPipelineFinished:      1705658166,
-		CiPipelineFinishedT:     wd_flag.FormatTimeUTCBySetting(1705658166),
 		CiPipelineDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705658141, 1705658166),
 	}
 }
@@ -38,9 +35,10 @@ func NewCurrentPipelineInfo(opts ...CurrentPipelineInfoOption) (opt *wd_info.Cur
 	return
 }
 
+// Deprecated: remove at woodpecker server v3.0.0
 func WithCiPipelineFiles(files string) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
-		o.CiPipelineFiles = files
+		//o.CiPipelineFiles = files
 	}
 }
 
@@ -90,7 +88,7 @@ func WithCiPipelineCreated(created uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
 		o.CiPipelineCreated = created
 		o.CiPipelineCreatedT = wd_flag.FormatTimeUTCBySetting(created)
-		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineCreated), int64(o.CiPipelineFinished))
+		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineCreated), wd_flag.GetNowTimestampSecond())
 	}
 }
 
@@ -101,11 +99,12 @@ func WithCiPipelineStarted(started uint64) CurrentPipelineInfoOption {
 	}
 }
 
+// Deprecated: remove at woodpecker server v3.0.0
 func WithCiPipelineFinished(finished uint64) CurrentPipelineInfoOption {
 	return func(o *wd_info.CurrentPipelineInfo) {
-		o.CiPipelineFinished = finished
-		o.CiPipelineFinishedT = wd_flag.FormatTimeUTCBySetting(finished)
-		o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineStarted), int64(o.CiPipelineFinished))
+		//o.CiPipelineFinished = finished
+		//o.CiPipelineFinishedT = wd_flag.FormatTimeUTCBySetting(finished)
+		//o.CiPipelineDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiPipelineStarted), int64(o.CiPipelineFinished))
 	}
 }
 

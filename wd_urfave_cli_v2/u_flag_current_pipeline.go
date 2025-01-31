@@ -8,13 +8,6 @@ import (
 func currentPipelineFlag() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{
-			Name:    wd_flag.NameCliCurrentPipelineFiles,
-			Usage:   "Provides the current pipeline files just like [\".woodpecker/.build.yml\"]",
-			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineFiles},
-			Hidden:  true,
-		},
-
-		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentPipelineNumber,
 			Usage:   "Provides the current pipeline number",
 			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineNumber},
@@ -74,13 +67,6 @@ func currentPipelineFlag() []cli.Flag {
 			Name:    wd_flag.NameCliCurrentPipelineStarted,
 			Usage:   "Provides the current pipeline started timestamp",
 			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineStarted},
-			Hidden:  true,
-		},
-
-		&cli.Uint64Flag{
-			Name:    wd_flag.NameCliCurrentPipelineFinished,
-			Usage:   "Provides the current pipeline finished timestamp",
-			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineFinished},
 			Hidden:  true,
 		},
 	}

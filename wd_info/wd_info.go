@@ -237,10 +237,10 @@ type (
 	// CurrentPipelineInfo
 	//  woodpecker current pipeline info.
 	CurrentPipelineInfo struct {
-		// CiPipelineFiles
+		// Deprecated: remove at woodpecker 3.0.0.
 		//  Provides the current pipeline files, like [".woodpecker/.build.yml"]
 		//  by env: CI_PIPELINE_FILES
-		CiPipelineFiles string `mock_env_key:"CI_PIPELINE_FILES"`
+		CiPipelineFiles string
 
 		// CiPipelineNumber
 		//  Provides the current pipeline number
@@ -275,6 +275,7 @@ type (
 		// CiPipelineStatus
 		//  Provides the current pipeline status
 		//  by env: CI_PIPELINE_STATUS
+		// Variables that do not clearly describe the state should be change in woodpecker 3.0.0 version
 		CiPipelineStatus string `mock_env_key:"CI_PIPELINE_STATUS"`
 
 		// CiPipelineCreated
@@ -297,19 +298,19 @@ type (
 		//  by env: CI_PIPELINE_STARTED
 		CiPipelineStartedT string
 
-		// CiPipelineFinished
+		// Deprecated: the pipeline can't know when it was finished while it's running, the state should be removed in woodpecker 3.0.0 version
 		//  Provides the current pipeline finished
 		//  by env: CI_PIPELINE_FINISHED
-		CiPipelineFinished uint64 `mock_env_key:"CI_PIPELINE_FINISHED"`
+		CiPipelineFinished uint64
 
-		// CiPipelineFinishedT
+		// Deprecated: remove at woodpecker server 3.0.0
 		// Provides the current pipeline finished, unix timestamp format by wd_flag.TimeFormatDefault
 		//  by env: CI_PIPELINE_FINISHED
 		CiPipelineFinishedT string
 
 		// CiPipelineDurationHuman
 		//  Provides the total pipeline time in seconds.
-		//  This value is calculated by subtracting the pipeline created timestamp from the build finished timestamp.
+		//  This value is calculated by subtracting the pipeline created timestamp from now timestamp.
 		CiPipelineDurationHuman string
 	}
 

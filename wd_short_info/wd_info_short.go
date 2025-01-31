@@ -160,10 +160,10 @@ type (
 		// StartedAt
 		// from wd_info.CurrentPipelineInfo CiPipelineStartedT
 		StartedAt string
-		// Finished
+		// Deprecated: remove at woodpecker server 3.0.0
 		// from wd_info.CurrentPipelineInfo CiPipelineFinished
 		Finished uint64
-		// FinishedAt
+		// Deprecated: remove at woodpecker server 3.0.0
 		// from wd_info.CurrentPipelineInfo CiPipelineFinishedT
 		FinishedAt string
 		// DurationHuman
