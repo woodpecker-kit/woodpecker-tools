@@ -48,6 +48,7 @@ $ echo "go mod vendor"
       before `wd_urfave_cli_v2.UrfaveCliBindInfo()`
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
+    - Deprecated `CI_PIPELINE_FINISHED` and `CI_PIPELINE_STARTED` for support woodpecker server 3.+ (v1.22+)  
 - [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system
   version
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
