@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.22.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.21.1...v1.22.0) (2025-01-31)
+
+### ✨ Features
+
+* add deprecation notice for CI pipeline variables ([24ae8571](https://github.com/woodpecker-kit/woodpecker-tools/commit/24ae857129ded0bd1e8c296bf97200f8a5789d78)), feat [#66](https://github.com/woodpecker-kit/woodpecker-tools/issues/66)
+
+* Deprecated `CI_PIPELINE_FINISHED` and `CI_PIPELINE_FILES` ([80067868](https://github.com/woodpecker-kit/woodpecker-tools/commit/80067868f83d309cbe4ea03e32e2118c07e2517c))
+
 ## [1.21.1](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.21.0...v1.21.1) (2025-01-27)
 
 ### 🐛 Bug Fixes
