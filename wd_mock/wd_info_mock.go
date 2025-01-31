@@ -55,7 +55,10 @@ func NewWoodpeckerInfo(opts ...WoodpeckerInfoOption) (opt *wd_info.WoodpeckerInf
 func changByDroneEnv(info *wd_info.WoodpeckerInfo) {
 	if info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus == "" {
 		relateCIPipelineStatus := env_kit.FetchOsEnvStr(wd_flag.RelatedEnvDroneCIPipelineStatus, "")
-		info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = relateCIPipelineStatus
+		// https://github.com/woodpecker-ci/woodpecker/pull/4193
+		if relateCIPipelineStatus != "" {
+			info.CurrentInfo.CurrentPipelineInfo.CiPipelineStatus = relateCIPipelineStatus
+		}
 	}
 }
 

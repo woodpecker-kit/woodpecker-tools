@@ -1,8 +1,8 @@
 package wd_flag
 
 const (
-	// NameCliCurrentPipelineFiles
-	//  Provides the current pipeline files, like [".woodpecker/.build.yml"]
+	// Deprecated: remove at woodpecker server 3.0.0
+	// Provides the current pipeline files, like [".woodpecker/.build.yml"]
 	NameCliCurrentPipelineFiles = "current_pipeline.files"
 
 	// EnvKeyCurrentPipelineFiles
@@ -81,11 +81,11 @@ const (
 	//  Provides the current pipeline started UNIX timestamp
 	EnvKeyCurrentPipelineStarted = "CI_PIPELINE_STARTED"
 
-	// NameCliCurrentPipelineFinished
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current pipeline finished UNIX timestamp
 	NameCliCurrentPipelineFinished = "current_pipeline.finished"
 
-	// EnvKeyCurrentPipelineFinished
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current pipeline finished UNIX timestamp
 	EnvKeyCurrentPipelineFinished = "CI_PIPELINE_FINISHED"
 )

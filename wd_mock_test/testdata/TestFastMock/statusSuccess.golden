@@ -53,7 +53,7 @@
       "CiCommitPreRelease": false
     },
     "CurrentPipelineInfo": {
-      "CiPipelineFiles": "[\".woodpecker/.build.yml\"]",
+      "CiPipelineFiles": "",
       "CiPipelineNumber": "10",
       "CiPipelineParent": "0",
       "CiPipelineEvent": "push",
@@ -65,8 +65,8 @@
       "CiPipelineCreatedT": "2024-01-19-09-55-41",
       "CiPipelineStarted": 1705658156,
       "CiPipelineStartedT": "2024-01-19-09-55-56",
-      "CiPipelineFinished": 1705658166,
-      "CiPipelineFinishedT": "2024-01-19-09-56-06",
+      "CiPipelineFinished": 0,
+      "CiPipelineFinishedT": "",
       "CiPipelineDurationHuman": "25s"
     },
     "CurrentWorkflowInfo": {

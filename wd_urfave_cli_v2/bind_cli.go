@@ -18,9 +18,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	pipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(pipelineCreateAt)
 	pipelineStartAt := c.Uint64(wd_flag.NameCliCurrentPipelineStarted)
 	pipelineStartAtT := wd_flag.FormatTimeUTCBySetting(pipelineStartAt)
-	pipelineFinishAt := c.Uint64(wd_flag.NameCliCurrentPipelineFinished)
-	pipelineFinishAtT := wd_flag.FormatTimeUTCBySetting(pipelineFinishAt)
-	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineCreateAt), int64(pipelineFinishAt))
+	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineCreateAt), wd_flag.GetNowTimestampSecond())
 
 	previousPipelineCreateAt := c.Uint64(wd_flag.NameCliPreviousPipelineCreated)
 	previousPipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineCreateAt)
@@ -56,7 +54,6 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
-			CiPipelineFiles:         c.String(wd_flag.NameCliCurrentPipelineFiles),
 			CiPipelineNumber:        c.String(wd_flag.NameCliCurrentPipelineNumber),
 			CiPipelineParent:        c.String(wd_flag.NameCliCurrentPipelineParent),
 			CiPipelineEvent:         c.String(wd_flag.NameCliCurrentPipelineEvent),
@@ -68,8 +65,6 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 			CiPipelineCreatedT:      pipelineCreateAtT,
 			CiPipelineStarted:       pipelineStartAt,
 			CiPipelineStartedT:      pipelineStartAtT,
-			CiPipelineFinished:      pipelineFinishAt,
-			CiPipelineFinishedT:     pipelineFinishAtT,
 			CiPipelineDurationHuman: pipelineDurationHuman,
 		},
 

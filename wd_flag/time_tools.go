@@ -41,6 +41,14 @@ func FormatTimeUTC(timestamp uint64, format string) string {
 	return time.Unix(int64(timestamp), 0).UTC().Format(format)
 }
 
+func GetNowTimestampSecond() int64 {
+	return time.Now().Unix()
+}
+
+func GetNowTimestampMicroseconds() int64 {
+	return time.Now().UnixMicro()
+}
+
 // DistanceBetweenTimestampSecondHuman
 // convert DistanceBetweenTimestampSecond to human-readable
 //
