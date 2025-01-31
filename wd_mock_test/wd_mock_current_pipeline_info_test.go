@@ -10,16 +10,17 @@ import (
 func TestNewCurrentPipelineInfo(t *testing.T) {
 	// mock NewCurrentPipelineInfo
 	type args struct {
-		ciPipelineNumber       string
-		ciPipelineParent       string
-		ciPipelineEvent        string
-		ciPipelineUrl          string
-		ciPipelineForgeUrl     string
-		ciPipelineDeployTarget string
-		ciPipelineStatus       string
-		ciPipelineCreated      uint64
-		ciPipelineStarted      uint64
-		ciPipelineFinished     uint64
+		ciPipelineNumber        string
+		ciPipelineParent        string
+		ciPipelineEvent         string
+		ciPipelineUrl           string
+		ciPipelineForgeUrl      string
+		ciPipelineDeployTarget  string
+		ciPipelineStatus        string
+		ciPipelineCreated       uint64
+		ciPipelineStarted       uint64
+		ciPipelineFinished      uint64
+		ciPipelineDurationHuman string
 	}
 	tests := []struct {
 		name    string
@@ -29,31 +30,33 @@ func TestNewCurrentPipelineInfo(t *testing.T) {
 		{
 			name: "sample", // testdata/TestNewCurrentPipelineInfo/sample.golden
 			args: args{
-				ciPipelineNumber:       "10",
-				ciPipelineParent:       "0",
-				ciPipelineEvent:        "push",
-				ciPipelineUrl:          "https://woodpecker.domain.com/repos/2/pipeline/10",
-				ciPipelineForgeUrl:     "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
-				ciPipelineDeployTarget: "",
-				ciPipelineStatus:       "success",
-				ciPipelineCreated:      1705658141,
-				ciPipelineStarted:      1705658156,
-				ciPipelineFinished:     1705658166,
+				ciPipelineNumber:        "10",
+				ciPipelineParent:        "0",
+				ciPipelineEvent:         "push",
+				ciPipelineUrl:           "https://woodpecker.domain.com/repos/2/pipeline/10",
+				ciPipelineForgeUrl:      "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+				ciPipelineDeployTarget:  "",
+				ciPipelineStatus:        "success",
+				ciPipelineCreated:       1705658141,
+				ciPipelineStarted:       1705658156,
+				ciPipelineFinished:      1705658166,
+				ciPipelineDurationHuman: "10s",
 			},
 		},
 		{
 			name: "one", // testdata/TestNewCurrentPipelineInfo/one.golden
 			args: args{
-				ciPipelineNumber:       "1",
-				ciPipelineParent:       "0",
-				ciPipelineEvent:        "push",
-				ciPipelineUrl:          "https://woodpecker.domain.com/repos/2/pipeline/1",
-				ciPipelineForgeUrl:     "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0345983",
-				ciPipelineDeployTarget: "",
-				ciPipelineStatus:       "success",
-				ciPipelineCreated:      1705638141,
-				ciPipelineStarted:      1705638156,
-				ciPipelineFinished:     1705458166,
+				ciPipelineNumber:        "1",
+				ciPipelineParent:        "0",
+				ciPipelineEvent:         "push",
+				ciPipelineUrl:           "https://woodpecker.domain.com/repos/2/pipeline/1",
+				ciPipelineForgeUrl:      "https://gitea.domain.com/woodpecker-kit/guidance-woodpecker-agent/commit/9c764dd487bce596c5c0402478fabde5f0345983",
+				ciPipelineDeployTarget:  "",
+				ciPipelineStatus:        "success",
+				ciPipelineCreated:       1705638141,
+				ciPipelineStarted:       1705638156,
+				ciPipelineFinished:      1705458166,
+				ciPipelineDurationHuman: "5s",
 			},
 		},
 	}
@@ -75,6 +78,11 @@ func TestNewCurrentPipelineInfo(t *testing.T) {
 				wd_mock.WithCiPipelineCreated(tc.args.ciPipelineCreated),
 				wd_mock.WithCiPipelineStarted(tc.args.ciPipelineStarted),
 			)
+			// for mock ciPipelineDurationHuman by args
+			if tc.args.ciPipelineDurationHuman != "" {
+				gotResult.CiPipelineDurationHuman = tc.args.ciPipelineDurationHuman
+			}
+
 			assert.Equal(t, tc.wantErr, gotResult == nil)
 			if tc.wantErr {
 				return
