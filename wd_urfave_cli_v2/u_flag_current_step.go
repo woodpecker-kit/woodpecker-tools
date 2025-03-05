@@ -21,12 +21,13 @@ func currentStepFlag() []cli.Flag {
 			Hidden:  true,
 		},
 
-		&cli.StringFlag{
-			Name:    wd_flag.NameCliCurrentCiStepStatus,
-			Usage:   "Provides the current step status (success, failure)",
-			EnvVars: []string{wd_flag.EnvKeyCurrentCiStepStatus},
-			Hidden:  true,
-		},
+		// Deprecated: remove at woodpecker server 3.0.0
+		//&cli.StringFlag{
+		//	Name:    wd_flag.NameCliCurrentCiStepStatus,
+		//	Usage:   "Provides the current step status (success, failure)",
+		//	EnvVars: []string{wd_flag.EnvKeyCurrentCiStepStatus},
+		//	Hidden:  true,
+		//},
 
 		&cli.Uint64Flag{
 			Name:    wd_flag.NameCliCurrentCiStepStarted,
@@ -35,12 +36,13 @@ func currentStepFlag() []cli.Flag {
 			Hidden:  true,
 		},
 
-		&cli.Uint64Flag{
-			Name:    wd_flag.NameCliCurrentCiStepFinished,
-			Usage:   "Provides the current step finished UNIX timestamp",
-			EnvVars: []string{wd_flag.EnvKeyCurrentCiStepFinished},
-			Hidden:  true,
-		},
+		// Deprecated: remove at woodpecker server 3.0.0
+		//&cli.Uint64Flag{
+		//	Name:    wd_flag.NameCliCurrentCiStepFinished,
+		//	Usage:   "Provides the current step finished UNIX timestamp",
+		//	EnvVars: []string{wd_flag.EnvKeyCurrentCiStepFinished},
+		//	Hidden:  true,
+		//},
 
 		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCiStepUrl,

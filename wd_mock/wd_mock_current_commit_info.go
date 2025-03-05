@@ -1,6 +1,8 @@
 package wd_mock
 
-import "github.com/woodpecker-kit/woodpecker-tools/wd_info"
+import (
+	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
+)
 
 var defaultCurrentCommitInfo = setDefaultCurrentCommitInfo()
 
@@ -11,7 +13,6 @@ func setDefaultCurrentCommitInfo() *wd_info.CurrentCommitInfo {
 		CiCommitSha:               "9c764dd487bce596c5c0402478fabde5f0344983",
 		CiCommitRef:               "refs/heads/main",
 		CiCommitRefSpec:           "",
-		CiCommitUrl:               "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
 		CiCommitBranch:            "main",
 		CiCommitSourceBranch:      "",
 		CiCommitTargetBranch:      "",
@@ -53,9 +54,10 @@ func WithCiCommitRefSpec(commitRefSpec string) CurrentCommitInfoOption {
 	}
 }
 
+// Deprecated: remove at woodpecker server 3.0.0, instead use WithCiPipelineForgeUrl
 func WithCiCommitUrl(commitUrl string) CurrentCommitInfoOption {
 	return func(o *wd_info.CurrentCommitInfo) {
-		o.CiCommitUrl = commitUrl
+		//o.CiCommitUrl = commitUrl
 	}
 }
 

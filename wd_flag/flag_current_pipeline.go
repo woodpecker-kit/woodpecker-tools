@@ -57,11 +57,11 @@ const (
 	//  Provides the current pipeline deploy target for deployment events (ie production)
 	EnvKeyCurrentPipelineDeployTarget = "CI_PIPELINE_DEPLOY_TARGET"
 
-	// NameCliCurrentPipelineStatus
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current pipeline status (success, failure)
 	NameCliCurrentPipelineStatus = "current_pipeline.status"
 
-	// EnvKeyCurrentPipelineStatus
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current pipeline status (success, failure)
 	EnvKeyCurrentPipelineStatus = "CI_PIPELINE_STATUS"
 

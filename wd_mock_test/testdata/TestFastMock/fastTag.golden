@@ -39,7 +39,7 @@
       "CiCommitSha": "9c764dd487bce596c5c0402478fabde5f0344983",
       "CiCommitRef": "refs/tags/v1.0.0",
       "CiCommitRefSpec": "",
-      "CiCommitUrl": "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+      "CiCommitUrl": "",
       "CiCommitBranch": "refs/tags/v1.0.0",
       "CiCommitSourceBranch": "",
       "CiCommitTargetBranch": "",
@@ -76,11 +76,13 @@
     "CurrentStepInfo": {
       "CiStepName": "checkout",
       "CiStepNumber": "0",
-      "CiStepStatus": "success",
+      "CiStepStatus": "",
       "CiStepStarted": 1705658156,
       "CiStepStartedT": "2024-01-19-09-55-56",
-      "CiStepFinished": 1705658166,
-      "CiStepFinishedT": "2024-01-19-09-56-06",
+      "CiStepFinished": 0,
+      "CiStepFinishedT": "",
+      "CiStepNowTime": 1705658166,
+      "CiStepNowTimeT": "2024-01-19-09-56-06",
       "CiStepDurationHuman": "10s",
       "CiStepUrl": "https://woodpecker.domain.com/repos/2/pipeline/10"
     }

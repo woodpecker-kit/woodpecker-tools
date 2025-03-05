@@ -10,12 +10,11 @@ import (
 func TestNewCurrentStepInfo(t *testing.T) {
 	// mock NewCurrentStepInfo
 	type args struct {
-		ciStepName     string
-		ciStepNumber   string
-		ciStepStatus   string
-		ciStepStarted  uint64
-		ciStepFinished uint64
-		ciStepUrl      string
+		ciStepName    string
+		ciStepNumber  string
+		ciStepStarted uint64
+		ciStepNowTime uint64
+		ciStepUrl     string
 	}
 	tests := []struct {
 		name    string
@@ -25,12 +24,11 @@ func TestNewCurrentStepInfo(t *testing.T) {
 		{
 			name: "sample", // testdata/TestNewCurrentStepInfo/sample.golden
 			args: args{
-				ciStepName:     "checkout",
-				ciStepNumber:   "0",
-				ciStepStatus:   "success",
-				ciStepStarted:  1705658156,
-				ciStepFinished: 1705658166,
-				ciStepUrl:      "https://woodpecker.domain.com/repos/2/pipeline/10",
+				ciStepName:    "checkout",
+				ciStepNumber:  "0",
+				ciStepStarted: 1705658156,
+				ciStepNowTime: 1705658166,
+				ciStepUrl:     "https://woodpecker.domain.com/repos/2/pipeline/10",
 			},
 		},
 	}
@@ -44,9 +42,8 @@ func TestNewCurrentStepInfo(t *testing.T) {
 			gotResult := wd_mock.NewCurrentStepInfo(
 				wd_mock.WithCiStepName(tc.args.ciStepName),
 				wd_mock.WithCiStepNumber(tc.args.ciStepNumber),
-				wd_mock.WithCiStepStatus(tc.args.ciStepStatus),
 				wd_mock.WithCiStepStarted(tc.args.ciStepStarted),
-				wd_mock.WithCiStepFinished(tc.args.ciStepFinished),
+				wd_mock.WithCiStepNowTime(tc.args.ciStepNowTime),
 				wd_mock.WithCiStepUrl(tc.args.ciStepUrl),
 			)
 			assert.Equal(t, tc.wantErr, gotResult == nil)
