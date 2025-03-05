@@ -13,11 +13,10 @@ func setDefaultCurrentStepInfo() *wd_info.CurrentStepInfo {
 	return &wd_info.CurrentStepInfo{
 		CiStepName:          "checkout",
 		CiStepNumber:        "0",
-		CiStepStatus:        "success",
 		CiStepStarted:       1705658156,
 		CiStepStartedT:      wd_flag.FormatTimeUTCBySetting(1705658156),
-		CiStepFinished:      1705658166,
-		CiStepFinishedT:     wd_flag.FormatTimeUTCBySetting(1705658166),
+		CiStepNowTime:       1705658166,
+		CiStepNowTimeT:      wd_flag.FormatTimeUTCBySetting(1705658166),
 		CiStepDurationHuman: wd_flag.DistanceBetweenTimestampSecondHuman(1705658156, 1705658166),
 		CiStepUrl:           "https://woodpecker.domain.com/repos/2/pipeline/10",
 	}
@@ -44,9 +43,10 @@ func WithCiStepNumber(stepNumber string) CurrentStepInfoOption {
 	}
 }
 
+// Deprecated: remove at woodpecker server 3.0.0
 func WithCiStepStatus(stepStatus string) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
-		o.CiStepStatus = stepStatus
+		//o.CiStepStatus = stepStatus
 	}
 }
 
@@ -54,15 +54,23 @@ func WithCiStepStarted(stepStarted uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
 		o.CiStepStarted = stepStarted
 		o.CiStepStartedT = wd_flag.FormatTimeUTCBySetting(stepStarted)
-		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
+		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepNowTime))
 	}
 }
 
+// Deprecated: remove at woodpecker server 3.0.0, instead of WithCiStepNowTime
 func WithCiStepFinished(stepFinished uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
-		o.CiStepFinished = stepFinished
-		o.CiStepFinishedT = wd_flag.FormatTimeUTCBySetting(stepFinished)
-		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
+		//o.CiStepFinished = stepFinished
+		//o.CiStepFinishedT = wd_flag.FormatTimeUTCBySetting(stepFinished)
+		//o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
+	}
+}
+
+func WithCiStepNowTime(stepNowTime uint64) CurrentStepInfoOption {
+	return func(o *wd_info.CurrentStepInfo) {
+		o.CiStepNowTime = stepNowTime
+		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepNowTime))
 	}
 }
 

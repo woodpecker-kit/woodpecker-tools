@@ -119,7 +119,6 @@ func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBr
 		if o.RepositoryInfo.CIRepoURL != "" {
 			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
-			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
 		}
 
 	}
@@ -140,7 +139,6 @@ func FastPullRequestClose(prNumber, msg string, sourceBranch string, targetBranc
 		if o.RepositoryInfo.CIRepoURL != "" {
 			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
-			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
 		}
 
 	}
@@ -162,7 +160,6 @@ func FastPushCommitBranch(commitBranch, sha, msg string) WoodpeckerInfoOption {
 		if o.RepositoryInfo.CIRepoURL != "" {
 			forgeUrl := fmt.Sprintf("%s/commit/%s", o.RepositoryInfo.CIRepoURL, sha)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
-			o.CurrentInfo.CurrentCommitInfo.CiCommitUrl = forgeUrl
 		}
 
 	}

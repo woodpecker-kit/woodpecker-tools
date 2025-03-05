@@ -13,7 +13,7 @@ func TestNewCurrentCommitInfo(t *testing.T) {
 		ciCommitSha               string
 		ciCommitRef               string
 		ciCommitRefSpec           string
-		ciCommitUrl               string
+		ciPipelineForgeUrl        string
 		ciCommitBranch            string
 		ciCommitSourceBranch      string
 		ciCommitTargetBranch      string
@@ -37,7 +37,7 @@ func TestNewCurrentCommitInfo(t *testing.T) {
 				ciCommitSha:               "9c764dd487bce596c5c0402478fabde5f0344983",
 				ciCommitRef:               "refs/heads/main",
 				ciCommitRefSpec:           "",
-				ciCommitUrl:               "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+				ciPipelineForgeUrl:        "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
 				ciCommitBranch:            "main",
 				ciCommitSourceBranch:      "",
 				ciCommitTargetBranch:      "",
@@ -57,7 +57,7 @@ func TestNewCurrentCommitInfo(t *testing.T) {
 				ciCommitSha:               "9c764dd487bce596c5c0402478fabde5f0344984",
 				ciCommitRef:               "refs/heads/dev",
 				ciCommitRefSpec:           "",
-				ciCommitUrl:               "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
+				ciPipelineForgeUrl:        "https://gitea.domain.com/sinlov/woodpecker-tools/commit/9c764dd487bce596c5c0402478fabde5f0344983",
 				ciCommitBranch:            "dev",
 				ciCommitSourceBranch:      "",
 				ciCommitTargetBranch:      "",
@@ -83,7 +83,6 @@ func TestNewCurrentCommitInfo(t *testing.T) {
 				wd_mock.WithCiCommitSha(tc.args.ciCommitSha),
 				wd_mock.WithCiCommitRef(tc.args.ciCommitRef),
 				wd_mock.WithCiCommitRefSpec(tc.args.ciCommitRefSpec),
-				wd_mock.WithCiCommitUrl(tc.args.ciCommitUrl),
 				wd_mock.WithCiCommitBranch(tc.args.ciCommitBranch),
 				wd_mock.WithCiCommitSourceBranch(tc.args.ciCommitSourceBranch),
 				wd_mock.WithCiCommitTargetBranch(tc.args.ciCommitTargetBranch),
