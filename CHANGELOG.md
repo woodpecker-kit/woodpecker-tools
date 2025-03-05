@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [convention-change-log](https://github.com/convention-change/convention-change-log) for commit guidelines.
 
+## [1.23.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.22.0...v1.23.0) (2025-03-06)
+
+### ✨ Features
+
+* Deprecated ci environment variable CI_COMMIT_URL ([b2a95814](https://github.com/woodpecker-kit/woodpecker-tools/commit/b2a9581457e75f851b745fa40eddde2176c0d0c9))
+
+### 📝 Documentation
+
+* fix CI_PIPELINE_FILES typo in README.md ([1227eeee](https://github.com/woodpecker-kit/woodpecker-tools/commit/1227eeeec4fa9baac34c3d3152e67f2432660b8b))
+
+### ♻ Refactor
+
+* remove CiCommitUrl and CiStepFinished fields ([ae250053](https://github.com/woodpecker-kit/woodpecker-tools/commit/ae2500530efa9ddcaf5a1f827bad299a814694f9))
+
+### 👷‍ Build System
+
+* bump codecov/codecov-action from 5.3.1 to 5.4.0 ([0f630b10](https://github.com/woodpecker-kit/woodpecker-tools/commit/0f630b10f9b15e6a99d7d1a89c72121098cf9927))
+
+* bump codecov/codecov-action from 5.1.2 to 5.3.1 ([a09b735c](https://github.com/woodpecker-kit/woodpecker-tools/commit/a09b735cfce1dec3ecd4dba88dc9ce7be0386571))
+
 ## [1.22.0](https://github.com/woodpecker-kit/woodpecker-tools/compare/1.21.1...v1.22.0) (2025-01-31)
 
 ### ✨ Features
