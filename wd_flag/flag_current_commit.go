@@ -25,11 +25,11 @@ const (
 	//  Provides the current commit ref spec
 	EnvKeyCurrentCommitCiCommitRefSpec = "CI_COMMIT_REFSPEC"
 
-	// NameCliCurrentCommitCiCommitUrl
+	// Deprecated: remove at woodpecker server 3.0.0
 	// Provides the current commit URL
 	NameCliCurrentCommitCiCommitUrl = "current_commit.ci_commit_url"
 
-	// EnvKeyCurrentCommitCiCommitUrl
+	// Deprecated: remove at woodpecker server 3.0.0
 	// Provides the current commit URL
 	EnvKeyCurrentCommitCiCommitUrl = "CI_COMMIT_URL"
 

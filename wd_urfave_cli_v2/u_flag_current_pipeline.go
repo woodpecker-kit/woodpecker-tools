@@ -49,12 +49,13 @@ func currentPipelineFlag() []cli.Flag {
 			Hidden:  true,
 		},
 
-		&cli.StringFlag{
-			Name:    wd_flag.NameCliCurrentPipelineStatus,
-			Usage:   "Provides the current pipeline status (success, failure)",
-			EnvVars: []string{wd_flag.EnvKeyCurrentPipelineStatus},
-			Hidden:  true,
-		},
+		// Deprecated: remove at woodpecker server 3.0.0
+		//&cli.StringFlag{
+		//	Name:    wd_flag.NameCliCurrentPipelineStatus,
+		//	Usage:   "Provides the current pipeline status (success, failure)",
+		//	EnvVars: []string{wd_flag.EnvKeyCurrentPipelineStatus},
+		//	Hidden:  true,
+		//},
 
 		&cli.Uint64Flag{
 			Name:    wd_flag.NameCliCurrentPipelineCreated,

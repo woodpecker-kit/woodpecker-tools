@@ -18,10 +18,12 @@ const (
 	EnvKeyCurrentCiStepNumber = "CI_STEP_NUMBER"
 
 	// NameCliCurrentCiStepStatus
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current step status (success, failure)
 	NameCliCurrentCiStepStatus = "current_step.status"
 
 	// EnvKeyCurrentCiStepStatus
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current step status (success, failure)
 	EnvKeyCurrentCiStepStatus = "CI_STEP_STATUS"
 
@@ -33,11 +35,11 @@ const (
 	//  Provides the current step started UNIX timestamp
 	EnvKeyCurrentCiStepStarted = "CI_STEP_STARTED"
 
-	// NameCliCurrentCiStepFinished
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current step finished UNIX timestamp
 	NameCliCurrentCiStepFinished = "current_step.finished"
 
-	// EnvKeyCurrentCiStepFinished
+	// Deprecated: remove at woodpecker server 3.0.0
 	//  Provides the current step finished UNIX timestamp
 	EnvKeyCurrentCiStepFinished = "CI_STEP_FINISHED"
 

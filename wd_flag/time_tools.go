@@ -45,8 +45,16 @@ func GetNowTimestampSecond() int64 {
 	return time.Now().Unix()
 }
 
+func GetNowTimestampSecondU64() uint64 {
+	return uint64(time.Now().Unix())
+}
+
 func GetNowTimestampMicroseconds() int64 {
 	return time.Now().UnixMicro()
+}
+
+func GetNowTimestampMicrosecondsU64() uint64 {
+	return uint64(time.Now().UnixMicro())
 }
 
 // DistanceBetweenTimestampSecondHuman

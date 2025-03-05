@@ -173,9 +173,10 @@ type (
 		//  by env: CI_COMMIT_REFSPEC
 		CiCommitRefSpec string `mock_env_key:"CI_COMMIT_REFSPEC"`
 
-		// CiCommitUrl
+		// Deprecated: remove at woodpecker server 3.0.0, instead use CurrentPipelineInfo.CiPipelineForgeUrl
 		//  Provides the current commit url
 		//  by env: CI_COMMIT_URL
+		// change to use env: CI_PIPELINE_FORGE_URL
 		CiCommitUrl string `mock_env_key:"CI_COMMIT_URL"`
 
 		// CiCommitBranch
@@ -275,7 +276,7 @@ type (
 		// CiPipelineStatus
 		//  Provides the current pipeline status
 		//  by env: CI_PIPELINE_STATUS
-		// Variables that do not clearly describe the state should be change in woodpecker 3.0.0 version
+		// Warning Variables that remove at woodpecker server 3.0.0 now use env:DRONE_BUILD_STATUS but this is broken
 		CiPipelineStatus string `mock_env_key:"CI_PIPELINE_STATUS"`
 
 		// CiPipelineCreated
@@ -341,7 +342,7 @@ type (
 		//  by env: CI_STEP_NUMBER
 		CiStepNumber string `mock_env_key:"CI_STEP_NUMBER"`
 
-		// CiStepStatus
+		// Deprecated: remove at woodpecker server 3.0.0
 		//  Provides the current step status (success, failure)
 		//  by env: CI_STEP_STATUS
 		CiStepStatus string `mock_env_key:"CI_STEP_STATUS"`
@@ -356,15 +357,22 @@ type (
 		//  by env: CI_STEP_STARTED
 		CiStepStartedT string
 
-		// CiStepFinished
+		// Deprecated: remove at woodpecker server 3.0.0, use CiStepNowTime
 		//  Provides the step finished UNIX timestamp
 		//  by env: CI_STEP_FINISHED
 		CiStepFinished uint64 `mock_env_key:"CI_STEP_FINISHED"`
 
-		// CiStepFinishedT
+		// Deprecated: remove at woodpecker server 3.0.0, use CiStepNowTimeT
 		// Provides the current step finished, unix timestamp format by wd_flag.TimeFormatDefault
 		//  by env: CI_STEP_FINISHED
+		// move to CiStepNowTimeT
 		CiStepFinishedT string
+
+		//  Provides the step now time UNIX timestamp
+		CiStepNowTime uint64
+
+		// Provides the current step now time, unix timestamp format by wd_flag.TimeFormatDefault
+		CiStepNowTimeT string
 
 		// CiStepDurationHuman
 		//  Provides the total step time in seconds.

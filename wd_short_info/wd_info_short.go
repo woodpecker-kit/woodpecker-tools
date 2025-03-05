@@ -203,12 +203,16 @@ type (
 		// StartedAt
 		// from wd_info.CurrentStepInfo CiStepStartedT
 		StartedAt string
-		// Finished
+		// Deprecated: remove at woodpecker server 3.0.0, instead use NowTime
 		// from wd_info.CurrentStepInfo CiStepFinished
 		Finished uint64
-		// FinishedAt
+		// Deprecated: remove at woodpecker server 3.0.0, instead use NowTimeT
 		// from wd_info.CurrentStepInfo CiStepFinishedT
 		FinishedAt string
+		// now build time
+		NowTime uint64
+		// now build time format
+		NowTimeT string
 		// DurationStepHuman
 		//	This value is calculated by subtracting the step created timestamp from the build finished timestamp.
 		// from wd_info.CurrentStepInfo CiStepDurationHuman

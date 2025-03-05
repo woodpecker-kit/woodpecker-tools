@@ -30,16 +30,15 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 
 	stepStartedAt := c.Uint64(wd_flag.NameCliCurrentCiStepStarted)
 	stepStartedAtT := wd_flag.FormatTimeUTCBySetting(stepStartedAt)
-	stepFinishedAt := c.Uint64(wd_flag.NameCliCurrentCiStepFinished)
-	stepFinishedAtT := wd_flag.FormatTimeUTCBySetting(stepFinishedAt)
-	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(stepStartedAt), int64(stepFinishedAt))
+	stepNowTimeAt := wd_flag.GetNowTimestampSecondU64()
+	stepNowTimeAtT := wd_flag.FormatTimeUTCBySetting(stepNowTimeAt)
+	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(stepStartedAt), int64(stepNowTimeAt))
 
 	var currentInfo = wd_info.CurrentInfo{
 		CurrentCommitInfo: wd_info.CurrentCommitInfo{
 			CiCommitSha:               c.String(wd_flag.NameCliCurrentCommitCiCommitSha),
 			CiCommitRef:               c.String(wd_flag.NameCliCurrentCommitCiCommitRef),
 			CiCommitRefSpec:           c.String(wd_flag.NameCliCurrentCommitCiCommitRefSpec),
-			CiCommitUrl:               c.String(wd_flag.NameCliCurrentCommitCiCommitUrl),
 			CiCommitBranch:            c.String(wd_flag.NameCliCurrentCommitCiCommitBranch),
 			CiCommitSourceBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitSourceBranch),
 			CiCommitTargetBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitTargetBranch),
@@ -54,13 +53,13 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
-			CiPipelineNumber:        c.String(wd_flag.NameCliCurrentPipelineNumber),
-			CiPipelineParent:        c.String(wd_flag.NameCliCurrentPipelineParent),
-			CiPipelineEvent:         c.String(wd_flag.NameCliCurrentPipelineEvent),
-			CiPipelineUrl:           c.String(wd_flag.NameCliCurrentPipelineUrl),
-			CiPipelineForgeUrl:      c.String(wd_flag.NameCliCurrentPipelineForgeUrl),
-			CiPipelineDeployTarget:  c.String(wd_flag.NameCliCurrentPipelineDeployTarget),
-			CiPipelineStatus:        c.String(wd_flag.NameCliCurrentPipelineStatus),
+			CiPipelineNumber:       c.String(wd_flag.NameCliCurrentPipelineNumber),
+			CiPipelineParent:       c.String(wd_flag.NameCliCurrentPipelineParent),
+			CiPipelineEvent:        c.String(wd_flag.NameCliCurrentPipelineEvent),
+			CiPipelineUrl:          c.String(wd_flag.NameCliCurrentPipelineUrl),
+			CiPipelineForgeUrl:     c.String(wd_flag.NameCliCurrentPipelineForgeUrl),
+			CiPipelineDeployTarget: c.String(wd_flag.NameCliCurrentPipelineDeployTarget),
+			//CiPipelineStatus:        c.String(wd_flag.NameCliCurrentPipelineStatus),
 			CiPipelineCreated:       pipelineCreateAt,
 			CiPipelineCreatedT:      pipelineCreateAtT,
 			CiPipelineStarted:       pipelineStartAt,
@@ -76,11 +75,10 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		CurrentStepInfo: wd_info.CurrentStepInfo{
 			CiStepName:          c.String(wd_flag.NameCliCurrentCiStepName),
 			CiStepNumber:        c.String(wd_flag.NameCliCurrentCiStepNumber),
-			CiStepStatus:        c.String(wd_flag.NameCliCurrentCiStepStatus),
 			CiStepStarted:       stepStartedAt,
 			CiStepStartedT:      stepStartedAtT,
-			CiStepFinished:      stepFinishedAt,
-			CiStepFinishedT:     stepFinishedAtT,
+			CiStepNowTime:       stepNowTimeAt,
+			CiStepNowTimeT:      stepNowTimeAtT,
 			CiStepDurationHuman: stepDurationHuman,
 			CiStepUrl:           c.String(wd_flag.NameCliCurrentCiStepUrl),
 		},

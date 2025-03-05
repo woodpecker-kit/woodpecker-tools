@@ -28,12 +28,13 @@ func currentCommitFlag() []cli.Flag {
 			Hidden:  true,
 		},
 
-		&cli.StringFlag{
-			Name:    wd_flag.NameCliCurrentCommitCiCommitUrl,
-			Usage:   "Provides the current commit URL",
-			EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitUrl},
-			Hidden:  true,
-		},
+		// Deprecated: remove at woodpecker server 3.0.0
+		//&cli.StringFlag{
+		//	Name:    wd_flag.NameCliCurrentCommitCiCommitUrl,
+		//	Usage:   "Provides the current commit URL",
+		//	EnvVars: []string{wd_flag.EnvKeyCurrentCommitCiCommitUrl},
+		//	Hidden:  true,
+		//},
 
 		&cli.StringFlag{
 			Name:    wd_flag.NameCliCurrentCommitCiCommitBranch,
