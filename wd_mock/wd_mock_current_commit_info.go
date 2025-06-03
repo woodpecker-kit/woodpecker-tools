@@ -32,7 +32,9 @@ func NewCurrentCommitInfo(opts ...CurrentCommitInfoOption) (opt *wd_info.Current
 	for _, o := range opts {
 		o(opt)
 	}
+
 	defaultCurrentCommitInfo = setDefaultCurrentCommitInfo()
+
 	return
 }
 
@@ -54,10 +56,10 @@ func WithCiCommitRefSpec(commitRefSpec string) CurrentCommitInfoOption {
 	}
 }
 
-// Deprecated: remove at woodpecker server 3.0.0, instead use WithCiPipelineForgeUrl
+// Deprecated: remove at woodpecker server 3.0.0, instead use WithCiPipelineForgeUrl.
 func WithCiCommitUrl(commitUrl string) CurrentCommitInfoOption {
 	return func(o *wd_info.CurrentCommitInfo) {
-		//o.CiCommitUrl = commitUrl
+		// o.CiCommitUrl = commitUrl
 	}
 }
 

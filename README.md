@@ -48,7 +48,7 @@ $ echo "go mod vendor"
       before `wd_urfave_cli_v2.UrfaveCliBindInfo()`
 - [x] `wd_info.WoodpeckerInfo` is plugin most use env args
   from [woodpecker-ci/woodpecker](https://github.com/woodpecker-ci/woodpecker)
-    - Deprecated `CI_PIPELINE_FINISHED` and `CI_PIPELINE_FILES` for support woodpecker server 3.+ (v1.22+)  
+    - Deprecated `CI_PIPELINE_FINISHED` and `CI_PIPELINE_FILES` for support woodpecker server 3.+ (v1.22+)
 - [x] `wd_info.CiSystemVersionMinimumSupport` and `wd_info.CiSystemVersionConstraint` can check plugin support ci system
   version
 - [x] `wd_urfave_cli_v2.WoodpeckerUrfaveCliFlags()` bind cli
@@ -84,20 +84,6 @@ $ echo "go mod vendor"
     - [x] full check by golang version
     - [x] full check for docker build
 
-## env
-
-- minimum go version: go 1.21
-- change `go 1.21`, `^1.21`, `1.21.13` to new go version
-
-### libs
-
-| lib                                 | version |
-|:------------------------------------|:--------|
-| https://github.com/stretchr/testify | v1.8.4  |
-| https://github.com/sebdah/goldie    | v2.5.3  |
-
-- more libs see [go.mod](https://github.com/woodpecker-kit/woodpecker-tools/blob/main/go.mod)
-
 ## usage
 
 ### `wd_info.WoodpeckerInfo`
@@ -111,42 +97,4 @@ $ echo "go mod vendor"
 
 # dev
 
-```bash
-# It needs to be executed after the first use or update of dependencies.
-$ make init dep
-```
-
-- test code
-
-```bash
-$ make test testBenchmark
-```
-
-add main.go file and run
-
-```bash
-# run at env dev use cmd/woodpecker-tools/main.go
-$ make dev
-```
-
-- ci to fast check
-
-```bash
-# check style at local
-$ make style
-
-# run ci at local
-$ make ci
-```
-
-## docker
-
-```bash
-# then test build as test/Dockerfile
-$ make dockerTestRestartLatest
-# clean test build
-$ make dockerTestPruneLatest
-
-# more info see
-$ make helpDocker
-```
+see [doc-dev/dev.md](doc-dev/dev.md)
