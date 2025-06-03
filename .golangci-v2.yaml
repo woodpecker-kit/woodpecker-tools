@@ -11,6 +11,7 @@ linters:
     - bodyclose
     - containedctx
     - cyclop
+    - dupl
     - depguard
     - err113
     - errname
