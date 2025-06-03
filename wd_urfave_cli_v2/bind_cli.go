@@ -11,14 +11,16 @@ import (
 //
 //	woodpecker urfave cli bind info
 //
-// want change time format, please change wd_flag.SetTimeFormat before this method
+// want change time format, please change wd_flag.SetTimeFormat before this method.
 func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
-
 	pipelineCreateAt := c.Uint64(wd_flag.NameCliCurrentPipelineCreated)
 	pipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(pipelineCreateAt)
 	pipelineStartAt := c.Uint64(wd_flag.NameCliCurrentPipelineStarted)
 	pipelineStartAtT := wd_flag.FormatTimeUTCBySetting(pipelineStartAt)
-	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(pipelineCreateAt), wd_flag.GetNowTimestampSecond())
+	pipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(
+		int64(pipelineCreateAt),
+		wd_flag.GetNowTimestampSecond(),
+	)
 
 	previousPipelineCreateAt := c.Uint64(wd_flag.NameCliPreviousPipelineCreated)
 	previousPipelineCreateAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineCreateAt)
@@ -26,30 +28,38 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 	previousPipelineStartedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineStartedAt)
 	previousPipelineFinishedAt := c.Uint64(wd_flag.NameCliPreviousPipelineFinished)
 	previousPipelineFinishedAtT := wd_flag.FormatTimeUTCBySetting(previousPipelineFinishedAt)
-	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(previousPipelineCreateAt), int64(previousPipelineFinishedAt))
+	previousPipelineDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(
+		int64(previousPipelineCreateAt),
+		int64(previousPipelineFinishedAt),
+	)
 
 	stepStartedAt := c.Uint64(wd_flag.NameCliCurrentCiStepStarted)
 	stepStartedAtT := wd_flag.FormatTimeUTCBySetting(stepStartedAt)
 	stepNowTimeAt := wd_flag.GetNowTimestampSecondU64()
 	stepNowTimeAtT := wd_flag.FormatTimeUTCBySetting(stepNowTimeAt)
-	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(int64(stepStartedAt), int64(stepNowTimeAt))
+	stepDurationHuman := wd_flag.DistanceBetweenTimestampSecondHuman(
+		int64(stepStartedAt),
+		int64(stepNowTimeAt),
+	)
 
-	var currentInfo = wd_info.CurrentInfo{
+	currentInfo := wd_info.CurrentInfo{
 		CurrentCommitInfo: wd_info.CurrentCommitInfo{
-			CiCommitSha:               c.String(wd_flag.NameCliCurrentCommitCiCommitSha),
-			CiCommitRef:               c.String(wd_flag.NameCliCurrentCommitCiCommitRef),
-			CiCommitRefSpec:           c.String(wd_flag.NameCliCurrentCommitCiCommitRefSpec),
-			CiCommitBranch:            c.String(wd_flag.NameCliCurrentCommitCiCommitBranch),
-			CiCommitSourceBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitSourceBranch),
-			CiCommitTargetBranch:      c.String(wd_flag.NameCliCurrentCommitCiCommitTargetBranch),
-			CiCommitTag:               c.String(wd_flag.NameCliCurrentCommitCiCommitTag),
-			CiCommitPullRequest:       c.String(wd_flag.NameCliCurrentCommitCiCommitPullRequest),
-			CiCommitPullRequestLabels: c.String(wd_flag.NameCliCurrentCommitCiCommitPullRequestLabels),
-			CiCommitMessage:           c.String(wd_flag.NameCliCurrentCommitCiCommitMessage),
-			CiCommitAuthor:            c.String(wd_flag.NameCliCurrentCommitCiCommitAuthor),
-			CiCommitAuthorEmail:       c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorEmail),
-			CiCommitAuthorAvatar:      c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorAvatar),
-			CiCommitPreRelease:        c.Bool(wd_flag.NameCliCurrentCommitCiCommitPreRelease),
+			CiCommitSha:          c.String(wd_flag.NameCliCurrentCommitCiCommitSha),
+			CiCommitRef:          c.String(wd_flag.NameCliCurrentCommitCiCommitRef),
+			CiCommitRefSpec:      c.String(wd_flag.NameCliCurrentCommitCiCommitRefSpec),
+			CiCommitBranch:       c.String(wd_flag.NameCliCurrentCommitCiCommitBranch),
+			CiCommitSourceBranch: c.String(wd_flag.NameCliCurrentCommitCiCommitSourceBranch),
+			CiCommitTargetBranch: c.String(wd_flag.NameCliCurrentCommitCiCommitTargetBranch),
+			CiCommitTag:          c.String(wd_flag.NameCliCurrentCommitCiCommitTag),
+			CiCommitPullRequest:  c.String(wd_flag.NameCliCurrentCommitCiCommitPullRequest),
+			CiCommitPullRequestLabels: c.String(
+				wd_flag.NameCliCurrentCommitCiCommitPullRequestLabels,
+			),
+			CiCommitMessage:      c.String(wd_flag.NameCliCurrentCommitCiCommitMessage),
+			CiCommitAuthor:       c.String(wd_flag.NameCliCurrentCommitCiCommitAuthor),
+			CiCommitAuthorEmail:  c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorEmail),
+			CiCommitAuthorAvatar: c.String(wd_flag.NameCliCurrentCommitCiCommitAuthorAvatar),
+			CiCommitPreRelease:   c.Bool(wd_flag.NameCliCurrentCommitCiCommitPreRelease),
 		},
 
 		CurrentPipelineInfo: wd_info.CurrentPipelineInfo{
@@ -59,7 +69,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 			CiPipelineUrl:          c.String(wd_flag.NameCliCurrentPipelineUrl),
 			CiPipelineForgeUrl:     c.String(wd_flag.NameCliCurrentPipelineForgeUrl),
 			CiPipelineDeployTarget: c.String(wd_flag.NameCliCurrentPipelineDeployTarget),
-			//CiPipelineStatus:        c.String(wd_flag.NameCliCurrentPipelineStatus),
+			// CiPipelineStatus:        c.String(wd_flag.NameCliCurrentPipelineStatus),
 			CiPipelineCreated:       pipelineCreateAt,
 			CiPipelineCreatedT:      pipelineCreateAtT,
 			CiPipelineStarted:       pipelineStartAt,
@@ -84,7 +94,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 	}
 
-	var previousInfo = wd_info.PreviousInfo{
+	previousInfo := wd_info.PreviousInfo{
 		PreviousCommitInfo: wd_info.PreviousCommitInfo{
 			CiPreviousCommitSha:          c.String(wd_flag.NameCliPreviousCommitSha),
 			CiPreviousCommitRef:          c.String(wd_flag.NameCliPreviousCommitRef),
@@ -117,7 +127,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 		},
 	}
 
-	var wdInfo = wd_info.WoodpeckerInfo{
+	wdInfo := wd_info.WoodpeckerInfo{
 		BasicInfo: wd_info.BasicInfo{
 			CI:          c.String(wd_flag.NameCliCi),
 			CIWorkspace: c.String(wd_flag.NameCliCiWorkspace),
@@ -157,6 +167,7 @@ func UrfaveCliBindInfo(c *cli.Context) wd_info.WoodpeckerInfo {
 
 		PreviousInfo: previousInfo,
 	}
+
 	_ = wd_info_parse.ParseRepositoryInfoByWoodPeckerInfo(&wdInfo)
 
 	return wdInfo

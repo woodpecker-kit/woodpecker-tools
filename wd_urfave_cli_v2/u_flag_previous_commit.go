@@ -5,6 +5,7 @@ import (
 	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
 )
 
+// nolint: dupl
 func previousCommitFlag() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{

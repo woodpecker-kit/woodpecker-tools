@@ -2,15 +2,14 @@ package wd_mock
 
 import (
 	"fmt"
+
 	"github.com/sinlov-go/unittest-kit/env_kit"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_flag"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info"
 	"github.com/woodpecker-kit/woodpecker-tools/wd_info_parse"
 )
 
-var (
-	defaultOptionWoodpeckerInfo = setDefaultOptionWoodpeckerInfo()
-)
+var defaultOptionWoodpeckerInfo = setDefaultOptionWoodpeckerInfo()
 
 func setDefaultOptionWoodpeckerInfo() *wd_info.WoodpeckerInfo {
 	info := wd_info.WoodpeckerInfo{
@@ -29,6 +28,7 @@ func setDefaultOptionWoodpeckerInfo() *wd_info.WoodpeckerInfo {
 			PreviousPipelineInfo: *NewPreviousPipelineInfoFull(),
 		},
 	}
+
 	return &info
 }
 
@@ -46,9 +46,11 @@ func NewWoodpeckerInfo(opts ...WoodpeckerInfoOption) (opt *wd_info.WoodpeckerInf
 	for _, o := range opts {
 		o(opt)
 	}
+
 	defaultOptionWoodpeckerInfo = setDefaultOptionWoodpeckerInfo()
 
 	changByDroneEnv(opt)
+
 	return
 }
 
@@ -90,8 +92,8 @@ func WithFastMockTag(tagName string, msg string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("tag: %s, %s", tagName, msg)
 		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = tagName
-		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = fmt.Sprintf("refs/tags/%s", tagName)
-		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/tags/%s", tagName)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = "refs/tags/" + tagName
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = "refs/tags/" + tagName
 		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = ""
 		o.CurrentInfo.CurrentCommitInfo.CiCommitTargetBranch = ""
 		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = ""
@@ -100,11 +102,22 @@ func WithFastMockTag(tagName string, msg string) WoodpeckerInfoOption {
 	}
 }
 
-func FastPullRequest(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+func FastPullRequest(
+	prNumber, msg string,
+	sourceBranch string,
+	targetBranch string,
+	commitBranch string,
+) WoodpeckerInfoOption {
 	return WithFastMockPullRequest(prNumber, msg, sourceBranch, targetBranch, commitBranch)
 }
 
-func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+// nolint: dupl
+func WithFastMockPullRequest(
+	prNumber, msg string,
+	sourceBranch string,
+	targetBranch string,
+	commitBranch string,
+) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
 		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("pr: %s, %s", prNumber, msg)
 		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
@@ -120,13 +133,22 @@ func WithFastMockPullRequest(prNumber, msg string, sourceBranch string, targetBr
 			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
 		}
-
 	}
 }
 
-func FastPullRequestClose(prNumber, msg string, sourceBranch string, targetBranch string, commitBranch string) WoodpeckerInfoOption {
+// nolint: dupl
+func FastPullRequestClose(
+	prNumber, msg string,
+	sourceBranch string,
+	targetBranch string,
+	commitBranch string,
+) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
-		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("pr close: %s, %s", prNumber, msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf(
+			"pr close: %s, %s",
+			prNumber,
+			msg,
+		)
 		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
 		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = prNumber
 		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/pull/%s/head", prNumber)
@@ -140,16 +162,15 @@ func FastPullRequestClose(prNumber, msg string, sourceBranch string, targetBranc
 			forgeUrl := fmt.Sprintf("%s/pulls/%s", o.RepositoryInfo.CIRepoURL, prNumber)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
 		}
-
 	}
 }
 
 func FastPushCommitBranch(commitBranch, sha, msg string) WoodpeckerInfoOption {
 	return func(o *wd_info.WoodpeckerInfo) {
-		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = fmt.Sprintf("push: %s", msg)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitMessage = "push: " + msg
 		o.CurrentInfo.CurrentCommitInfo.CiCommitSha = sha
 		o.CurrentInfo.CurrentCommitInfo.CiCommitBranch = commitBranch
-		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = fmt.Sprintf("refs/heads/%s", commitBranch)
+		o.CurrentInfo.CurrentCommitInfo.CiCommitRef = "refs/heads/" + commitBranch
 		o.CurrentInfo.CurrentCommitInfo.CiCommitTag = ""
 		o.CurrentInfo.CurrentCommitInfo.CiCommitPullRequest = ""
 		o.CurrentInfo.CurrentCommitInfo.CiCommitSourceBranch = ""
@@ -161,7 +182,6 @@ func FastPushCommitBranch(commitBranch, sha, msg string) WoodpeckerInfoOption {
 			forgeUrl := fmt.Sprintf("%s/commit/%s", o.RepositoryInfo.CIRepoURL, sha)
 			o.CurrentInfo.CurrentPipelineInfo.CiPipelineForgeUrl = forgeUrl
 		}
-
 	}
 }
 

@@ -2,8 +2,6 @@ package wd_template
 
 import (
 	"fmt"
-	"github.com/aymerick/raymond"
-	_ "github.com/aymerick/raymond"
 	"math"
 	"net/url"
 	"regexp"
@@ -11,6 +9,9 @@ import (
 	"time"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/aymerick/raymond"
+	_ "github.com/aymerick/raymond"
 )
 
 var (
@@ -73,6 +74,7 @@ func isFailure(conditional bool, options *raymond.Options) string {
 	}
 }
 
+// nolint: predeclared
 func truncate(s string, len int) string {
 	if utf8.RuneCountInString(s) <= int(math.Abs(float64(len))) {
 		return s

@@ -2,7 +2,7 @@ package wd_flag
 
 const (
 	// Deprecated: remove at woodpecker server 3.0.0
-	// Provides the current pipeline files, like [".woodpecker/.build.yml"]
+	// Provides the current pipeline files, like [".woodpecker/.build.yml"].
 	NameCliCurrentPipelineFiles = "current_pipeline.files"
 
 	// EnvKeyCurrentPipelineFiles

@@ -7,7 +7,7 @@ type (
 		// CI
 		//  Provides the ci flag. This value is `woodpecker` when the is run in woodpecker
 		//  by env: CI
-		CI string `mock_env_key:"CI" mock_env_default:"woodpecker"`
+		CI string `mock_env_default:"woodpecker" mock_env_key:"CI"`
 
 		// CIWorkspace
 		//  Provides the Path of the workspace where source code gets cloned to
@@ -18,12 +18,11 @@ type (
 	// CiSystemInfo
 	//  woodpecker ci system info.
 	CiSystemInfo struct {
-
 		// WoodpeckerBackend
 		//  Provides the backend flag. This value is type when the is run in woodpecker, default is empty.
 		//  Possible values are auto-detect, docker, local or kubernetes
 		//  by env: WOODPECKER_BACKEND
-		WoodpeckerBackend string `mock_env_key:"WOODPECKER_BACKEND" mock_env_default:"docker"`
+		WoodpeckerBackend string `mock_env_default:"docker" mock_env_key:"WOODPECKER_BACKEND"`
 
 		// WoodpeckerAgentHostName
 		//  Provides the configures the agent hostname. default is empty.
@@ -52,7 +51,7 @@ type (
 		// CiSystemName
 		//  Provides name of the CI system: woodpecker
 		//  by env: CI_SYSTEM_NAME
-		CiSystemName string `mock_env_key:"CI_SYSTEM_NAME" mock_env_default:"woodpecker"`
+		CiSystemName string `mock_env_default:"woodpecker" mock_env_key:"CI_SYSTEM_NAME"`
 
 		// CiSystemUrl
 		//  Provides link to CI system
@@ -110,7 +109,7 @@ type (
 		// CIRepoScm
 		//  Provides the repository scm flag. repository SCM (git).
 		//  by env: CI_REPO_SCM
-		CIRepoScm string `mock_env_key:"CI_REPO_SCM" mock_env_default:"git"`
+		CIRepoScm string `mock_env_default:"git" mock_env_key:"CI_REPO_SCM"`
 
 		// CIRepoURL
 		//  Provides the repository url flag. repository URL.
@@ -326,7 +325,7 @@ type (
 		// CiWorkflowNumber
 		//  Provides the current workflow number, this will start from 1
 		//  by env: CI_WORKFLOW_NUMBER
-		CiWorkflowNumber string `mock_env_key:"CI_WORKFLOW_NUMBER" mock_env_default:"1"`
+		CiWorkflowNumber string `mock_env_default:"1" mock_env_key:"CI_WORKFLOW_NUMBER"`
 	}
 
 	// CurrentStepInfo

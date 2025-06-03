@@ -13,7 +13,7 @@ type (
 		Number string
 	}
 
-	// Repo repo base info
+	// Repo repo base info.
 	Repo struct {
 		// Scm
 		//	must is: git hg
@@ -300,7 +300,7 @@ type (
 	}
 )
 
-// CommitAuthor commit author info
+// CommitAuthor commit author info.
 type CommitAuthor struct {
 	//  Username
 	Username string //   the author username for the current commit

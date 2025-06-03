@@ -4,6 +4,7 @@ on:
   push:
     paths-ignore:
       - '**/README.md'
+      - '**/doc-dev/*'
     branches:
       # - 'main'
       - 'release-*'
@@ -34,7 +35,6 @@ on:
 permissions: # https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#permissions
   contents: write
   discussions: write
-  packages: write
 
 jobs:
   version:
@@ -47,7 +47,11 @@ jobs:
       - version
     uses: ./.github/workflows/golang-ci.yml
     secrets: inherit
-    # if: ${{ github.event.pull_request.merged == true }}
+    with:
+      run_test_case: true
+      run_golangci_lint: true
+      run_benchmark: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
+      run_test_coverage: true
 
   go-build-check-main:
     name: go-build-check-main
@@ -61,20 +65,6 @@ jobs:
       version_name: latest
       go_build_id: ${{ needs.version.outputs.short_sha }}
 
-#   docker-buildx-bake-hubdocker-latest:
-#     name: docker-buildx-bake-hubdocker-latest
-#     needs:
-#       - version
-#       - golang-ci
-#       - go-build-check-main
-#     uses: ./.github/workflows/docker-buildx-bake-hubdocker-latest.yml
-#     # if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/main' ) || github.base_ref == 'main' }}
-#     with:
-#       # push_remote_flag: ${{ github.ref == 'refs/heads/main' }}
-#       push_remote_flag: ${{ github.event.pull_request.merged == true }}
-#     secrets:
-#       DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
-
   go-release-platform:
     name: go-release-platform
     needs:
@@ -86,27 +76,12 @@ jobs:
     with:
       version_name: ${{ needs.version.outputs.tag_name }}
       go_build_id: ${{ needs.version.outputs.short_sha }}
-      upload_artifact_name: go-release
-
-#   docker-buildx-bake-hubdocker-tag:
-#     name: docker-buildx-bake-hubdocker-tag
-#     needs:
-#       - version
-#       - golang-ci
-#       - go-release-platform
-#     uses: ./.github/workflows/docker-buildx-bake-hubdocker-tag.yml
-#     if: startsWith(github.ref, 'refs/tags/')
-#     # with:
-#       # push_remote_flag: true # default is true
-#     secrets:
-#       DOCKERHUB_TOKEN: "${{ secrets.DOCKERHUB_TOKEN }}"
+      # upload_artifact_name: go-release
 
   deploy-tag:
     needs:
       - version
-      - golang-ci
       - go-release-platform
-#       - docker-buildx-bake-hubdocker-tag
     name: deploy-tag
     uses: ./.github/workflows/deploy-tag.yml
     if: startsWith(github.ref, 'refs/tags/')
@@ -116,4 +91,4 @@ jobs:
       prerelease: true
       tag_name: ${{ needs.version.outputs.tag_name }}
       tag_changes: ${{ needs.version.outputs.cc_changes }}
-      download_artifact_name: go-release # download artifact name, download from actions/upload-artifact, as: {download_artifact_name}-{tag_name}-*, empty is not download
+      # download_artifact_name: go-release # download artifact name, download from actions/upload-artifact, as: {download_artifact_name}-{tag_name}-*, empty is not download

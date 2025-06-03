@@ -11,9 +11,7 @@ const (
 	TimeFormatDefault = "2006-01-02-03-04-05"
 )
 
-var (
-	timeFormatSet = TimeFormatDefault
-)
+var timeFormatSet = TimeFormatDefault
 
 // SetTimeFormat
 // will change time format by wd_flag.FormatTimeUTCBySetting(timestamp uint64)
@@ -29,7 +27,7 @@ func SetTimeFormat(format string) {
 
 // FormatTimeUTCBySetting
 // format time by wd_flag.SetTimeFormat
-// if not change will use wd_flag.TimeFormatDefault
+// if not change will use wd_flag.TimeFormatDefault.
 func FormatTimeUTCBySetting(timestamp uint64) string {
 	return FormatTimeUTC(timestamp, timeFormatSet)
 }
@@ -38,6 +36,7 @@ func FormatTimeUTC(timestamp uint64, format string) string {
 	if timestamp == 0 {
 		return ""
 	}
+
 	return time.Unix(int64(timestamp), 0).UTC().Format(format)
 }
 
@@ -67,19 +66,24 @@ func DistanceBetweenTimestampSecondHuman(from, to int64) string {
 	if from > to {
 		return "N/A"
 	}
+
 	if from == to {
 		return "0s"
 	}
+
 	days, hours, minutes, seconds := DistanceBetweenTimestampSecond(from, to)
 	if days > 0 {
 		return fmt.Sprintf("%dd %dh %dm %ds", days, hours, minutes, seconds)
 	}
+
 	if hours > 0 {
 		return fmt.Sprintf("%dh %dm %ds", hours, minutes, seconds)
 	}
+
 	if minutes > 0 {
 		return fmt.Sprintf("%dm %ds", minutes, seconds)
 	}
+
 	return fmt.Sprintf("%ds", seconds)
 }
 
@@ -92,6 +96,7 @@ func DistanceBetweenTimestampSecond(from, to int64) (days, hours, minutes, secon
 	if from > to {
 		return 0, 0, 0, 0
 	}
+
 	fromT := time.Unix(from, 0)
 	toT := time.Unix(to, 0)
 
@@ -105,28 +110,35 @@ func DistanceBetweenTimestampSecond(from, to int64) (days, hours, minutes, secon
 	for i := 0; i < (int)(m1)-1; i++ {
 		totalDays1 += monthDays[i]
 	}
+
 	totalDays1 += leapYears(fromT)
+
 	totalDays2 := y2*365 + d2
 	for i := 0; i < (int)(m2)-1; i++ {
 		totalDays2 += monthDays[i]
 	}
+
 	totalDays2 += leapYears(toT)
 	days = totalDays2 - totalDays1
 	hours = h2 - h1
 	minutes = min2 - min1
+
 	seconds = s2 - s1
 	if seconds < 0 {
 		seconds += 60
 		minutes--
 	}
+
 	if minutes < 0 {
 		minutes += 60
 		hours--
 	}
+
 	if hours < 0 {
 		hours += 24
 		days--
 	}
+
 	return days, hours, minutes, seconds
 }
 
@@ -135,6 +147,8 @@ func leapYears(date time.Time) (leaps int) {
 	if m <= 2 {
 		y--
 	}
+
 	leaps = y/4 + y/400 - y/100
+
 	return leaps
 }

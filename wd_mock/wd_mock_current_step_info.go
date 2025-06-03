@@ -27,7 +27,9 @@ func NewCurrentStepInfo(opts ...CurrentStepInfoOption) (opt *wd_info.CurrentStep
 	for _, o := range opts {
 		o(opt)
 	}
+
 	defaultCurrentStepInfo = setDefaultCurrentStepInfo()
+
 	return
 }
 
@@ -43,10 +45,10 @@ func WithCiStepNumber(stepNumber string) CurrentStepInfoOption {
 	}
 }
 
-// Deprecated: remove at woodpecker server 3.0.0
+// Deprecated: remove at woodpecker server 3.0.0.
 func WithCiStepStatus(stepStatus string) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
-		//o.CiStepStatus = stepStatus
+		// o.CiStepStatus = stepStatus
 	}
 }
 
@@ -54,23 +56,29 @@ func WithCiStepStarted(stepStarted uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
 		o.CiStepStarted = stepStarted
 		o.CiStepStartedT = wd_flag.FormatTimeUTCBySetting(stepStarted)
-		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepNowTime))
+		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(
+			int64(o.CiStepStarted),
+			int64(o.CiStepNowTime),
+		)
 	}
 }
 
-// Deprecated: remove at woodpecker server 3.0.0, instead of WithCiStepNowTime
+// Deprecated: remove at woodpecker server 3.0.0, instead of WithCiStepNowTime.
 func WithCiStepFinished(stepFinished uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
-		//o.CiStepFinished = stepFinished
-		//o.CiStepFinishedT = wd_flag.FormatTimeUTCBySetting(stepFinished)
-		//o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
+		// o.CiStepFinished = stepFinished
+		// o.CiStepFinishedT = wd_flag.FormatTimeUTCBySetting(stepFinished)
+		// o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepFinished))
 	}
 }
 
 func WithCiStepNowTime(stepNowTime uint64) CurrentStepInfoOption {
 	return func(o *wd_info.CurrentStepInfo) {
 		o.CiStepNowTime = stepNowTime
-		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(int64(o.CiStepStarted), int64(o.CiStepNowTime))
+		o.CiStepDurationHuman = wd_flag.DistanceBetweenTimestampSecondHuman(
+			int64(o.CiStepStarted),
+			int64(o.CiStepNowTime),
+		)
 	}
 }
 
