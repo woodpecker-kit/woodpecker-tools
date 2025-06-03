@@ -2,9 +2,10 @@ package env_mock
 
 import (
 	"fmt"
-	"github.com/sinlov-go/unittest-kit/env_kit"
 	"reflect"
 	"strconv"
+
+	"github.com/sinlov-go/unittest-kit/env_kit"
 )
 
 // MockEnvByStruct
@@ -48,6 +49,7 @@ func MockEnvByStruct(input interface{}) {
 			if okEnvKey {
 				//fmt.Printf("tag [ mock_env_key : %s ]\n", envTagVal)
 
+				// nolint: exhaustive
 				switch fType.Type.Kind() {
 				default:
 					//fmt.Printf("Field [ %s ] : %v\n", fType.Name, fType.Type)

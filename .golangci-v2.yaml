@@ -42,6 +42,7 @@ linters:
     - staticcheck
     - tagliatelle
     - unparam
+    - errchkjson
     - varnamelen
     - wrapcheck
 
