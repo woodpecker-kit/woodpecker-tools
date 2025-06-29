@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.13
 
 require (
-	github.com/Masterminds/semver/v3 v3.3.1
+	github.com/Masterminds/semver/v3 v3.4.0
 	github.com/Masterminds/sprig/v3 v3.3.0
 	github.com/aymerick/raymond v2.0.2+incompatible
 	github.com/chainguard-dev/git-urls v1.0.2
